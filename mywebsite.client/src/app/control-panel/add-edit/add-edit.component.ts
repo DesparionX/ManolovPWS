@@ -112,7 +112,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
   public onImageSelect(files: FileList): void {
     if (files.length > 0) {
       if (files.length + this.allPictures.length > 9) {
-        console.error("Too much images ! You may upload maximum 9.");
+        console.error("Too much images ! You may upload maximum 9."); 
         
         return;
       }
