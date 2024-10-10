@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="col addit-form">
+        <form [formGroup]="form" class="center" (submit)="addit()">
+            <div class="row">
+                <div class="custom-form-group">
+                    <label class="custom-label" for="title">Title</label>
+                    <input class="custom-input" type="text" formControlName="title" id="title"/>
+                    <div class="invalid-field" *ngIf="form.controls.title.invalid && (form.controls.title.dirty || form.controls.title.touched)">
+                        <div *ngIf="form.controls.title.errors">
+                            *Title must be between 3 and 40 characters.
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-form-group">
+                    <label class="custom-label area" for="description">Description</label>
+                    <textarea class="custom-area" type="text" formControlName="description" id="description" (input)="autoGrow($event)" ></textarea>
+                    <div class="invalid-field" *ngIf="form.controls.description.invalid && (form.controls.description.dirty || form.controls.description.touched)">
+                        <div *ngIf="form.controls.description.errors">
+                            Description must be between 10 and 2000 characters.
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-form-group" *ngIf="isProject == true">
+                    
+                        <mat-label class="custom-label drop-menu">Project Type</mat-label>
+                        <mat-select class="custom-input custom-drop-menu" [(value)]="projectTypeValue" formControlName="projectType" id="projectType">
+                            <mat-option value="InProgress">In progress</mat-option>
+                            <mat-option value="FinishedProject">Finished</mat-option>
+                        </mat-select>
+                    
+                </div>
+                <input type="file" class="file-input" (change)="onImageSelect(fileUpload.files!)" #fileUpload multiple requiredFileType="image/png"/>
+
+                <div class="file-upload">
+                    <label class="custom-label">Images</label>
+                        <div class ="images" *ngIf="allPictures.length > 0">
+                            <div class="img" *ngFor="let img of allPictures">
+                                <img class="fit" [src]="img" />
+                            </div>
+                        </div>
+                    <hr class="hr-sm" />
+                    <button mat-mini-fab color="primary" type="button" class="upload-btn" (click)="fileUpload.click()">
+                        <mat-icon class="up-icon">attach_file</mat-icon>
+                    </button>
+                </div>
+                <div class="custom-form-group">
+                    <label for="link" class="custom-label">Link</label>
+                    <input type="text" class="custom-input" formControlName="link" id="link" />
+                </div>
+                <button type="submit" class="custom-button">{{additButton}}</button>
+            </div>
+        </form>
+    </div>
+</div>

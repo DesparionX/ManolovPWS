@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.projects {
+  display: flex;
+  width: 900px;
+  margin-top: 50px;
+
+  .project {
+    max-width: 900px;
+    margin: auto;
+    height: 100px;
+    max-height: 80px;
+
+
+    .title {
+      height: 50px;
+      align-self: center;
+      font-family: "Poppins", sans-serif;
+      font-size: 2rem;
+      color: #fff;
+      font-weight: 500;
+      margin: 0;
+      padding: 0;
+      margin-left: 50px;
+      text-shadow: 1px 1px 0.2rem black;
+    }
+
+    .actions {
+      align-content: center;
+      align-self: center;
+      text-align: end;
+      height: 50px;
+      max-width: 200px;
+      margin-right: 20px;
+
+      .action-icon {
+        font-size: 1.5rem;
+        color: #666;
+        text-decoration: none;
+        padding-left: 1rem;
+        font-weight: 500;
+        text-shadow: 1px 1px 0.2rem black;
+      }
+
+      .edit:hover {
+        color: yellow;
+      }
+
+      .delete:hover {
+        color: red;
+      }
+    }
+  }
+
+  .project:hover {
+    border-radius: 50px;
+    border: 1px inset rgba(0, 0, 0, .5);
+    background-color: rgba(255, 255, 255, .2);
+    cursor: pointer;
+  }
+
+  .custom-hr {
+    border-top: 2px inset rgba(0, 0, 0, 1);
+    width: auto;
+    margin: auto;
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .btn-add {
+    position: fixed;
+    z-index: 1000;
+    top: 70vh;
+    height: 72px;
+    width: 72px;
+    left: calc(50% + 72px);
+    font-size: 3rem;
+    color: #666;
+    text-shadow: 1px 1px 0.2rem black;
+  }
+
+  .btn-add:hover {
+    color: green;
+  }
+}

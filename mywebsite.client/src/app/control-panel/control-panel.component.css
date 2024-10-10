@@ -1,0 +1,19 @@
+.panel {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  min-width: 1000px;
+  width: 1200px;
+  height: 1500px;
+  margin: auto;
+  margin-top: 150px;
+  margin-bottom: 50px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: 50px;
+  backdrop-filter: blur(20px);
+  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, .5);
+
+
+
+
+}

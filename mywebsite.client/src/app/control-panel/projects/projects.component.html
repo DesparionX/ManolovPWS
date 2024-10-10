@@ -1,0 +1,25 @@
+<div class="col container">
+    <div class="row projects">
+        <div *ngIf="projects.length > 0">
+            <div *ngFor="let project of projects">
+                <div class="row project">
+                    <h4 class="col title">{{project.title}}</h4>
+                    <nav class="col actions">
+                        <a class="col action-icon edit" [routerLink]="['addit/'] + project.type! + ['/'] + project.id!">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a class="col action-icon delete" (click)="openDialog('200ms', '100ms', 'project', project.id!)">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </nav>
+                </div>
+                <hr class="custom-hr" *ngIf="projects.length > 1" />
+            </div>
+
+        </div>
+        <a class="btn-add" [routerLink]="['addit/Project']">
+            <i class="fa-solid fa-circle-plus"></i>
+        </a>
+    </div>
+</div>
+

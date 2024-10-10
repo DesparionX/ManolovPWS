@@ -1,0 +1,25 @@
+<div class="col container">
+    <div class="row posts">
+        <div *ngIf="posts.length > 0">
+            <div *ngFor="let post of posts">
+                <div class="row post">
+                    <h4 class="col title">{{post.title}}</h4>
+                    <nav class="col actions">
+                        <a class="col action-icon edit" [routerLink]="['addit/'] + post.type! + ['/'] + post.id!">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a class="col action-icon delete" (click)="openDialog('200ms', '100ms', 'post', post.id!)">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </nav>
+                </div>
+                <hr class="custom-hr" *ngIf="posts.length > 1" />
+            </div>
+            
+        </div>
+        <a class="btn-add" [routerLink]="['addit/Post']">
+            <i class="fa-solid fa-circle-plus"></i>
+        </a>
+    </div>
+</div>
+
