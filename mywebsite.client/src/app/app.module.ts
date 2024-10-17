@@ -1,4 +1,4 @@
-import { HttpClientModule, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { withInterceptors, withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,52 +30,48 @@ import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { EditCVComponent } from './control-panel/edit-cv/edit-cv.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 export const MY_FORMATS: MatDateFormats = {
   parse: {
     dateInput: 'MM/DD/YYYY',  // Expected input format for parsing
   },
   display: {
-    dateInput: 'DD/MMM/YYYY',  // Display format in input field
+    dateInput: 'DD MMM YYYY',  // Display format in input field
     monthYearLabel: 'MMM YYYY',
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'MMMM YYYY',
   },
 };
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    BodyComponent,
-    TopNavComponent,
-    ProjectsComponent,
-    AboutComponent,
-    ContactComponent,
-    CvComponent,
-    ControlPanelComponent,
-    LoginComponent,
-    PostsComponent,
-    PanelComponent,
-    AddEditComponent,
-    PortfolioComponent,
-    EditCVComponent
-  ],
-  imports: [
-    BrowserModule, HttpClientModule,
-    AppRoutingModule, ReactiveFormsModule,
-    MatSelectModule, MatIconModule, MatButtonModule, MatSlideToggleModule,
-    DeleteDialogComponent, MatDatepickerModule, MatNativeDateModule, MatFormFieldModule,
-    MatInputModule,
-  ],
-  providers: [
-    provideHttpClient(withInterceptors([authInterceptor])),
-    provideHttpClient(withInterceptorsFromDi()),
-    provideAnimationsAsync(),
-    provideNativeDateAdapter(),
-    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        BodyComponent,
+        TopNavComponent,
+        ProjectsComponent,
+        AboutComponent,
+        ContactComponent,
+        CvComponent,
+        ControlPanelComponent,
+        LoginComponent,
+        PostsComponent,
+        PanelComponent,
+        AddEditComponent,
+        PortfolioComponent,
+        EditCVComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule, ReactiveFormsModule,
+        MatSelectModule, MatIconModule, MatButtonModule, MatSlideToggleModule,
+        DeleteDialogComponent, MatDatepickerModule, MatNativeDateModule, MatFormFieldModule,
+        MatInputModule], providers: [
+        provideHttpClient(withInterceptors([authInterceptor])),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimationsAsync(),
+        provideNativeDateAdapter(),
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule { }

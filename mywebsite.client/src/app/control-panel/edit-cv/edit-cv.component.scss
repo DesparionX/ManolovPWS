@@ -59,7 +59,7 @@ $orange: rgba(255, 120, 90, 1);
 
       .custom-input:focus, .custom-area:focus {
         box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
-        z-index: 100;
+        z-index: 1;
       }
 
       &:focus-within .custom-label {
@@ -90,6 +90,51 @@ $orange: rgba(255, 120, 90, 1);
         font-size: 1.2rem;
         color: red;
         text-shadow: 0 0 10px black;
+      }
+
+      .custom-picker {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .custom-input {
+          display: flex;
+          min-width: 350px;
+          max-width: 450px;
+          height: 70px;
+          padding-right: 50px; // Make space for the icon
+          padding-left: 20px;
+          border-radius: 40px;
+          border: 1px solid rgba(0, 0, 0, .5);
+          background-color: rgba(0, 0, 0, .1);
+          outline: none;
+          text-align: center;
+          font-size: 1.5rem;
+          color: white;
+        }
+
+        .mat-datepicker-toggle {
+          position: absolute;
+          right: 25px; // Adjust positioning to the right inside the input
+          z-index: 1;
+        }
+
+        .mat-datepicker-toggle button {
+          border: none;
+          background: transparent;
+          cursor: pointer;
+        }
+
+        ::ng-deep .mat-datepicker-toggle,
+        ::ng-deep .mat-icon {
+          font-size: 24px;
+          color: white !important;
+          text-shadow: 0 0 5px black !important;
+          transition: all ease 0.3s !important;
+          &:hover {
+            color: rgba(255, 120, 90, 1) !important;
+          }
+        }
       }
     }
 
@@ -153,4 +198,41 @@ $orange: rgba(255, 120, 90, 1);
 }
 ::ng-deep .mdc-switch__icon--off path{
   display: none !important;
+}
+
+::ng-deep .mat-datepicker-content {
+  display: flex !important;
+  position: relative !important;
+  //margin: auto !important;
+  margin-right: 50px !important;
+  padding: 0 50px 0 50px !important;
+  border-radius: 40px !important;
+  border: 1px solid rgba(0,0,0, .5) !important;
+  background-color: rgba(0, 0, 0, .1) !important;
+  outline: none !important;
+  text-align: center !important;
+  color: white !important;
+
+}
+::ng-deep .mat-calendar-body-cell-content,
+::ng-deep .mat-calendar-period-button .mdc-button__label,
+::ng-deep .mat-calendar-table-header th,
+::ng-deep .mat-calendar-previous-button,
+::ng-deep .mat-calendar-next-button,
+::ng-deep .mat-calendar-header,
+::ng-deep .mat-calendar-body-label {
+  color: white !important;
+}
+::ng-deep .mat-calendar-body-selected {
+    background-color: rgba(0, 0, 0, .1) !important;
+    border-color: rgba(0, 0, 0, 1) !important;
+  box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
+}
+::ng-deep .mat-calendar-body-today {
+  background-color: rgba(0, 0, 0, .1) !important;
+  border-color: rgba(0, 0, 0, 1) !important;
+  box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
+}
+::ng-deep .mat-calendar-body-cell-content:hover {
+  background-color: rgba(255, 100, 40, .5) !important;
 }

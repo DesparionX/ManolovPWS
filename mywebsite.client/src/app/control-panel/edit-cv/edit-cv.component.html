@@ -20,8 +20,10 @@
             </div>
             <div class="custom-form-group">
                 <label class="custom-label" for="birthDate">Birth Date</label>
-                <input class="custom-input" id="birthDate" formControlName="birthDate" [matDatepicker]="birthDate" />
-                <mat-datepicker-toggle matIconSuffix [for]="birthDate"></mat-datepicker-toggle>
+                <div class="custom-picker">
+                    <input class="custom-input" autocomplete="off" id="birthDate" formControlName="birthDate" [matDatepicker]="birthDate" />
+                    <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+                </div>
                 <mat-datepicker #birthDate></mat-datepicker>
             </div>
             <div class="custom-form-group">
