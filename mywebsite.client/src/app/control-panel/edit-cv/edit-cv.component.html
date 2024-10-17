@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="col cv-form">
+        <form [formGroup]="form" class="center" (submit)="editCV()">
+            <div class="avatar-field">
+            </div>
+            <div class="custom-form-group">
+                <!-- Full Name -->
+                <label class="custom-label" for="fullName">Full name</label>
+                <input class="custom-input" type="text" formControlName="fullName" id="fullName" />
+                <div class="invalid-field" *ngIf="form.controls.fullName.invalid && (form.controls.fullName.dirty || form.controls.fullName.touched)">
+                    <div *ngIf="form.controls.fullName.errors">
+                        *Full name must be between 10 and 40 characters.
+                    </div>
+                </div>
+            </div>
+            <div class="custom-switch">
+                <label class="switch-label" for="isMale" #female>Female</label>
+                <mat-slide-toggle (change)="genderSelected()" formControlName="isMale"></mat-slide-toggle>
+                <label class="switch-label" for="isMale" #male>Male</label>
+            </div>
+            <div class="custom-form-group">
+                <label class="custom-label" for="birthDate">Birth Date</label>
+                <input class="custom-input" id="birthDate" formControlName="birthDate" [matDatepicker]="birthDate" />
+                <mat-datepicker-toggle matIconSuffix [for]="birthDate"></mat-datepicker-toggle>
+                <mat-datepicker #birthDate></mat-datepicker>
+            </div>
+            <div class="custom-form-group">
+                <!-- Nationality -->
+            </div>
+            <div class="custom-form-group">
+                <!-- Address -->
+            </div>
+            <div class="custom-form-group">
+                <!-- Contacts -->
+            </div>
+            <div class="custom-form-group">
+                <!-- Description -->
+            </div>
+            <div class="custom-form-group">
+                <!-- Profession -->
+            </div>
+            <div class="custom-form-group collection">
+                <!-- Work Experience -->
+            </div>
+            <div class="custom-form-group collection">
+                <!-- Education -->
+            </div>
+            <div class="custom-form-group collection">
+                <!-- Skills -->
+            </div>
+            <div class="custom-form-group collection">
+                <!-- Languages -->
+            </div>
+            <div class="custom-form-group collection">
+                <!-- Certificates -->
+            </div>
+        </form>
+    </div>
+</div>

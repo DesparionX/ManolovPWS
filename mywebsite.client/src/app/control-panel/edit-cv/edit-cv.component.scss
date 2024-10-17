@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$labelSize: 2rem;
+$orange: rgba(255, 120, 90, 1);
+
+.cv-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-top: 50px;
+  width: 900px;
+  height: auto;
+  align-items: center;
+  background: none;
+  font-family: "Poppins", sans-serif;
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 500px;
+    min-width: 200px;
+
+    .custom-form-group {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 10px;
+
+      .custom-label {
+        display: flex;
+        z-index: 1000;
+        padding-top: 25px;
+        margin-left: 45px;
+        height: 50px;
+        color: white;
+        font-size: $labelSize;
+        font-weight: 400;
+        text-shadow: 0 0 5px black;
+        transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+      }
+
+      .custom-input, .custom-area {
+        display: flex;
+        min-width: 350px;
+        max-width: 450px;
+        height: 70px;
+        margin: auto;
+        padding: 0 50px 0 50px;
+        border-radius: 40px;
+        border: 1px solid rgba(0,0,0, .5);
+        background-color: rgba(0, 0, 0, .1);
+        outline: none;
+        text-align: center;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .custom-input:focus, .custom-area:focus {
+        box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
+        z-index: 100;
+      }
+
+      &:focus-within .custom-label {
+        transform: translate(27%, 7px);
+        font-size: 1.5rem;
+        font-weight: 500;
+        z-index: 1000;
+        color: rgba(255, 120, 90, 1);
+      }
+
+      .custom-area {
+        min-width: 500px;
+        max-width: 600px;
+        min-height: 400px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: start;
+        resize: none;
+        overflow: hidden;
+      }
+
+      .invalid-field {
+        display: flex;
+        margin: auto;
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.2rem;
+        color: red;
+        text-shadow: 0 0 10px black;
+      }
+    }
+
+    .custom-switch {
+      display: flex;
+      flex-flow: row wrap;
+      align-self: center;
+      justify-content: space-evenly;
+      align-content: center;
+      max-width: 500px;
+      min-width: 400px;
+      min-height: 50px;
+
+
+      .switch-label {
+        display: flex;
+        z-index: 1000;
+        font-size: 1.3rem;
+        text-shadow: 0 0 5px black;
+        color: white;
+        transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+      }
+
+      .selected {
+        font-weight: 500;
+        z-index: 1000;
+        color: rgba(255, 120, 90, 1);
+      }
+
+      mat-slide-toggle {
+      }
+    }
+  }
+}
+::ng-deep .mat-mdc-slide-toggle {
+  transform: scale(2) !important;
+  align-self: baseline !important;
+  width: 100px !important;
+  background-color: transparent !important;
+}
+::ng-deep .mdc-switch__track {
+  border: 1px solid rgba(0,0,0, .5) !important;
+  background-color: rgba(0, 0, 0, .1) !important;
+  box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
+}
+::ng-deep .mdc-switch__track::before {
+  background-color: rgba(0, 0, 0, .1) !important;
+}
+::ng-deep .mdc-switch__track::after {
+  background-color: rgba(0, 0, 0, .1) !important;
+}
+::ng-deep .mdc-switch__handle {
+  background-color: transparent !important;
+}
+::ng-deep .mdc-switch__handle::after {
+  background-color: rgba(150, 150, 150, .5) !important;
+}
+
+::ng-deep .mdc-switch__icon--on path {
+  display: none !important;
+}
+::ng-deep .mdc-switch__icon--off path{
+  display: none !important;
+}

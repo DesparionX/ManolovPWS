@@ -7,16 +7,19 @@ namespace MyWebSite.Server.Data.Entities
     public class CV
     {
         public Guid Id { get; set; }
-        public required string FullName { get; set; }
+        public string Picture { get; set; }
+        public string FullName { get; set; }
         public bool IsMale { get; set; }
-        public required string Nationality { get; set; }
-        public required DateTime BirthDate { get; set; }
-        public required string AddressJson { get; set; }
-        public required string ContactsJson { get; set; }
-        public required string SkillsJson { get; set; }
-        public required ICollection<WorkExperience> WorkExperience { get; set; }
-        public required ICollection<Education> Education { get; set; }
-        public required ICollection<Language> Languages { get; set; }
+        public string Nationality { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string AddressJson { get; set; }
+        public string ContactsJson { get; set; }
+        public string SkillsJson { get; set; }
+        public string Profession { get; set; }
+        public string Description { get; set; }
+        public ICollection<WorkExperience>? WorkExperience { get; set; }
+        public ICollection<Education>? Education { get; set; }
+        public ICollection<Language>? Languages { get; set; }
         public ICollection<Certificate>? Certificates { get; set; }
 
         [NotMapped]
