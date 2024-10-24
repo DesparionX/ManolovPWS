@@ -6,7 +6,7 @@
             <div class="custom-form-group">
                 <!-- Full Name -->
                 <label class="custom-label" for="fullName">Full name</label>
-                <input class="custom-input" type="text" formControlName="fullName" id="fullName" />
+                <input class="custom-input" type="text" autocomplete="off" formControlName="fullName" id="fullName" />
                 <div class="invalid-field" *ngIf="form.controls.fullName.invalid && (form.controls.fullName.dirty || form.controls.fullName.touched)">
                     <div *ngIf="form.controls.fullName.errors">
                         *Full name must be between 10 and 40 characters.
@@ -27,33 +27,60 @@
                 <mat-datepicker #birthDate></mat-datepicker>
             </div>
             <div class="custom-form-group">
-                <!-- Nationality -->
+                <label class="custom-label" for="nationality">Nationality</label>
+                <input class="custom-input" type="text" autocomplete="off" formControlName="nationality" id="nationality" />
             </div>
             <div class="custom-form-group">
-                <!-- Address -->
+                <label class="custom-label area-label" for="address">Address</label>
+                <textarea class="custom-area" autocomplete="off" formControlName="address" id="address"></textarea>
+            </div>
+            <div class="collection">
+                <label class="collection-label">Contacts</label>
+                <div class="contact-list">
+                    <div class="contact-list-item">
+                        <img class="contact-img" src="" />
+                        <label class="contact-title">Test</label>
+                        <button class="delete-contact">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr class="hrr" />
+                <div class="contact-form">
+                    <div class="custom-form-group">
+                        <mat-select class="custom-input custom-drop-menu" formControlName="projectType" id="projectType">
+                            <mat-option value="InProgress">In progress</mat-option>
+                            <mat-option value="FinishedProject">Finished</mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="custom-form-group">
+                        <label class="custom-label" for="title">Contact</label>
+                        <input class="custom-input sm" type="text" autocomplete="off" formControlName="title" id="title" />
+                    </div>
+                    <button class="add-contact">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
             </div>
             <div class="custom-form-group">
-                <!-- Contacts -->
-            </div>
-            <div class="custom-form-group">
-                <!-- Description -->
+                <label class="custom-label"></label>
             </div>
             <div class="custom-form-group">
                 <!-- Profession -->
             </div>
-            <div class="custom-form-group collection">
+            <div class="custom-form-group ">
                 <!-- Work Experience -->
             </div>
-            <div class="custom-form-group collection">
+            <div class="custom-form-group ">
                 <!-- Education -->
             </div>
-            <div class="custom-form-group collection">
+            <div class="custom-form-group ">
                 <!-- Skills -->
             </div>
-            <div class="custom-form-group collection">
+            <div class="custom-form-group ">
                 <!-- Languages -->
             </div>
-            <div class="custom-form-group collection">
+            <div class="custom-form-group ">
                 <!-- Certificates -->
             </div>
         </form>

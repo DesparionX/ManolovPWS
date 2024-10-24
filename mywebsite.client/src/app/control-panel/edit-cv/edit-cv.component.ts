@@ -23,6 +23,9 @@ export class EditCVComponent implements OnInit, AfterViewInit {
     fullName: [''],
     isMale: [''],
     birthDate: [''],
+    nationality: [''],
+    address: [''],
+
   })
 
   ngOnInit() {

@@ -11,6 +11,7 @@ $orange: rgba(255, 120, 90, 1);
   width: 900px;
   height: auto;
   align-items: center;
+  place-content: center;
   background: none;
   font-family: "Poppins", sans-serif;
 
@@ -20,19 +21,22 @@ $orange: rgba(255, 120, 90, 1);
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
-    max-width: 500px;
+    max-width: 800px;
     min-width: 200px;
 
     .custom-form-group {
       display: flex;
       flex-direction: column;
       padding-bottom: 10px;
+      min-width: 150px;
+      max-width: 500px;
+      margin: auto;
 
       .custom-label {
         display: flex;
         z-index: 1000;
         padding-top: 25px;
-        margin-left: 45px;
+        margin-left: 35px;
         height: 50px;
         color: white;
         font-size: $labelSize;
@@ -57,23 +61,29 @@ $orange: rgba(255, 120, 90, 1);
         color: white;
       }
 
+
+
       .custom-input:focus, .custom-area:focus {
         box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
         z-index: 1;
       }
 
       &:focus-within .custom-label {
-        transform: translate(27%, 7px);
+        transform: translate(28%, 7px);
         font-size: 1.5rem;
         font-weight: 500;
         z-index: 1000;
         color: rgba(255, 120, 90, 1);
       }
 
+      &:focus-within .area-label {
+        transform: translate(33%, 7px) !important;
+      }
+
       .custom-area {
-        min-width: 500px;
+        min-width: 450px;
         max-width: 600px;
-        min-height: 400px;
+        min-height: 150px;
         padding-top: 20px;
         padding-bottom: 20px;
         text-align: start;
@@ -113,9 +123,10 @@ $orange: rgba(255, 120, 90, 1);
           color: white;
         }
 
+
         .mat-datepicker-toggle {
           position: absolute;
-          right: 25px; // Adjust positioning to the right inside the input
+          right: 20px; // Adjust positioning to the right inside the input
           z-index: 1;
         }
 
@@ -131,11 +142,151 @@ $orange: rgba(255, 120, 90, 1);
           color: white !important;
           text-shadow: 0 0 5px black !important;
           transition: all ease 0.3s !important;
+
           &:hover {
             color: rgba(255, 120, 90, 1) !important;
           }
         }
       }
+    }
+
+    .collection {
+      display: flex;
+      position: relative;
+      flex-flow: column wrap;
+      place-content: space-evenly;
+      min-width: 500px;
+      width: 600px;
+      max-width: 800px;
+      min-height: 150px;
+      margin: auto;
+      margin-top: 50px;
+      padding-bottom: 20px;
+      border-radius: 40px;
+      border: 1px solid rgba(0, 0, 0, .5);
+      background-color: rgba(0, 0, 0, .1);
+
+      .collection-label {
+        display: flex;
+        z-index: 1000;
+        margin-left: 35px;
+        margin-top: -25px;
+        height: 50px;
+        color: white;
+        font-size: $labelSize;
+        font-weight: 400;
+        text-shadow: 0 0 5px black;
+        transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+      }
+
+      &:focus-within .collection-label {
+        transform: translate(33%, 7px);
+        font-size: 1.5rem;
+        font-weight: 500;
+        z-index: 1000;
+        color: rgba(255, 120, 90, 1);
+      }
+
+      .contact-list {
+        display: flex;
+        flex-flow: column wrap;
+        place-content: center space-between;
+
+        .contact-list-item {
+          display: flex;
+          flex-flow: row wrap;
+          place-content: center space-between;
+          width: 400px;
+          height: 60px;
+          margin: auto;
+          margin-bottom: 10px;
+          padding: 0 20px 0 20px;
+
+          .contact-img {
+            display: flex;
+            place-self: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0,0,0, 1);
+            border-radius: 10px;
+            outline: none;
+            overflow: hidden;
+            object-fit: cover;
+          }
+
+          .contact-title {
+            display: flex;
+            place-self: center;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-shadow: 0 0 5px black;
+            transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+          }
+
+          .delete-contact {
+            display: flex;
+            place-self: center;
+            place-items: center;
+            height: 60px;
+            width: fit-content;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px black;
+            transition: transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+            border: none;
+            color: white;
+            background-color: transparent;
+            visibility: hidden;
+
+            &:hover {
+              color: red;
+            }
+          }
+        }
+
+        .contact-list-item:hover {
+          background-color: rgba(0,0,0, .1);
+          border-radius: 20px;
+
+          &:hover .delete-contact {
+            visibility: visible;
+          }
+        }
+      }
+
+      .hrr {
+        display: flex;
+        border-top: 1px solid rgba(0, 0, 0, 1);
+        width: 400px;
+        margin: auto;
+        margin-bottom: -20px;
+      }
+
+      .add-contact {
+        display: flex;
+        place-self: center;
+        place-content: center;
+        place-items: center;
+        width: 60px;
+        height: 60px;
+        margin-top: 35px;
+        border: 1px solid rgba(0,0,0, .5);
+        border-radius: 40px;
+        color: white;
+        font-size: 2rem;
+        text-shadow: 0 0 5px black;
+        background-color: rgba(0,0,0, .1);
+
+        &:hover {
+          text-shadow: 0 0 5px black;
+          transition: transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+          color: green;
+        }
+      }
+    }
+
+    .collection:focus-within {
+      box-shadow: 0 0 1rem rgba(255, 100, 40, .1);
     }
 
     .custom-switch {
@@ -203,12 +354,12 @@ $orange: rgba(255, 120, 90, 1);
 ::ng-deep .mat-datepicker-content {
   display: flex !important;
   position: relative !important;
-  //margin: auto !important;
   margin-right: 50px !important;
   padding: 0 50px 0 50px !important;
   border-radius: 40px !important;
   border: 1px solid rgba(0,0,0, .5) !important;
   background-color: rgba(0, 0, 0, .1) !important;
+  backdrop-filter: blur(40px) !important;
   outline: none !important;
   text-align: center !important;
   color: white !important;
@@ -225,6 +376,7 @@ $orange: rgba(255, 120, 90, 1);
 }
 ::ng-deep .mat-calendar-body-selected {
     background-color: rgba(0, 0, 0, .1) !important;
+    
     border-color: rgba(0, 0, 0, 1) !important;
   box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
 }
@@ -235,4 +387,58 @@ $orange: rgba(255, 120, 90, 1);
 }
 ::ng-deep .mat-calendar-body-cell-content:hover {
   background-color: rgba(255, 100, 40, .5) !important;
+}
+::ng-deep .mat-mdc-select-panel {
+  display: flex !important;
+  position: relative !important;
+  flex-direction: column !important;
+  margin-left: -5px !important;
+  margin-top: 15px !important;
+  min-width: 50px !important;
+  max-width: 70px !important;
+  border-bottom-right-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+  border-left: 1px solid rgba(0,0,0, .5) !important;
+  border-right: 1px solid rgba(0,0,0, .5) !important;
+  border-bottom: 1px solid rgba(0,0,0, .5) !important;
+  box-shadow: 0 10px 1rem rgba(255, 100, 40, .5) !important;
+  background-color: rgba(0, 0, 0, .1) !important;
+  backdrop-filter: blur(40px) !important;
+
+  ::ng-deep .mat-mdc-option {
+    background-color: transparent !important;
+    color: white !important;
+    font-size: 1.2rem !important;
+
+    &:hover {
+      background-color: green !important;
+    }
+  }
+
+  ::ng-deep .mat-mdc-option-active {
+    ::ng-deep .mdc-list-item__primary-text {
+      color: rgba(255, 120, 90, 1) !important;
+    }
+  }
+}
+::ng-deep .mat-mdc-select-arrow{
+    color: white !important;
+}
+.custom-drop-menu{
+    min-width: 100px !important;
+    max-width: 100px !important;
+    height: 70px !important;
+    padding:20px !important;
+    margin: 0 !important;
+    margin-top: 50px !important;
+    margin-left: 20px !important;
+}
+.sm {
+    min-width: 250px !important;
+    max-width: 300px !important;
+    margin-right: 25px !important;
+}
+.contact-form{
+    display: flex;
+    flex-flow: row wrap;
 }
