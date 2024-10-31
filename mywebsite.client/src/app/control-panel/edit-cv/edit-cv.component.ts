@@ -9,7 +9,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-edit-cv',
   templateUrl: './edit-cv.component.html',
-  styleUrl: './edit-cv.component.scss'
+  styleUrl: './edit-cv.component.scss',
 })
 export class EditCVComponent implements OnInit, AfterViewInit {
 
@@ -25,6 +25,20 @@ export class EditCVComponent implements OnInit, AfterViewInit {
     birthDate: [''],
     nationality: [''],
     address: [''],
+    contactIcon: [''],
+    description: [''],
+    profession: [''],
+    workPosition: [''],
+    title: [''],
+    workDescription: [''],
+    startDate: [''],
+    endDate: [''],
+    schoolName: [''],
+    educationType: [''],
+    professionAquired: [''],
+    educationDescription: [''],
+    eduStartDate: [''],
+    eduEndDate: [''],
 
   })
 

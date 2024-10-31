@@ -29,7 +29,7 @@ $orange: rgba(255, 120, 90, 1);
       flex-direction: column;
       padding-bottom: 10px;
       min-width: 150px;
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
 
       .custom-label {
@@ -69,15 +69,39 @@ $orange: rgba(255, 120, 90, 1);
       }
 
       &:focus-within .custom-label {
-        transform: translate(28%, 7px);
+        transform: translate(29%, 7px);
         font-size: 1.5rem;
         font-weight: 500;
         z-index: 1000;
         color: rgba(255, 120, 90, 1);
       }
 
+      &:focus-within .label-sm {
+        transform: translate(33%, 7px) !important;
+      }
+
+      &:focus-within .label-md {
+        transform: translate(30%, 7px) !important;
+      }
+
+      &:focus-within .label-lg {
+        transform: translate(20%, 7px) !important;
+      }
+
+      &:focus-within .label-xl {
+        transform: translate(10%, 7px) !important;
+      }
+
+      &:focus-within .contact-label {
+        transform: translate(25%, 7px);
+      }
+
       &:focus-within .area-label {
         transform: translate(33%, 7px) !important;
+      }
+
+      &:focus-within .collection-area-label {
+        transform: translate(30%, 7px) !important;
       }
 
       .custom-area {
@@ -179,20 +203,26 @@ $orange: rgba(255, 120, 90, 1);
         transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
       }
 
+      .start-end-date {
+        display: flex;
+        flex-flow: row wrap;
+        place-content: center space-evenly;
+        min-width: 500px;
+        max-width: 600px;
+      }
+
       &:focus-within .collection-label {
-        transform: translate(33%, 7px);
-        font-size: 1.5rem;
         font-weight: 500;
         z-index: 1000;
         color: rgba(255, 120, 90, 1);
       }
 
-      .contact-list {
+      .contact-list, .job-list, .education-list {
         display: flex;
         flex-flow: column wrap;
         place-content: center space-between;
 
-        .contact-list-item {
+        .list-item {
           display: flex;
           flex-flow: row wrap;
           place-content: center space-between;
@@ -214,7 +244,7 @@ $orange: rgba(255, 120, 90, 1);
             object-fit: cover;
           }
 
-          .contact-title {
+          .item-title {
             display: flex;
             place-self: center;
             color: white;
@@ -224,7 +254,15 @@ $orange: rgba(255, 120, 90, 1);
             transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
           }
 
-          .delete-contact {
+          .item-undertitle {
+            display: flex;
+            place-self: center baseline;
+            color: rgba(200,200,200, 0.5);
+            text-shadow: 0 0 5px black;
+            font-size: .8rem;
+          }
+
+          .delete-item {
             display: flex;
             place-self: center;
             place-items: center;
@@ -244,11 +282,11 @@ $orange: rgba(255, 120, 90, 1);
           }
         }
 
-        .contact-list-item:hover {
+        .list-item:hover {
           background-color: rgba(0,0,0, .1);
           border-radius: 20px;
 
-          &:hover .delete-contact {
+          &:hover .delete-item {
             visibility: visible;
           }
         }
@@ -262,7 +300,7 @@ $orange: rgba(255, 120, 90, 1);
         margin-bottom: -20px;
       }
 
-      .add-contact {
+      .add-contact, .add-bt {
         display: flex;
         place-self: center;
         place-content: center;
@@ -281,6 +319,19 @@ $orange: rgba(255, 120, 90, 1);
           text-shadow: 0 0 5px black;
           transition: transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
           color: green;
+        }
+      }
+
+      .add-bt {
+        min-width: 150px !important;
+        max-width: 200px !important;
+        height: 80px !important;
+
+        &:hover {
+          text-shadow: 0 0 5px black;
+          transition: all 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+          color: rgba(255, 120, 90, 1) !important;
+          box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
         }
       }
     }
@@ -347,7 +398,7 @@ $orange: rgba(255, 120, 90, 1);
 ::ng-deep .mdc-switch__icon--on path {
   display: none !important;
 }
-::ng-deep .mdc-switch__icon--off path{
+::ng-deep .mdc-switch__icon--off path {
   display: none !important;
 }
 
@@ -363,8 +414,8 @@ $orange: rgba(255, 120, 90, 1);
   outline: none !important;
   text-align: center !important;
   color: white !important;
-
 }
+
 ::ng-deep .mat-calendar-body-cell-content,
 ::ng-deep .mat-calendar-period-button .mdc-button__label,
 ::ng-deep .mat-calendar-table-header th,
@@ -388,14 +439,16 @@ $orange: rgba(255, 120, 90, 1);
 ::ng-deep .mat-calendar-body-cell-content:hover {
   background-color: rgba(255, 100, 40, .5) !important;
 }
+
 ::ng-deep .mat-mdc-select-panel {
   display: flex !important;
   position: relative !important;
-  flex-direction: column !important;
-  margin-left: -5px !important;
+  flex-flow: column!important;
+  margin: auto;
   margin-top: 15px !important;
   min-width: 50px !important;
-  max-width: 70px !important;
+  max-width: 200px !important;
+  width: auto !important;
   border-bottom-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
   border-left: 1px solid rgba(0,0,0, .5) !important;
@@ -421,24 +474,74 @@ $orange: rgba(255, 120, 90, 1);
     }
   }
 }
+
 ::ng-deep .mat-mdc-select-arrow{
     color: white !important;
 }
-.custom-drop-menu{
+.custom-drop-menu {
+  min-width: 200px !important;
+  max-width: 200px !important;
+  height: 70px !important;
+  padding: 20px !important;
+  margin: 0 !important;
+  margin-left: 20px !important;
+
+}
+
+
+  .custom-drop-menu-sm {
     min-width: 100px !important;
     max-width: 100px !important;
     height: 70px !important;
-    padding:20px !important;
+    padding: 20px !important;
     margin: 0 !important;
     margin-top: 50px !important;
     margin-left: 20px !important;
-}
-.sm {
+  }
+
+  .sm {
     min-width: 250px !important;
     max-width: 300px !important;
     margin-right: 25px !important;
-}
-.contact-form{
+  }
+
+  .sm-x {
+    min-width: 250px !important;
+    max-width: 250px !important;
+    margin: 10px !important;
+    margin-top: 0 !important;
+  }
+
+  .sm-sx {
+    min-width: 200px !important;
+    max-width: 200px !important;
+    margin: 10px !important;
+    margin-top: 0 !important;
+  }
+
+  .area-lg {
+    min-width: 500px !important;
+    max-width: 600px !important;
+    min-height: 200px !important;
+    resize: vertical !important;
+    overflow: hidden !important;
+    font-size: 1rem !important;
+  }
+
+  .contact-form {
     display: flex;
     flex-flow: row wrap;
-}
+  }
+
+  .skills-form {
+    display: flex;
+    flex-flow: row wrap;
+    place-content: center space-around;
+  }
+
+  .item-comb {
+    display: flex;
+    flex-flow: column wrap;
+    place-self: center;
+    margin: auto;
+  }

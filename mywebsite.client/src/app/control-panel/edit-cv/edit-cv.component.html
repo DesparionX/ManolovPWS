@@ -4,7 +4,6 @@
             <div class="avatar-field">
             </div>
             <div class="custom-form-group">
-                <!-- Full Name -->
                 <label class="custom-label" for="fullName">Full name</label>
                 <input class="custom-input" type="text" autocomplete="off" formControlName="fullName" id="fullName" />
                 <div class="invalid-field" *ngIf="form.controls.fullName.invalid && (form.controls.fullName.dirty || form.controls.fullName.touched)">
@@ -37,24 +36,24 @@
             <div class="collection">
                 <label class="collection-label">Contacts</label>
                 <div class="contact-list">
-                    <div class="contact-list-item">
+                    <div class="list-item">
                         <img class="contact-img" src="" />
-                        <label class="contact-title">Test</label>
-                        <button class="delete-contact">
+                        <label class="item-title">Test</label>
+                        <button class="delete-item">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
                 </div>
                 <hr class="hrr" />
                 <div class="contact-form">
-                    <div class="custom-form-group">
-                        <mat-select class="custom-input custom-drop-menu" formControlName="projectType" id="projectType">
+                    <div class="custom-form-group" id="contact">
+                        <mat-select class="custom-input custom-drop-menu-sm" formControlName="contactIcon" id="contactIcon">
                             <mat-option value="InProgress">In progress</mat-option>
                             <mat-option value="FinishedProject">Finished</mat-option>
                         </mat-select>
                     </div>
                     <div class="custom-form-group">
-                        <label class="custom-label" for="title">Contact</label>
+                        <label class="custom-label contact-label" for="title">Contact</label>
                         <input class="custom-input sm" type="text" autocomplete="off" formControlName="title" id="title" />
                     </div>
                     <button class="add-contact">
@@ -63,19 +62,130 @@
                 </div>
             </div>
             <div class="custom-form-group">
-                <label class="custom-label"></label>
+                <label class="custom-label" for="description">Description</label>
+                <textarea class="custom-area area-lg" formControlName="description" id="description"></textarea>
             </div>
             <div class="custom-form-group">
-                <!-- Profession -->
+                <label class="custom-label" for="profession">Profession</label>
+                <input class="custom-input" type="text" autocomplete="off" formControlName="profession" id="profession" />
             </div>
-            <div class="custom-form-group ">
-                <!-- Work Experience -->
+            <div class="collection">
+                <label class="collection-label">Work Experience</label>
+                <div class="job-list">
+                    <div class="list-item">
+                        <div class="item-comb">
+                            <label class="item-title">Test Job</label>
+                            <label class="item-undertitle">1.01.2021 - 1.01.2023</label>
+                        </div>
+                        <button class="delete-item">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr class="hrr" />
+                <div class="custom-form-group">
+                    <label class="custom-label" for="workPosition">Position</label>
+                    <input class="custom-input" type="text" autocomplete="off" formControlName="workPosition" id="workPosition" />
+                </div>
+                <div class="custom-form-group">
+                    <label class="custom-label collection-area-label" for="workDescription">Description</label>
+                    <textarea class="custom-area" autocomplete="off" formControlName="workDescription" id="workDescription"></textarea>
+                </div>
+                <div class="start-end-date">
+                    <div class="custom-form-group">
+                        <label class="custom-label" for="startDate">Start</label>
+                        <div class="custom-picker">
+                            <input class="custom-input sm-x" autocomplete="off" id="startDate" formControlName="startDate" [matDatepicker]="startDate" />
+                            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                        </div>
+                        <mat-datepicker #startDate></mat-datepicker>
+                    </div>
+                    <div class="custom-form-group">
+                        <label class="custom-label" for="endDate">End</label>
+                        <div class="custom-picker">
+                            <input class="custom-input sm-x" autocomplete="off" id="endDate" formControlName="endDate" [matDatepicker]="endDate" />
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                        </div>
+                        <mat-datepicker #endDate></mat-datepicker>
+                    </div>
+                    <button class="add-bt">
+                        Add
+                    </button>
+                </div>
             </div>
-            <div class="custom-form-group ">
-                <!-- Education -->
+            <div class="collection">
+                <label class="collection-label">Education</label>
+                <div class="education-list">
+                    <div class="list-item">
+                        <div class="item-comb">
+                            <label class="item-title">Profession</label>
+                            <label class="item-undertitle">Degree</label>
+                        </div>
+                        <button class="delete-item">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr class="hrr" />
+                <div class="custom-form-group">
+                    <label class="custom-label label-sm" for="schoolName">School</label>
+                    <input class="custom-input" type="text" autocomplete="off" formControlName="schoolName" id="schoolName" />
+                </div>
+                <div class="custom-form-group">
+                    <label class="custom-label label-lg" for="educationType">Education Type</label>
+                    <input class="custom-input" type="text" autocomplete="off" formControlName="educationType" id="educationType" />
+                </div>
+                <div class="custom-form-group">
+                    <label class="custom-label" for="professionAquired">Profession</label>
+                    <input class="custom-input" type="text" autocomplete="off" formControlName="professionAquired" id="professionAquired" />
+                </div>
+                <div class="custom-form-group">
+                    <label class="custom-label collection-area-label" for="educationDescription">Description</label>
+                    <textarea class="custom-area" autocomplete="off" formControlName="educationDescription" id="educationDescription"></textarea>
+                </div>
+                <div class="start-end-date">
+                    <div class="custom-form-group">
+                        <label class="custom-label" for="eduStartDate">Start</label>
+                        <div class="custom-picker">
+                            <input class="custom-input sm-x" autocomplete="off" id="eduStartDate" formControlName="eduStartDate" [matDatepicker]="eduStartDate" />
+                            <mat-datepicker-toggle matSuffix [for]="eduStartDate"></mat-datepicker-toggle>
+                        </div>
+                        <mat-datepicker #eduStartDate></mat-datepicker>
+                    </div>
+                    <div class="custom-form-group">
+                        <label class="custom-label" for="eduEndDate">End</label>
+                        <div class="custom-picker">
+                            <input class="custom-input sm-x" autocomplete="off" id="eduEndDate" formControlName="eduEndDate" [matDatepicker]="eduEndDate" />
+                            <mat-datepicker-toggle matSuffix [for]="eduEndDate"></mat-datepicker-toggle>
+                        </div>
+                        <mat-datepicker #eduEndDate></mat-datepicker>
+                    </div>
+                    <button class="add-bt">
+                        Add
+                    </button>
+                </div>
             </div>
-            <div class="custom-form-group ">
-                <!-- Skills -->
+            <div class="collection">
+                <label class="collection-label">Skills</label>
+
+                <div class="custom-form-group">
+                    <label class="custom-label label-xl" for="skillType">Skill Type</label>
+                    <input type="text" class="custom-input sm-sx" id="skillType" formControlName="skillType" autocomplete="off" />
+                </div>
+                <div class="skills-form">
+                    <div class="custom-form-group">
+                        <label class="custom-label label-sm" for="skill">Skill</label>
+                        <input type="text" class="custom-input sm-x" id="skill" formControlName="skill" autocomplete="off" />
+                    </div>
+                    <div class="custom-form-group">
+                        <label class="custom-label label-md" for="level">Level</label>
+                        <mat-select class="custom-input custom-drop-menu" formControlName="level" id="level" #level>
+                            <mat-option value="InProgress">In progress</mat-option>
+                            <mat-option value="FinishedProject">Finished</mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+
             </div>
             <div class="custom-form-group ">
                 <!-- Languages -->
