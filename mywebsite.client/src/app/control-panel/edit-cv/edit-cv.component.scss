@@ -81,7 +81,7 @@ $orange: rgba(255, 120, 90, 1);
       }
 
       &:focus-within .label-md {
-        transform: translate(30%, 7px) !important;
+        transform: translate(27%, 7px) !important;
       }
 
       &:focus-within .label-lg {
@@ -444,10 +444,11 @@ $orange: rgba(255, 120, 90, 1);
   display: flex !important;
   position: relative !important;
   flex-flow: column!important;
-  margin: auto;
+  //margin: 0 !important;
+  place-content: flex-end !important;
   margin-top: 15px !important;
-  min-width: 50px !important;
-  max-width: 200px !important;
+  min-width: 60px !important;
+  max-width: 150px !important;
   width: auto !important;
   border-bottom-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
@@ -464,10 +465,10 @@ $orange: rgba(255, 120, 90, 1);
     font-size: 1.2rem !important;
 
     &:hover {
-      background-color: green !important;
+      background-color: rgba(255, 255, 255, .1) !important;
     }
   }
-
+  
   ::ng-deep .mat-mdc-option-active {
     ::ng-deep .mdc-list-item__primary-text {
       color: rgba(255, 120, 90, 1) !important;
@@ -533,7 +534,7 @@ $orange: rgba(255, 120, 90, 1);
     flex-flow: row wrap;
   }
 
-  .skills-form {
+  .custom-row {
     display: flex;
     flex-flow: row wrap;
     place-content: center space-around;

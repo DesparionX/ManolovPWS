@@ -48,8 +48,8 @@
                 <div class="contact-form">
                     <div class="custom-form-group" id="contact">
                         <mat-select class="custom-input custom-drop-menu-sm" formControlName="contactIcon" id="contactIcon">
-                            <mat-option value="InProgress">In progress</mat-option>
-                            <mat-option value="FinishedProject">Finished</mat-option>
+                            <mat-option value="InProgress">1</mat-option>
+                            <mat-option value="FinishedProject">2</mat-option>
                         </mat-select>
                     </div>
                     <div class="custom-form-group">
@@ -172,7 +172,7 @@
                     <label class="custom-label label-xl" for="skillType">Skill Type</label>
                     <input type="text" class="custom-input sm-sx" id="skillType" formControlName="skillType" autocomplete="off" />
                 </div>
-                <div class="skills-form">
+                <div class="custom-row">
                     <div class="custom-form-group">
                         <label class="custom-label label-sm" for="skill">Skill</label>
                         <input type="text" class="custom-input sm-x" id="skill" formControlName="skill" autocomplete="off" />
@@ -187,8 +187,18 @@
                 </div>
 
             </div>
-            <div class="custom-form-group ">
-                <!-- Languages -->
+            <div class="collection">
+               <label class="collection-label">Languages</label>
+               <div class="custom-row">
+                 <div class="custom-form-group">
+                   <label class="custom-label label-md" for="langType">Type</label>
+                   <input type="text" class="custom-input sm-sx" id="langType" formControlName="langType" autocomplete="off" />
+                 </div>
+                 <div class="custom-form-group">
+                   <label class="custom-label label-md" for="lang">Name</label>
+                   <input type="text" class="custom-input sm-x" id="lang" formControlName="lang" autocomplete="off" />
+                 </div>
+               </div>
             </div>
             <div class="custom-form-group ">
                 <!-- Certificates -->
