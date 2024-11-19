@@ -1,13 +1,21 @@
-﻿namespace MyWebSite.Server.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using MyWebSite.Server.Data.Interfaces;
+
+namespace MyWebSite.Server.Data.Entities
 {
-    public class Education
+    public class Education : IEntity
     {
-        public int Id { get; set; }
-        public required string SchoolName { get; set; }
-        public required string EducationType { get; set; }
-        public required string ProfessionAquired { get; set; }
+        [Key]
+        public Guid Id { get; set; }
+        [JsonIgnore]
+        public CV? CV { get; set; }
+        public string SchoolName { get; set; }
+        public string EducationType { get; set; }
+        public string ProfessionAquired { get; set; }
         public string? Description { get; set; }
-        public required DateTime StartDate { get; set; }
-        public required DateTime EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

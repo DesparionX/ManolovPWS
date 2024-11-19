@@ -77,7 +77,6 @@ $labelSize: 2rem;
       }
 
       .custom-input:focus, .custom-area:focus {
-        //border: 5px inset rgba(255, 100, 40, 1);
         box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
         z-index: 100;
       }
@@ -252,7 +251,6 @@ $labelSize: 2rem;
 }
 
 .upload-btn{
-    /*background-color: rgba(255, 255, 255, .2);*/
     background-color: transparent;
 }
 

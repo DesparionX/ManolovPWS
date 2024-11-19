@@ -1,10 +1,18 @@
-﻿namespace MyWebSite.Server.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using MyWebSite.Server.Data.Interfaces;
+
+namespace MyWebSite.Server.Data.Entities
 {
-    public class Certificate
+    public class Certificate : IEntity
     {
-        public int Id { get; set; }
-        public required string Title { get; set; }
-        public required string Company { get; set; }
-        public required string Link { get; set; }
+        [Key]
+        public Guid Id { get; set; }
+        [JsonIgnore]
+        public CV? CV { get; set; }
+        public string Title { get; set; }
+        public string Company { get; set; }
+        public string Link { get; set; }
     }
 }

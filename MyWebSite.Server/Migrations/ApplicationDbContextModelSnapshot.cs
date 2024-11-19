@@ -161,18 +161,12 @@ namespace MyWebSite.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AddressJson")
+                    b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("AddressJson");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ContactsJson")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ContactsJson");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -197,11 +191,6 @@ namespace MyWebSite.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SkillsJson")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SkillsJson");
-
                     b.HasKey("Id");
 
                     b.ToTable("CVs", (string)null);
@@ -209,11 +198,9 @@ namespace MyWebSite.Server.Migrations
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.Certificate", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CVId")
                         .HasColumnType("uniqueidentifier");
@@ -234,16 +221,38 @@ namespace MyWebSite.Server.Migrations
 
                     b.HasIndex("CVId");
 
-                    b.ToTable("Certificate");
+                    b.ToTable("Certificates", (string)null);
+                });
+
+            modelBuilder.Entity("MyWebSite.Server.Data.Entities.Contact", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CVId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Domain")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CVId");
+
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.Education", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CVId")
                         .HasColumnType("uniqueidentifier");
@@ -273,16 +282,14 @@ namespace MyWebSite.Server.Migrations
 
                     b.HasIndex("CVId");
 
-                    b.ToTable("Education");
+                    b.ToTable("Education", (string)null);
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.Language", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CVId")
                         .HasColumnType("uniqueidentifier");
@@ -291,24 +298,61 @@ namespace MyWebSite.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReadLevel")
-                        .HasColumnType("int");
+                    b.Property<string>("ReadLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TalkLevel")
-                        .HasColumnType("int");
+                    b.Property<string>("TalkLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WriteLevel")
-                        .HasColumnType("int");
+                    b.Property<string>("WriteLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CVId");
 
-                    b.ToTable("Language");
+                    b.ToTable("Languages", (string)null);
+                });
+
+            modelBuilder.Entity("MyWebSite.Server.Data.Entities.Message", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateSent")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderDevice")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderIp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.Post", b =>
@@ -344,6 +388,33 @@ namespace MyWebSite.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Posts", (string)null);
+                });
+
+            modelBuilder.Entity("MyWebSite.Server.Data.Entities.Skill", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CVId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CVId");
+
+                    b.ToTable("Skills", (string)null);
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.User", b =>
@@ -413,11 +484,9 @@ namespace MyWebSite.Server.Migrations
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.WorkExperience", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CVId")
                         .HasColumnType("uniqueidentifier");
@@ -440,7 +509,7 @@ namespace MyWebSite.Server.Migrations
 
                     b.HasIndex("CVId");
 
-                    b.ToTable("WorkExperience");
+                    b.ToTable("WorkExperience", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -496,39 +565,69 @@ namespace MyWebSite.Server.Migrations
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.Certificate", b =>
                 {
-                    b.HasOne("MyWebSite.Server.Data.Entities.CV", null)
+                    b.HasOne("MyWebSite.Server.Data.Entities.CV", "CV")
                         .WithMany("Certificates")
                         .HasForeignKey("CVId");
+
+                    b.Navigation("CV");
+                });
+
+            modelBuilder.Entity("MyWebSite.Server.Data.Entities.Contact", b =>
+                {
+                    b.HasOne("MyWebSite.Server.Data.Entities.CV", "CV")
+                        .WithMany("Contacts")
+                        .HasForeignKey("CVId");
+
+                    b.Navigation("CV");
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.Education", b =>
                 {
-                    b.HasOne("MyWebSite.Server.Data.Entities.CV", null)
+                    b.HasOne("MyWebSite.Server.Data.Entities.CV", "CV")
                         .WithMany("Education")
                         .HasForeignKey("CVId");
+
+                    b.Navigation("CV");
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.Language", b =>
                 {
-                    b.HasOne("MyWebSite.Server.Data.Entities.CV", null)
+                    b.HasOne("MyWebSite.Server.Data.Entities.CV", "CV")
                         .WithMany("Languages")
                         .HasForeignKey("CVId");
+
+                    b.Navigation("CV");
+                });
+
+            modelBuilder.Entity("MyWebSite.Server.Data.Entities.Skill", b =>
+                {
+                    b.HasOne("MyWebSite.Server.Data.Entities.CV", "CV")
+                        .WithMany("Skills")
+                        .HasForeignKey("CVId");
+
+                    b.Navigation("CV");
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.WorkExperience", b =>
                 {
-                    b.HasOne("MyWebSite.Server.Data.Entities.CV", null)
+                    b.HasOne("MyWebSite.Server.Data.Entities.CV", "CV")
                         .WithMany("WorkExperience")
                         .HasForeignKey("CVId");
+
+                    b.Navigation("CV");
                 });
 
             modelBuilder.Entity("MyWebSite.Server.Data.Entities.CV", b =>
                 {
                     b.Navigation("Certificates");
 
+                    b.Navigation("Contacts");
+
                     b.Navigation("Education");
 
                     b.Navigation("Languages");
+
+                    b.Navigation("Skills");
 
                     b.Navigation("WorkExperience");
                 });

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="message">
+        <div class="custom-label-group">
+            <label class="custom-label sender">Sender</label>
+            <div class="combo">
+                <label class="custom-text primary">{{message.sender}}</label>
+                <label class="custom-text secondary">{{message.mail}}</label>
+            </div>
+        </div>
+        <div class="custom-label-group">
+            <label class="custom-label date">Recieved</label>
+            <div class="combo">
+                <label class="custom-text primary">{{dateFormat(message.dateSent!)}}</label>
+            </div>
+        </div>
+        <div class="custom-label-group area">
+            <label class="custom-label msg">Message</label>
+            <label class="custom-text text">{{message.text}}</label>
+        </div>
+    </div>
+</div>

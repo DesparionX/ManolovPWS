@@ -1,1 +1,33 @@
-<p>contact works!</p>
+<div class="container">
+    <form class="message-form" [formGroup]="form" (submit)="send()">
+        <div class="custom-form-group">
+            <label class="custom-label" for="username">Username</label>
+            <input class="custom-input" type="text" formControlName="username" id="username" autocomplete="off" />
+            <div class="invalid-field" *ngIf="form.controls.username.invalid && (form.controls.username.dirty || form.controls.username.touched)">
+                <div *ngIf="form.controls.username.errors">
+                    *Username must be at least 3 or maximum 20 characters.
+                </div>
+            </div>
+        </div>
+        <div class="custom-form-group">
+            <label class="custom-label label-sm" for="mail">Contact</label>
+            <input class="custom-input" type="email" formControlName="mail" id="mail" autocomplete="off" />
+            <div class="invalid-field" *ngIf="form.controls.mail.invalid && (form.controls.mail.dirty || form.controls.mail.touched)">
+                <div *ngIf="form.controls.mail.errors">
+                    *Mail is incorrect.
+                </div>
+            </div>
+        </div>
+        <div class="custom-form-group">
+            <label class="custom-label area-label" for="message">Message</label>
+            <textarea class="custom-area" type="text" formControlName="message" id="message" autocomplete="off" (input)="autoGrow($event)"></textarea>
+            <div class="invalid-field" *ngIf="form.controls.message.invalid && (form.controls.message.dirty || form.controls.message.touched)">
+                <div *ngIf="form.controls.message.errors">
+                    *Message must be at least 10 or maximum 1000 characters.
+                </div>
+            </div>
+        </div>
+        <label class="invalid-field" #error hidden>{{msg}}</label>
+        <button type="submit" class="bt-add">Send</button>
+    </form>
+</div>

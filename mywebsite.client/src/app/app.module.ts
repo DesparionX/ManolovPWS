@@ -18,8 +18,8 @@ import { ProjectsComponent } from './control-panel/projects/projects.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CvComponent } from './pages/cv/cv.component';
+import { LoginComponent } from './pages/login/login.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
-import { LoginComponent } from './control-panel/login/login.component';
 import { PostsComponent } from './control-panel/posts/posts.component';
 import { PanelComponent } from './control-panel/panel/panel.component';
 import { authInterceptor } from './services/auth.interceptor';
@@ -31,6 +31,8 @@ import { EditCVComponent } from './control-panel/edit-cv/edit-cv.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { InboxComponent } from './control-panel/inbox/inbox.component';
+import { ReadMessageComponent } from './control-panel/inbox/read-message/read-message.component';
 
 export const MY_FORMATS: MatDateFormats = {
   parse: {
@@ -59,7 +61,9 @@ export const MY_FORMATS: MatDateFormats = {
         PanelComponent,
         AddEditComponent,
         PortfolioComponent,
-        EditCVComponent
+        EditCVComponent,
+        InboxComponent,
+        ReadMessageComponent
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule, ReactiveFormsModule,

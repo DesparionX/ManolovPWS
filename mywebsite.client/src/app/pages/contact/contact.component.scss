@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+.message-form {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-flow: column;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  width: 900px;
+  place-self: center;
+  place-content: center start;
+  margin: 0;
+  margin-top: 150px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: 50px;
+  backdrop-filter: blur(20px);
+  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, .5);
+  transition: all 0.3s ease;
+
+  .custom-form-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    min-width: 150px;
+    max-width: 600px;
+    margin: auto;
+
+
+    .custom-label {
+      display: flex;
+      z-index: 2;
+      padding-top: 25px;
+      margin-left: 35px;
+      height: 50px;
+      color: white;
+      font-size: 2rem;
+      font-weight: 400;
+      text-shadow: 0 0 5px black;
+      transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+    }
+
+    .custom-input, .custom-area {
+      display: flex;
+      min-width: 350px;
+      max-width: 450px;
+      height: 70px;
+      margin: auto;
+      padding: 0 50px 0 50px;
+      border-radius: 40px;
+      border: 1px solid rgba(0,0,0, .5);
+      background-color: rgba(0, 0, 0, .1);
+      outline: none;
+      text-align: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+
+
+    .custom-input:focus, .custom-area:focus {
+      box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
+      z-index: 1;
+    }
+
+    &:focus-within .custom-label {
+      transform: translate(29%, 7px);
+      font-size: 1.5rem;
+      font-weight: 500;
+      z-index: 1000;
+      color: rgba(255, 120, 90, 1);
+    }
+
+    &:focus-within .label-sm {
+      transform: translate(33%, 7px) !important;
+    }
+
+    &:focus-within .label-md {
+      transform: translate(27%, 7px) !important;
+    }
+
+    &:focus-within .area-label {
+      transform: translate(37%, 7px) !important;
+    }
+
+    .custom-area {
+      min-width: 550px;
+      max-width: 600px;
+      min-height: 200px;
+      max-height: 500px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: start;
+      font-size: 1.1rem;
+      resize: none;
+      overflow: hidden;
+    }
+  }
+
+  .invalid-field {
+    display: flex;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1rem;
+    color: red;
+    text-shadow: 0 0 10px black;
+  }
+
+  .bt-add {
+    display: flex;
+    flex-flow: column;
+    margin-top: 40px;
+    place-self: center;
+    place-content: center;
+    place-items: center;
+    min-width: 250px;
+    max-width: 300px;
+    height: 80px;
+    border: 1px solid rgba(0,0,0, .5);
+    border-radius: 40px;
+    color: white;
+    font-size: 2rem;
+    text-shadow: 0 0 5px black;
+    background-color: rgba(0,0,0, .1);
+
+    &:hover {
+      color: green;
+      text-shadow: 0 0 5px black;
+      box-shadow: 5px 0 2rem green;
+      transition: all 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+    }
+  }
+
+  .succeed {
+    color: green !important;
+  }
+
+  .fail {
+    color: red !important;
+  }
+}

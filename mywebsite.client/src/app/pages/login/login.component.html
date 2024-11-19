@@ -1,0 +1,28 @@
+<div class="container">
+    <form class="login-form" [formGroup]="form">
+        <div class="custom-form-group">
+            <label class="custom-label" for="username">Username</label>
+            <div class="combo">
+                <input type="text" class="custom-input" formControlName="username" id="username" autocomplete="off"/>
+                <span class="icon">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+            </div>
+            
+        </div>
+        <div class="custom-form-group">
+            <label class="custom-label" for="password">Username</label>
+            <div class="combo">
+                <input type="password" class="custom-input" formControlName="password" id="password" #password autocomplete="off"/>
+                <span class="icon">
+                    <i class="fa-solid fa-eye-slash"
+                    (mousedown)="togglePasswordVisibility(true)"
+                    (mouseup)="togglePasswordVisibility(false)"
+                    (mouseleave)="togglePasswordVisibility(false)"></i>
+                </span>
+            </div>
+            
+        </div>
+        <button type="submit" class="loginBtn">Log in</button>
+    </form>
+</div>

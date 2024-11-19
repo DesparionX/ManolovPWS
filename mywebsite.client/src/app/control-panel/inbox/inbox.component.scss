@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+.inbox-list {
+  display: flex;
+  flex-flow: column;
+  margin: 0;
+  margin-top: 30px;
+  place-self: center;
+  place-items: center;
+  width: 100%;
+  height: 670px;
+  font-family: "Poppins", sans-serif;
+  transition: all .3s ease;
+
+  .error {
+    display: flex;
+    font-weight: 500;
+    font-size: 2rem;
+    color: red;
+    text-shadow: 0 0 10px black;
+  }
+
+  .messages {
+    display: flex;
+    flex-flow: column;
+    width: auto;
+    height: 670px;
+    overflow: scroll;
+    scrollbar-width: none;
+    overflow-x: hidden;
+
+    .message {
+      display: flex;
+      flex-flow: row;
+      padding: 10px;
+      min-width: 600px;
+      max-width: 700px;
+      height: auto;
+      place-content: center;
+      border-radius: 30px;
+      transition: all .3s ease;
+
+      &:hover {
+        background: rgba(0,0,0, .1);
+
+        .options .action-bt {
+          display: flex;
+        }
+      }
+
+      .combine {
+        display: flex;
+        flex-flow: column;
+        justify-items: center;
+        place-content: center;
+        place-items: center;
+        width: 80%;
+        height: auto;
+        margin-left: 50px;
+
+        .sender {
+          display: flex;
+          font-weight: 400;
+          font-size: 1.3rem;
+          text-shadow: 0 0 10px black;
+          color: white;
+        }
+
+        .content {
+          display: inline-block;
+          font-weight: 400;
+          font-size: .8rem;
+          max-width: 40ch;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: grey;
+          text-shadow: 0 0 5px black;
+        }
+      }
+
+      .options {
+        display: flex;
+        flex-flow: row;
+        width: 20%;
+        height: auto;
+        place-content: flex-end;
+
+
+        .action-bt {
+          display: none;
+          place-items: center;
+          place-content: center;
+          padding: 10px;
+          margin: 5px;
+          border: none;
+          background-color: transparent;
+          width: 40px;
+          height: 40px;
+          font-weight: 500;
+          font-size: 1.6rem;
+          color: white;
+          text-shadow: 0 0 5px black;
+          transition: all .5s ease;
+        }
+
+        .read:hover {
+          color: rgba(55, 255, 55, 1) !important;
+        }
+
+        .delete:hover {
+          color: rgba(255,55,55, 1) !important;
+        }
+      }
+    }
+  }
+}

@@ -10,6 +10,14 @@ namespace MyWebSite.Server.Data
         public override DbSet<User> Users => Set<User>();
         public DbSet<CV> CVs => Set<CV>();
         public DbSet<Post> Posts => Set<Post>();
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<WorkExperience> WorkExperience { get; set; }
+        public DbSet<Education> Education { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -37,10 +45,37 @@ namespace MyWebSite.Server.Data
             {
                 b.ToTable("CVs");
                 b.HasKey(c => c.Id);
-                b.Property(c => c.AddressJson).HasColumnName("AddressJson");
-                b.Property(c => c.ContactsJson).HasColumnName("ContactsJson");
-                b.Property(c => c.SkillsJson).HasColumnName("SkillsJson");
 
+            });
+            builder.Entity<Contact>(c =>
+            {
+                c.ToTable("Contacts");
+                c.HasKey(c => c.Id);
+            });
+            builder.Entity<WorkExperience>(w =>
+            {
+                w.ToTable("WorkExperience");
+                w.HasKey(c => c.Id);
+            });
+            builder.Entity<Education>(e =>
+            {
+                e.ToTable("Education");
+                e.HasKey(c => c.Id);
+            });
+            builder.Entity<Skill>(s =>
+            {
+                s.ToTable("Skills");
+                s.HasKey(c => c.Id);
+            });
+            builder.Entity<Language>(l =>
+            {
+                l.ToTable("Languages");
+                l.HasKey(c => c.Id);
+            });
+            builder.Entity<Certificate>(c =>
+            {
+                c.ToTable("Certificates");
+                c.HasKey(c => c.Id);
             });
 
             builder.Entity<IdentityRole>(b =>

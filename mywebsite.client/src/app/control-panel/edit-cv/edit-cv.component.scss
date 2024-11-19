@@ -24,6 +24,62 @@ $orange: rgba(255, 120, 90, 1);
     max-width: 800px;
     min-width: 200px;
 
+    .file-upload {
+      display: flex;
+      flex-flow: column wrap;
+      place-items: center;
+
+      .avatar-border {
+        display: flex;
+        width: 130px;
+        height: 150px;
+        margin: 20px;
+        border: 1px solid rgba(0,0,0, .5);
+        border-radius: 20px;
+        box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
+        overflow: hidden;
+        outline: none;
+        z-index: 1;
+
+        .fit {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 20px;
+        }
+      }
+
+      .upload-btn {
+        display: flex;
+        flex-flow: column wrap;
+        place-content: center;
+        width: 45px;
+        height: 45px;
+        color: white;
+        text-shadow: 0 0 5px black;
+        border: 1px solid rgba(0,0,0, .5);
+        background-color: rgba(0, 0, 0, .1);
+
+        .up-icon {
+          display: flex;
+          flex-flow: column wrap;
+          margin: auto;
+          justify-content: center;
+          width: 65px;
+          height: 65px;
+          font-size: 1.5rem;
+          transition: color 0.3s ease;
+        }
+
+        &:hover {
+          box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
+          z-index: 100;
+          color: rgba(255, 120, 90, 1);
+        }
+      }
+    }
+
     .custom-form-group {
       display: flex;
       flex-direction: column;
@@ -76,6 +132,10 @@ $orange: rgba(255, 120, 90, 1);
         color: rgba(255, 120, 90, 1);
       }
 
+      &:focus-within .label-sx {
+        transform: translate(38%, 7px) !important;
+      }
+
       &:focus-within .label-sm {
         transform: translate(33%, 7px) !important;
       }
@@ -90,6 +150,10 @@ $orange: rgba(255, 120, 90, 1);
 
       &:focus-within .label-xl {
         transform: translate(10%, 7px) !important;
+      }
+
+      &:focus-within .label-anchor {
+        transform: translate(0, 0) !important;
       }
 
       &:focus-within .contact-label {
@@ -217,7 +281,12 @@ $orange: rgba(255, 120, 90, 1);
         color: rgba(255, 120, 90, 1);
       }
 
-      .contact-list, .job-list, .education-list {
+      .contact-list,
+      .job-list,
+      .education-list,
+      .skills-list,
+      .languages-list,
+      .certificates-list {
         display: flex;
         flex-flow: column wrap;
         place-content: center space-between;
@@ -237,8 +306,9 @@ $orange: rgba(255, 120, 90, 1);
             place-self: center;
             width: 40px;
             height: 40px;
-            border: 1px solid rgba(0,0,0, 1);
-            border-radius: 10px;
+            //border: 1px solid rgba(0,0,0, .5);
+            border-radius: 20px;
+            box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
             outline: none;
             overflow: hidden;
             object-fit: cover;
@@ -254,12 +324,22 @@ $orange: rgba(255, 120, 90, 1);
             transition: all 0.5s ease, transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
           }
 
-          .item-undertitle {
+          .item-undertitle, .lang-n {
             display: flex;
             place-self: center baseline;
             color: rgba(200,200,200, 0.5);
             text-shadow: 0 0 5px black;
             font-size: .8rem;
+          }
+
+          .lang-level {
+            display: flex;
+            place-self: center baseline;
+            color: rgba(255, 120, 90, 1);
+            text-shadow: 0 0 5px black;
+            font-size: 1rem;
+            padding-right: 5px;
+            padding-left: 5px;
           }
 
           .delete-item {
@@ -300,40 +380,7 @@ $orange: rgba(255, 120, 90, 1);
         margin-bottom: -20px;
       }
 
-      .add-contact, .add-bt {
-        display: flex;
-        place-self: center;
-        place-content: center;
-        place-items: center;
-        width: 60px;
-        height: 60px;
-        margin-top: 35px;
-        border: 1px solid rgba(0,0,0, .5);
-        border-radius: 40px;
-        color: white;
-        font-size: 2rem;
-        text-shadow: 0 0 5px black;
-        background-color: rgba(0,0,0, .1);
-
-        &:hover {
-          text-shadow: 0 0 5px black;
-          transition: transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
-          color: green;
-        }
-      }
-
-      .add-bt {
-        min-width: 150px !important;
-        max-width: 200px !important;
-        height: 80px !important;
-
-        &:hover {
-          text-shadow: 0 0 5px black;
-          transition: all 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
-          color: rgba(255, 120, 90, 1) !important;
-          box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
-        }
-      }
+      
     }
 
     .collection:focus-within {
@@ -371,26 +418,32 @@ $orange: rgba(255, 120, 90, 1);
     }
   }
 }
+
 ::ng-deep .mat-mdc-slide-toggle {
   transform: scale(2) !important;
   align-self: baseline !important;
   width: 100px !important;
   background-color: transparent !important;
 }
+
 ::ng-deep .mdc-switch__track {
   border: 1px solid rgba(0,0,0, .5) !important;
   background-color: rgba(0, 0, 0, .1) !important;
   box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
 }
+
 ::ng-deep .mdc-switch__track::before {
   background-color: rgba(0, 0, 0, .1) !important;
 }
+
 ::ng-deep .mdc-switch__track::after {
   background-color: rgba(0, 0, 0, .1) !important;
 }
+
 ::ng-deep .mdc-switch__handle {
   background-color: transparent !important;
 }
+
 ::ng-deep .mdc-switch__handle::after {
   background-color: rgba(150, 150, 150, .5) !important;
 }
@@ -398,6 +451,7 @@ $orange: rgba(255, 120, 90, 1);
 ::ng-deep .mdc-switch__icon--on path {
   display: none !important;
 }
+
 ::ng-deep .mdc-switch__icon--off path {
   display: none !important;
 }
@@ -425,17 +479,19 @@ $orange: rgba(255, 120, 90, 1);
 ::ng-deep .mat-calendar-body-label {
   color: white !important;
 }
+
 ::ng-deep .mat-calendar-body-selected {
-    background-color: rgba(0, 0, 0, .1) !important;
-    
-    border-color: rgba(0, 0, 0, 1) !important;
+  background-color: rgba(0, 0, 0, .1) !important;
+  border-color: rgba(0, 0, 0, 1) !important;
   box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
 }
+
 ::ng-deep .mat-calendar-body-today {
   background-color: rgba(0, 0, 0, .1) !important;
   border-color: rgba(0, 0, 0, 1) !important;
   box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
 }
+
 ::ng-deep .mat-calendar-body-cell-content:hover {
   background-color: rgba(255, 100, 40, .5) !important;
 }
@@ -443,13 +499,14 @@ $orange: rgba(255, 120, 90, 1);
 ::ng-deep .mat-mdc-select-panel {
   display: flex !important;
   position: relative !important;
-  flex-flow: column!important;
+  flex-flow: column !important;
   //margin: 0 !important;
   place-content: flex-end !important;
   margin-top: 15px !important;
   min-width: 60px !important;
   max-width: 150px !important;
   width: auto !important;
+  max-height: 600px !important;
   border-bottom-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
   border-left: 1px solid rgba(0,0,0, .5) !important;
@@ -468,7 +525,7 @@ $orange: rgba(255, 120, 90, 1);
       background-color: rgba(255, 255, 255, .1) !important;
     }
   }
-  
+
   ::ng-deep .mat-mdc-option-active {
     ::ng-deep .mdc-list-item__primary-text {
       color: rgba(255, 120, 90, 1) !important;
@@ -476,9 +533,10 @@ $orange: rgba(255, 120, 90, 1);
   }
 }
 
-::ng-deep .mat-mdc-select-arrow{
-    color: white !important;
+::ng-deep .mat-mdc-select-arrow {
+  color: white !important;
 }
+
 .custom-drop-menu {
   min-width: 200px !important;
   max-width: 200px !important;
@@ -486,63 +544,134 @@ $orange: rgba(255, 120, 90, 1);
   padding: 20px !important;
   margin: 0 !important;
   margin-left: 20px !important;
-
 }
 
 
-  .custom-drop-menu-sm {
-    min-width: 100px !important;
-    max-width: 100px !important;
-    height: 70px !important;
-    padding: 20px !important;
-    margin: 0 !important;
-    margin-top: 50px !important;
-    margin-left: 20px !important;
-  }
+.custom-drop-menu-sm {
+  min-width: 120px !important;
+  max-width: 120px !important;
+  height: 70px !important;
+  padding: 20px !important;
+  margin: 0 !important;
+  //margin-top: 50px !important;
+  margin-left: 20px !important;
+}
 
-  .sm {
-    min-width: 250px !important;
-    max-width: 300px !important;
-    margin-right: 25px !important;
-  }
+.sm {
+  min-width: 250px !important;
+  max-width: 300px !important;
+  margin-right: 25px !important;
+}
 
-  .sm-x {
-    min-width: 250px !important;
-    max-width: 250px !important;
-    margin: 10px !important;
-    margin-top: 0 !important;
-  }
+.sm-x {
+  min-width: 250px !important;
+  max-width: 250px !important;
+  margin: 10px !important;
+  margin-top: 0 !important;
+}
 
-  .sm-sx {
-    min-width: 200px !important;
-    max-width: 200px !important;
-    margin: 10px !important;
-    margin-top: 0 !important;
-  }
+.sm-sx {
+  min-width: 200px !important;
+  max-width: 200px !important;
+  margin: 10px !important;
+  margin-top: 0 !important;
+}
 
-  .area-lg {
-    min-width: 500px !important;
-    max-width: 600px !important;
-    min-height: 200px !important;
-    resize: vertical !important;
-    overflow: hidden !important;
-    font-size: 1rem !important;
-  }
+.area-lg {
+  min-width: 500px !important;
+  max-width: 600px !important;
+  min-height: 200px !important;
+  resize: vertical !important;
+  overflow: hidden !important;
+  font-size: 1rem !important;
+}
 
-  .contact-form {
-    display: flex;
-    flex-flow: row wrap;
-  }
+.text-sm {
+  font-size: 1.4rem !important;
+  margin-bottom: -7px !important;
+  padding-left: 10px !important;
+}
 
-  .custom-row {
-    display: flex;
-    flex-flow: row wrap;
-    place-content: center space-around;
-  }
+.contact-form {
+  display: flex;
+  flex-flow: row wrap;
+}
+.contact-options {
+  display: flex;
+  place-self: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
+  outline: none;
+  overflow: hidden;
+  object-fit: cover;
+  background-color: white;
+}
 
-  .item-comb {
-    display: flex;
-    flex-flow: column wrap;
-    place-self: center;
-    margin: auto;
+.custom-row {
+  display: flex;
+  flex-flow: row wrap;
+  place-content: center space-around;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.item-comb {
+  display: flex;
+  flex-flow: column wrap;
+  place-self: center;
+  margin: auto;
+}
+
+.file-input{
+    display: none;
+}
+.add-contact, .add-bt, .submit-bt {
+  display: flex;
+  place-self: center;
+  place-content: center;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  margin-top: 35px;
+  border: 1px solid rgba(0,0,0, .5);
+  border-radius: 40px;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 0 0 5px black;
+  background-color: rgba(0,0,0, .1);
+
+  &:hover {
+    text-shadow: 0 0 5px black;
+    transition: transform 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+    color: green;
   }
+}
+
+.submit-bt {
+  margin-top: 50px;
+  min-width: 200px !important;
+  max-width: 200px !important;
+  height: 80px !important;
+
+  &:hover {
+    text-shadow: 0 0 5px black;
+    transition: all 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+    box-shadow: 5px 0 2rem green !important;
+  }
+}
+
+.add-bt {
+  min-width: 150px !important;
+  max-width: 200px !important;
+  height: 80px !important;
+
+  &:hover {
+    text-shadow: 0 0 5px black;
+    transition: all 0.5s ease, font-size 0.5s ease, color 0.5s ease, margin 0.5s ease;
+    color: rgba(255, 120, 90, 1) !important;
+    box-shadow: 0 0 1rem rgba(255, 100, 40, 1) !important;
+  }
+}

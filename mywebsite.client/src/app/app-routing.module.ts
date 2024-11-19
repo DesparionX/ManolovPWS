@@ -10,6 +10,9 @@ import { PostsComponent } from './control-panel/posts/posts.component';
 import { AddEditComponent } from './control-panel/add-edit/add-edit.component';
 import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { EditCVComponent } from './control-panel/edit-cv/edit-cv.component';
+import { InboxComponent } from './control-panel/inbox/inbox.component';
+import { ReadMessageComponent } from './control-panel/inbox/read-message/read-message.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +21,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'cv', component: CvComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'login', component: LoginComponent },
 
 
   // Admin control panel
@@ -33,7 +37,8 @@ const routes: Routes = [
       { path: 'projects/addit/:type', component: AddEditComponent },
 
       { path: 'cv', component: EditCVComponent },
-      { path: 'contact', component: PostsComponent }
+      { path: 'inbox', component: InboxComponent },
+      { path: 'inbox/message/:id', pathMatch: 'full', component: ReadMessageComponent }
     ]
   }
 ];

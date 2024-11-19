@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { CvService } from './services/cv.service';
+import { MessagesService } from './services/messages.service';
 import { PostsService } from './services/posts.service';
 
 /**
@@ -16,6 +17,7 @@ import { PostsService } from './services/posts.service';
   declarations: [],
   providers: [
     CvService,
+    MessagesService,
     PostsService,
     ApiConfiguration
   ],

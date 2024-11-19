@@ -25,13 +25,11 @@ export class PostsComponent implements OnInit {
   posts: PostRm[] = [];
 
   async ngOnInit() {
-    let response: GetPostsResponse = await this.apiServices.getPosts('Post');
-    if (response.succeeded) {
-      response.posts?.forEach(post => {
-        this.posts.push(post);
-      })
-    }
+    await this.loadAllPosts();
   }
+
+  // HTML //
+  // Pop up confirmation dialog.
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, whatToDelete: string, id: string): void {
     this.dialog.open(DeleteDialogComponent, {
@@ -42,5 +40,14 @@ export class PostsComponent implements OnInit {
           postId: id
       }
     });
+  }
+
+  // API //
+  // Load posts.
+  async loadAllPosts() {
+    const response: GetPostsResponse = await this.apiServices.getPosts('Post');
+    if (response.succeeded) {
+      this.posts = response.posts!;
+    }
   }
 }

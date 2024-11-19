@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.message {
+  display: flex;
+  flex-flow: column;
+  place-self: center;
+  place-items: center;
+  margin-top: 40px;
+  min-width: 750px;
+  max-width: 800px;
+  min-height: 650px;
+  max-height: 650px;
+  font-family: "Poppins", sans-serif;
+  transition: all .3s ease;
+
+  .custom-label-group {
+    display: flex;
+    flex-flow: column;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 0px 20px 20px 20px;
+    min-width: 300px;
+    max-width: 450px;
+    border: 1px solid rgba(0,0,0, .5);
+    border-radius: 30px;
+    background-color: rgba(0,0,0, .1);
+    transition: all .3s ease;
+
+    .custom-label {
+      display: flex;
+      place-self: flex-start;
+      place-items: center;
+      margin-top: -22px;
+      margin-left: 5px;
+      height: auto;
+      width: fit-content;
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: white;
+      text-shadow: 0 0 5px black;
+      transition: all .5s ease;
+    }
+
+    .combo {
+      display: flex;
+      flex-flow: column;
+      place-self: center;
+      place-items: center;
+    }
+
+    .custom-text {
+      display: flex;
+      place-self: center;
+      font-weight: 400;
+      text-shadow: 0 0 10px black;
+      color: white;
+      text-align: center;
+    }
+
+    .primary {
+      font-size: 1.5rem;
+      color: white;
+      transition: all .5s ease;
+    }
+
+    .secondary {
+      font-size: .8rem;
+      color: grey;
+    }
+
+    .text {
+      font-size: 1rem;
+      color: white;
+      transition: all .5s ease;
+    }
+
+    &:hover {
+      box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
+
+      .custom-label {
+        color: rgba(255, 120, 90, 1);
+      }
+
+      .sender {
+        transform: translate(110%, 2px);
+        font-size: 1.4rem;
+      }
+
+      .date {
+        transform: translate(70%, 2px);
+        font-size: 1.4rem;
+      }
+
+      .msg {
+        transform: translate(150%, 2px);
+        font-size: 1.4rem;
+      }
+
+      .combo .primary {
+        font-size: 2rem;
+      }
+
+      .text {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .area {
+    min-height: 120px;
+
+    .text {
+      padding-top: 20px;
+    }
+  }
+}

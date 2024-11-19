@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AddPostResponse, DeleteRequest, DeleteResponse, FindPostResponse, GetPostsResponse, PostDto, UpdatePostResponse } from '../api/models';
+import { AddPostResponse, Cvdto, DeleteMessageResponse, DeleteRequest, DeleteResponse, FindPostResponse, GetMessagesResponse, GetPostsResponse, LoadCvResponse, MessageDto, PostDto, ReadMessageResponse, SendMessageResponse, UpdateCvResponse, UpdatePostResponse } from '../api/models';
 import { Observable, lastValueFrom } from 'rxjs';
 
 @Injectable({
@@ -84,6 +84,77 @@ export class ApiService {
     } catch (error) {
       console.log('Error sending the request. ', error);
       throw error;
+    }
+  }
+
+  // CV
+  // Get the CV.
+  async getCv() {
+    try {
+      const response = await lastValueFrom(this.http.get<LoadCvResponse>(this.api + '/CV/loadCV'))
+      return response;
+    } catch (error) {
+      console.error('Error sending the request.', error);
+      throw error;
+    }
+  }
+
+  // Update CV.
+  async updateCV(cv: Cvdto) {
+    try {
+      const response = await lastValueFrom(this.http.put<UpdateCvResponse>(this.api + '/CV/updateCV', cv, { withCredentials: false }));
+      return response;
+    } catch (error) {
+      console.error('Error updating the CV.', error)
+      throw error;
+    }
+  }
+
+  // MESSAGES
+  // Send message.
+
+  async sendMessage(message: MessageDto) {
+    try {
+      const response = await lastValueFrom(this.http.post<SendMessageResponse>(this.api + '/Messages/sendMessage', message, { withCredentials: false }));
+      return response;
+    } catch (error) {
+      console.error('Error sending the message.', error)
+      throw error;
+    }
+  }
+
+  // Get all messages.
+  async getAllMessages() {
+    try {
+      const response = await lastValueFrom(this.http.get<GetMessagesResponse>(this.api + '/Messages/getAllMessages'));
+      return response;
+    } catch (error) {
+      console.error('Error getting the messages.', error);
+      throw error;
+    }
+  }
+
+  // Get message by id.
+  async getMessageById(id: string) {
+    const params = new HttpParams().set('id', id);
+    try {
+      const response = await lastValueFrom(this.http.get<ReadMessageResponse>(this.api + '/Messages/readMessage', { params }))
+      return response;
+    } catch (error) {
+      console.error('Error getting the message.', error);
+      throw error
+    }
+  }
+
+  // Delete message.
+  async deleteMessage(id: string) {
+    const params = new HttpParams().set('id', id);
+    try {
+      const response = await lastValueFrom(this.http.delete<DeleteMessageResponse>(this.api + '/Messages/deleteMessage', { params }))
+      return response;
+    } catch (error) {
+      console.error('Error deleting the message.', error);
+      throw error
     }
   }
 }

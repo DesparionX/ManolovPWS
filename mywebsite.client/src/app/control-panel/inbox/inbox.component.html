@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="inbox-list">
+        <label class="error" hidden #error></label>
+        <div class="messages" *ngIf="(messagesList !== null && messagesList.length > 0)">
+            <div class="message" *ngFor="let message of messagesList">
+                <div class="combine">
+                    <label class="sender">{{message.sender}}</label>
+                    <label class="content">{{message.text}}</label>
+                </div>
+                <div class="options">
+                    <a class="action-bt read" [routerLink]="['message/'] + message.id!">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </a>
+                    <button class="action-bt delete" type="button" (click)="openDialog('200ms', '100ms', 'message', message.id!)">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

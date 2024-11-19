@@ -4,6 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogRef, MatDia
 import { DeleteRequest } from '../../api/models';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { EntityTypes } from './entityTypes';
+import { DeleteDialogData } from './DeleteDialogData';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -15,18 +17,35 @@ import { Router } from '@angular/router';
 })
 export class DeleteDialogComponent implements OnInit{
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DeleteRequest,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DeleteDialogData,
     private dialogRef: MatDialogRef<DeleteDialogComponent>,
     private apiService: ApiService,
   private router: Router) {
 
   }
-  //readonly dialogRef = inject(MatDialogRef<DeleteDialogComponent>)
 
   ngOnInit() {
   }
 
   async confirmDelete(type: string, id: string) {
+
+    switch (type) {
+      case EntityTypes.POST:
+      case EntityTypes.PROJECT:
+        this.deletePostOrProject(type, id);
+        break;
+      case EntityTypes.MESSAGE:
+        this.deleteMessage(id);
+        break;
+      default:
+        console.error("Couldn't find this entity type !");
+        break;
+    }
+  }
+
+  // API //
+  // Delete post/project
+  async deletePostOrProject(type: string, id: string) {
     const request: DeleteRequest = {
       postType: type,
       postId: id
@@ -34,11 +53,21 @@ export class DeleteDialogComponent implements OnInit{
     const result = await this.apiService.deletePost(request);
     if (result.succeed) {
       // Here we can add popup later
-      
+
       console.log(result.message);
       window.location.reload();
     } else {
-      console.error(this.data.postType + ' not deleted: ', result.message);
+      console.error(this.data.entityType + ' not deleted: ', result.message);
+    }
+  }
+
+  async deleteMessage(id: string) {
+    const result = await this.apiService.deleteMessage(id);
+    if (result.succeed) {
+      console.log("Message deleted successfully !");
+      window.location.reload();
+    } else {
+      console.error(result.message)
     }
   }
 }

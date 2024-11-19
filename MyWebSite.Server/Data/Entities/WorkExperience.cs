@@ -1,11 +1,19 @@
-﻿namespace MyWebSite.Server.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using MyWebSite.Server.Data.Interfaces;
+
+namespace MyWebSite.Server.Data.Entities
 {
-    public class WorkExperience
+    public class WorkExperience : IEntity
     {
-        public int Id { get; set; }
-        public required string Position { get; set; }
-        public required string Description { get; set; }
-        public required DateTime StartDate { get; set; }
-        public required DateTime EndDate { get; set; }
+        [Key]
+        public Guid Id { get; set; }
+        [JsonIgnore]
+        public CV? CV { get; set; }
+        public string Position { get; set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

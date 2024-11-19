@@ -9,7 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\nav\" />
-    <Folder Include="src\app\custom-components\" />
     <Folder Include="src\app\services\" />
     <Folder Include="src\app\pages\controlPanel\" />
   </ItemGroup>

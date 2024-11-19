@@ -90,8 +90,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), builder =>
     {
         builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+        
     });
     options.EnableSensitiveDataLogging();
+    //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -116,6 +118,7 @@ builder.Services.AddScoped<ApplicationDbContext>();
 builder.Services.AddScoped<PostsHandler>();
 builder.Services.AddScoped<CVHandler>();
 builder.Services.AddScoped<FileHandler>();
+builder.Services.AddScoped<MessagesHandler>();
 
 var app = builder.Build();
 
