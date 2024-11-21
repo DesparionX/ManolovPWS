@@ -8,7 +8,7 @@ import { Observable, lastValueFrom } from 'rxjs';
 })
 export class ApiService {
 
-  private api = 'https://localhost:7015'
+  api = 'https://localhost:7015'
 
   constructor(private http: HttpClient) { }
 

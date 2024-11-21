@@ -13,6 +13,7 @@ import { EditCVComponent } from './control-panel/edit-cv/edit-cv.component';
 import { InboxComponent } from './control-panel/inbox/inbox.component';
 import { ReadMessageComponent } from './control-panel/inbox/read-message/read-message.component';
 import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
 
   // Admin control panel
   {
-    path: 'control-panel', component: ControlPanelComponent,
+    path: 'control-panel', component: ControlPanelComponent, canMatch: [authGuard],
     children: [
       { path: 'posts', component: PostsComponent },
       { path: 'posts/addit/:type/:id', component: AddEditComponent },

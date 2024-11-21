@@ -1,14 +1,13 @@
 <div class="container">
-    <form class="login-form" [formGroup]="form">
+    <form class="login-form" [formGroup]="form" (submit)="logIn()">
         <div class="custom-form-group">
-            <label class="custom-label" for="username">Username</label>
+            <label class="custom-label" for="userName">Username</label>
             <div class="combo">
-                <input type="text" class="custom-input" formControlName="username" id="username" autocomplete="off"/>
+                <input type="text" class="custom-input" formControlName="userName" id="userName" autocomplete="off"/>
                 <span class="icon">
                     <i class="fa-solid fa-user"></i>
                 </span>
-            </div>
-            
+            </div> 
         </div>
         <div class="custom-form-group">
             <label class="custom-label" for="password">Username</label>
@@ -23,6 +22,7 @@
             </div>
             
         </div>
+        <label class="error" #error hidden>{{errorMsg}}</label>
         <button type="submit" class="loginBtn">Log in</button>
     </form>
 </div>

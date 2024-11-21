@@ -12,7 +12,7 @@ export interface GetAllMessages$Params {
 }
 
 export function getAllMessages(http: HttpClient, rootUrl: string, params?: GetAllMessages$Params, context?: HttpContext): Observable<StrictHttpResponse<GetMessagesResponse>> {
-  const rb = new RequestBuilder(rootUrl, getAllMessages.PATH, 'post');
+  const rb = new RequestBuilder(rootUrl, getAllMessages.PATH, 'get');
   if (params) {
   }
 

@@ -6,13 +6,13 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { GetMessagesResponse } from '../../models/get-messages-response';
+import { LogOutResponse } from '../../models/log-out-response';
 
-export interface GetAllMessages$Plain$Params {
+export interface LogOut$Plain$Params {
 }
 
-export function getAllMessages$Plain(http: HttpClient, rootUrl: string, params?: GetAllMessages$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<GetMessagesResponse>> {
-  const rb = new RequestBuilder(rootUrl, getAllMessages$Plain.PATH, 'get');
+export function logOut$Plain(http: HttpClient, rootUrl: string, params?: LogOut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<LogOutResponse>> {
+  const rb = new RequestBuilder(rootUrl, logOut$Plain.PATH, 'post');
   if (params) {
   }
 
@@ -21,9 +21,9 @@ export function getAllMessages$Plain(http: HttpClient, rootUrl: string, params?:
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<GetMessagesResponse>;
+      return r as StrictHttpResponse<LogOutResponse>;
     })
   );
 }
 
-getAllMessages$Plain.PATH = '/Messages/getAllMessages';
+logOut$Plain.PATH = '/Account/logOut';

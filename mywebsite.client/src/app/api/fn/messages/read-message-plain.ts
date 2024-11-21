@@ -13,7 +13,7 @@ export interface ReadMessage$Plain$Params {
 }
 
 export function readMessage$Plain(http: HttpClient, rootUrl: string, params?: ReadMessage$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReadMessageResponse>> {
-  const rb = new RequestBuilder(rootUrl, readMessage$Plain.PATH, 'post');
+  const rb = new RequestBuilder(rootUrl, readMessage$Plain.PATH, 'get');
   if (params) {
     rb.query('id', params.id, {});
   }

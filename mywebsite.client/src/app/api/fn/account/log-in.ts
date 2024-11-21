@@ -6,16 +6,17 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ReadMessageResponse } from '../../models/read-message-response';
+import { LoginResponse } from '../../models/login-response';
+import { LoginUserRequest } from '../../models/login-user-request';
 
-export interface ReadMessage$Params {
-  id?: string;
+export interface LogIn$Params {
+      body?: LoginUserRequest
 }
 
-export function readMessage(http: HttpClient, rootUrl: string, params?: ReadMessage$Params, context?: HttpContext): Observable<StrictHttpResponse<ReadMessageResponse>> {
-  const rb = new RequestBuilder(rootUrl, readMessage.PATH, 'get');
+export function logIn(http: HttpClient, rootUrl: string, params?: LogIn$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponse>> {
+  const rb = new RequestBuilder(rootUrl, logIn.PATH, 'post');
   if (params) {
-    rb.query('id', params.id, {});
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -23,9 +24,9 @@ export function readMessage(http: HttpClient, rootUrl: string, params?: ReadMess
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ReadMessageResponse>;
+      return r as StrictHttpResponse<LoginResponse>;
     })
   );
 }
 
-readMessage.PATH = '/Messages/readMessage';
+logIn.PATH = '/Account/logIn';

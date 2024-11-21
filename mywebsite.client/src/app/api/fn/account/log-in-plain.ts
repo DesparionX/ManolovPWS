@@ -6,14 +6,17 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { GetMessagesResponse } from '../../models/get-messages-response';
+import { LoginResponse } from '../../models/login-response';
+import { LoginUserRequest } from '../../models/login-user-request';
 
-export interface GetAllMessages$Plain$Params {
+export interface LogIn$Plain$Params {
+      body?: LoginUserRequest
 }
 
-export function getAllMessages$Plain(http: HttpClient, rootUrl: string, params?: GetAllMessages$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<GetMessagesResponse>> {
-  const rb = new RequestBuilder(rootUrl, getAllMessages$Plain.PATH, 'get');
+export function logIn$Plain(http: HttpClient, rootUrl: string, params?: LogIn$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<LoginResponse>> {
+  const rb = new RequestBuilder(rootUrl, logIn$Plain.PATH, 'post');
   if (params) {
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -21,9 +24,9 @@ export function getAllMessages$Plain(http: HttpClient, rootUrl: string, params?:
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<GetMessagesResponse>;
+      return r as StrictHttpResponse<LoginResponse>;
     })
   );
 }
 
-getAllMessages$Plain.PATH = '/Messages/getAllMessages';
+logIn$Plain.PATH = '/Account/logIn';

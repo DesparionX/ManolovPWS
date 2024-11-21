@@ -1,11 +1,19 @@
-<div class="nav-bar">
-    <a [routerLink]="['/home']" class="logo" src="">Logo</a>
 
-    <nav class="navbar">
-        <a [routerLink]="['/home']">Home</a>
-        <a [routerLink]="['/portfolio']">Portfolio</a>
-        <a [routerLink]="['/about']">About</a>
-        <a [routerLink]="['/cv']">CV</a>
-        <a [routerLink]="['/contact']">Contact</a>
-    </nav>
+<div class="container">
+    <div class="nav-bar">
+        <button class="logo" (dblclick)="controlPanel()">LOGO</button>
+        
+        <nav class="navbar">
+            <a [routerLink]="['/home']">Home</a>
+            <a [routerLink]="['/portfolio']">Portfolio</a>
+            <a [routerLink]="['/about']">About</a>
+            <a [routerLink]="['/cv']">CV</a>
+            <a [routerLink]="['/contact']">Contact</a>
+            <button *ngIf="hasToken();" type="button" class="logout" (click)="logOut()">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </button>
+        </nav>
+    </div>
 </div>
+
+

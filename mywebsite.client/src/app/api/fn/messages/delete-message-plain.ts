@@ -13,7 +13,7 @@ export interface DeleteMessage$Plain$Params {
 }
 
 export function deleteMessage$Plain(http: HttpClient, rootUrl: string, params?: DeleteMessage$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<DeleteMessageResponse>> {
-  const rb = new RequestBuilder(rootUrl, deleteMessage$Plain.PATH, 'post');
+  const rb = new RequestBuilder(rootUrl, deleteMessage$Plain.PATH, 'delete');
   if (params) {
     rb.query('id', params.id, {});
   }

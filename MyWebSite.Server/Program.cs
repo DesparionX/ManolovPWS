@@ -119,6 +119,8 @@ builder.Services.AddScoped<PostsHandler>();
 builder.Services.AddScoped<CVHandler>();
 builder.Services.AddScoped<FileHandler>();
 builder.Services.AddScoped<MessagesHandler>();
+builder.Services.AddScoped<UserHandler>();
+builder.Services.AddScoped<AuthHandler>();
 
 var app = builder.Build();
 

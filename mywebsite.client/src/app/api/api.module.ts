@@ -4,6 +4,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { AccountService } from './services/account.service';
 import { CvService } from './services/cv.service';
 import { MessagesService } from './services/messages.service';
 import { PostsService } from './services/posts.service';
@@ -16,6 +17,7 @@ import { PostsService } from './services/posts.service';
   exports: [],
   declarations: [],
   providers: [
+    AccountService,
     CvService,
     MessagesService,
     PostsService,

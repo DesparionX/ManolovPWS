@@ -6,16 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ReadMessageResponse } from '../../models/read-message-response';
+import { LogOutResponse } from '../../models/log-out-response';
 
-export interface ReadMessage$Params {
-  id?: string;
+export interface LogOut$Params {
 }
 
-export function readMessage(http: HttpClient, rootUrl: string, params?: ReadMessage$Params, context?: HttpContext): Observable<StrictHttpResponse<ReadMessageResponse>> {
-  const rb = new RequestBuilder(rootUrl, readMessage.PATH, 'get');
+export function logOut(http: HttpClient, rootUrl: string, params?: LogOut$Params, context?: HttpContext): Observable<StrictHttpResponse<LogOutResponse>> {
+  const rb = new RequestBuilder(rootUrl, logOut.PATH, 'post');
   if (params) {
-    rb.query('id', params.id, {});
   }
 
   return http.request(
@@ -23,9 +21,9 @@ export function readMessage(http: HttpClient, rootUrl: string, params?: ReadMess
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ReadMessageResponse>;
+      return r as StrictHttpResponse<LogOutResponse>;
     })
   );
 }
 
-readMessage.PATH = '/Messages/readMessage';
+logOut.PATH = '/Account/logOut';

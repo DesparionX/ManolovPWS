@@ -100,6 +100,21 @@
     }
   }
 
+  .error{
+      display: flex;
+      place-self: center;
+      place-items: center;
+      place-content: center;
+      padding-top: 20px;
+      margin-bottom: -40px;
+      font-weight: 400;
+      font-size: 1.4rem;
+      text-shadow: 0 0 10px black;
+      color: red;
+
+      
+  }
+
   .loginBtn {
     display: flex;
     place-content: center;
