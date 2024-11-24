@@ -10,7 +10,6 @@ import { lastValueFrom } from 'rxjs';
 export class AuthService {
 
   constructor(private api: ApiService, private http: HttpClient) { }
-  token = signal<string | undefined | null>(undefined);
 
 
   // Login
@@ -20,7 +19,6 @@ export class AuthService {
       const response = await lastValueFrom(this.http.post<LoginResponse>(this.api.api + '/Account/logIn', request, { withCredentials: false }));
       if (response.succeed && response.jwt) {
         localStorage.setItem('token', response.jwt);
-        this.token.set(response.jwt);
       }
       return response;
     } catch (error) {
@@ -35,7 +33,6 @@ export class AuthService {
       const response = await lastValueFrom(this.http.post<LogOutResponse>(this.api.api + '/Account/logOut', { withCredentials: false }))
       if (response.succeed) {
         localStorage.removeItem('token');
-        this.token.set('');
       }
       return response;
     } catch (error) {

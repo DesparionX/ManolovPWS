@@ -25,7 +25,7 @@ export class TopNavComponent {
   // API //
   // Determine if user is logged in.
   hasToken(): boolean {
-    return this.auth.token() ? true : false;
+    return localStorage.getItem('token') ? true : false;
   }
 
   // Log out.

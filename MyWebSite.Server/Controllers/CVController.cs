@@ -32,19 +32,19 @@ namespace MyWebSite.Server.Controllers
 
             return BadRequest(result);
         }
-        //[HttpPost("initializeCV")]
-        //[ProducesResponseType<InitializeCVResult>(200)]
-        //[ProducesResponseType<InitializeCVResult>(400)]
-        //[ProducesResponseType<InitializeCVResult>(404)]
-        //[ProducesResponseType<InitializeCVResult>(401)]
-        //[ProducesResponseType(500)]
-        //public async Task<IActionResult> InitializeCV()
-        //{
-        //    var result = await _cvHandler.InitializeCV();
-        //    if (result.Succeed)
-        //        return Ok(result);
-        //    return BadRequest(result);
-        //}
+        [HttpPost("initializeCV")]
+        [ProducesResponseType<InitializeCVResult>(200)]
+        [ProducesResponseType<InitializeCVResult>(400)]
+        [ProducesResponseType<InitializeCVResult>(404)]
+        [ProducesResponseType<InitializeCVResult>(401)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> InitializeCV()
+        {
+            var result = await _cvHandler.InitializeCV();
+            if (result.Succeed)
+                return Ok(result);
+            return BadRequest(result);
+        }
 
         [HttpPut("updateCV")]
         [ProducesResponseType<UpdateCVResponse>(200)]

@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MyWebSite.Server.Data;
 using MyWebSite.Server.Data.DTOs;
 using MyWebSite.Server.Data.Entities;
 using MyWebSite.Server.Data.Interfaces;
 using MyWebSite.Server.Http.Responses;
-using System.Security.Principal;
 
 namespace MyWebSite.Server.Handlers
 {
@@ -22,41 +20,41 @@ namespace MyWebSite.Server.Handlers
             _fileHandler = fileHandler;
             _mapper = mapper;
         }
-        //public async Task<InitializeCVResult> InitializeCV()
-        //{
-        //    var cv = new CV
-        //    {
-        //        Id = Guid.NewGuid(),
-        //        Picture = string.Empty,
-        //        FullName = string.Empty,
-        //        IsMale = true,
-        //        Nationality = string.Empty,
-        //        BirthDate = DateTime.Now,
-        //        Address = string.Empty,
-        //        Profession = string.Empty,
-        //        Description = string.Empty,
-        //        Contacts = new List<Contact>(),
-        //        Skills = new List<Skill>(),
-        //        WorkExperience = new List<WorkExperience>(),
-        //        Education = new List<Education>(),
-        //        Languages = new List<Language>(),
-        //        Certificates = new List<Certificate>(),
-        //    };
-        //    try
-        //    {
-        //        _context.Add(cv);
-        //        var added = await _context.SaveChangesAsync();
-        //        if (added > 0)
-        //        {
-        //            return new InitializeCVResult { Succeed = true, Message = "CV added succesfully. ", CV = cv };
-        //        }
-        //        return new InitializeCVResult { Succeed = false, Message = "Something went wrong. " };
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        return new InitializeCVResult { Succeed = false, Message = err.Message };
-        //    }
-        //}
+        public async Task<InitializeCVResult> InitializeCV()
+        {
+            var cv = new CV
+            {
+                Id = Guid.NewGuid(),
+                Picture = string.Empty,
+                FullName = string.Empty,
+                IsMale = true,
+                Nationality = string.Empty,
+                BirthDate = DateTime.Now,
+                Address = string.Empty,
+                Profession = string.Empty,
+                Description = string.Empty,
+                Contacts = new List<Contact>(),
+                Skills = new List<Skill>(),
+                WorkExperience = new List<WorkExperience>(),
+                Education = new List<Education>(),
+                Languages = new List<Language>(),
+                Certificates = new List<Certificate>(),
+            };
+            try
+            {
+                _context.Add(cv);
+                var added = await _context.SaveChangesAsync();
+                if (added > 0)
+                {
+                    return new InitializeCVResult { Succeed = true, Message = "CV added succesfully. ", CV = cv };
+                }
+                return new InitializeCVResult { Succeed = false, Message = "Something went wrong. " };
+            }
+            catch (Exception err)
+            {
+                return new InitializeCVResult { Succeed = false, Message = err.Message };
+            }
+        }
 
         public async Task<LoadCVResponse> LoadCVAsync()
         {
@@ -76,7 +74,7 @@ namespace MyWebSite.Server.Handlers
 
                 var cvDTO = _mapper.Map<CVDTO>(cv);
                 cvDTO.Picture = await _fileHandler.ConverToBase64(cvDTO.Picture);
-                
+
                 return new LoadCVResponse { Succeed = true, Message = "CV found !", CV = cvDTO };
             }
             catch (Exception err)
@@ -173,7 +171,7 @@ namespace MyWebSite.Server.Handlers
         }
         private void SyncCollection<T>(ICollection<T> dbCollection, ICollection<T> dtoCollection) where T : class, IEntity
         {
-            
+
             var itemsToRemove = dbCollection.Where(dbItem =>
                 !dtoCollection.Any(dtoItem => dtoItem.Id == dbItem.Id)).ToList();
             foreach (var item in itemsToRemove)
