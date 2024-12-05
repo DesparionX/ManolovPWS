@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogRef, MatDia
 import { DeleteRequest } from '../../api/models';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-import { EntityTypes } from './entityTypes';
+import { EntityTypes } from '../../helpers/entityTypes';
 import { DeleteDialogData } from './DeleteDialogData';
 
 @Component({

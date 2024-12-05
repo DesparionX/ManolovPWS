@@ -11,6 +11,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../custom-components/delete-dialog/delete-dialog.component';
+import { EntityTypes } from '../../helpers/entityTypes';
 
 @Component({
   selector: 'app-projects',
@@ -22,24 +23,34 @@ export class ProjectsComponent implements OnInit {
 
   }
   projects: PostRm[] = [];
+  entityType = EntityTypes.PROJECT;
 
   async ngOnInit() {
-    let response: GetPostsResponse = await this.apiServices.getPosts('Project');
-    if (response.succeeded) {
-      response.posts?.forEach(post => {
-        this.projects.push(post);
-      })
-    }
+    await this.loadProjects();
   }
 
+
+  // HTML //
+  // Delete dialog.
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, whatToDelete: string, id: string): void {
     this.dialog.open(DeleteDialogComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-        postType: whatToDelete,
-        postId: id
+        entityType: whatToDelete,
+        id: id
       }
     });
+  }
+
+  // API //
+  // Load projects.
+  async loadProjects() {
+    let response: GetPostsResponse = await this.apiServices.getPosts(this.entityType);
+    if (response.succeeded) {
+      response.posts?.forEach(post => {
+        this.projects.push(post);
+      })
+    }
   }
 }

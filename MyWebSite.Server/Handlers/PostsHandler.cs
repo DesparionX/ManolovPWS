@@ -61,33 +61,25 @@ namespace MyWebSite.Server.Handlers
         }
         public async Task<GetPostsResponse> GetPostsByTypeAsync(string postType)
         {
-            var response = new GetPostsResponse();
             try
             {
-                var posts = await _context.Posts.Where(p => p.Type.Equals(postType)).ToListAsync();
+                var posts = await _context.Posts.Where(p => p.Type.Equals(postType)).OrderByDescending(p => p.DatePosted).ToListAsync();
                 if (posts.Count > 0)
                 {
-                    response.Succeeded = true;
-                    response.Message = $"{posts.Count} posts found.";
-                    response.Posts = new List<PostRM>();
-
+                    var postsRm = new List<PostRM>();
                     foreach (var post in posts)
                     {
-                        var postRM = _mapper.Map<PostRM>(post);
-                        postRM.Pictures = await _fileHandler.ConvertToBase64(postRM.Pictures!);
-                        response.Posts.Add(postRM);
+                        var rm = _mapper.Map<PostRM>(post);
+                        rm.Pictures = await _fileHandler.ConvertToBase64(rm.Pictures!);
+                        postsRm.Add(rm);
                     }
-                    return response;
+                    return new GetPostsResponse { Succeeded = true, Message = $"{posts.Count} {postType} found.", Posts = postsRm };
                 }
-                response.Succeeded = false;
-                response.Message = "No posts were found.";
-                return response;
+                return new GetPostsResponse { Succeeded = false, Message = "No posts were found." };
             }
             catch (Exception err)
             {
-                response.Succeeded = false;
-                response.Message = err.Message;
-                return response;
+                return new GetPostsResponse { Succeeded = false, Message= err.Message };
             }
         }
         public async Task<UpdatePostResponse> UpdatePostAsync(PostDTO post)
@@ -132,6 +124,8 @@ namespace MyWebSite.Server.Handlers
             {
                 var newPost = _mapper.Map<Post>(post);
                 newPost.Pictures = await _fileHandler.ConvertFromBase64(null, post.Pictures!);
+                newPost.DatePosted = DateTime.Now;
+
                 _context.Add(newPost);
                 var result = await _context.SaveChangesAsync();
                 if (result > 0)

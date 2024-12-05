@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApiService } from '../../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddPostResponse, FindPostResponse, PostDto, PostRm, UpdatePostResponse } from '../../api/models';
+import { ProjectTypes } from '../../helpers/projectTypes';
 
 @Component({
   selector: 'app-add-edit',
@@ -32,7 +33,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
   allPictures: string[] = [];
   // Used for URL parameters.
   sub: any;
-
+  
   // Post related.
   postInDb!: PostRm;
   postId = '';
@@ -44,6 +45,8 @@ export class AddEditComponent implements OnInit, OnDestroy {
   // HTML related
   additButton: string | undefined | null;
   projectTypeValue: string | undefined;
+  optionFinished = ProjectTypes.FINISHED;
+  optionInProgress = ProjectTypes.INPROGRESS;
 
   form = this.fb.nonNullable.group({
     title: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(40)])],
@@ -145,7 +148,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     }
     console.log(this.projectTypeValue);
     const dto: PostDto = {
-      id: this.postId,
+      id: this.postId.toString(),
       title: this.form.value.title!,
       description: this.form.value.description!,
       type: this.isProject ? 'Project' : 'Post',

@@ -1,2 +1,167 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.posts {
+  display: flex;
+  flex-flow: column;
+  margin-top: 90px;
+  padding-top: 20px;
+  padding-bottom: 100px;
+  place-self: center;
+  place-content: start;
+  place-items: center;
+  width: 100vw;
+  height: 100vh - 9vh;
+  background-color: transparent;
+  font-family: "Poppins", sans-serif;
+  overflow: auto;
+  z-index: 1;
+  scrollbar-width: none;
+
+  .post {
+    display: flex;
+    flex-flow: column;
+    margin-top: 50px;
+    place-self: center;
+    place-content: center;
+    max-width: 600px;
+    height: auto;
+    border: 1px solid rgba(0,0,0, .5);
+    border-radius: 40px;
+    box-shadow: 0 0 3rem black;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    transition: all .3s ease;
+
+    .post-title {
+      display: flex;
+      place-self: center;
+      place-content: start;
+      place-items: center;
+      width: auto;
+      height: 50px;
+      padding: 40px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-shadow: 0 0 10px black;
+      color: white;
+      transition: all .5s ease;
+    }
+
+    .combo {
+      display: flex;
+      flex-flow: column;
+      place-self: center;
+      place-items: center;
+      margin: 0;
+      width: auto;
+      height: auto;
+
+      .cover {
+        display: flex;
+        flex-flow: column;
+        place-self: center;
+        place-items: start;
+        border-top: 1px solid rgba(0,0,0, .5);
+        border-bottom: 1px solid rgba(0,0,0, .5);
+        width: 100%;
+        height: auto;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 10px;
+        width: 100%;
+        padding: 10px;
+
+        .img-bt{
+            background-color: transparent;
+            outline: none;
+            border:none;
+            width: auto;
+            height: auto;
+        }
+        .img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          border: 1px solid rgba(0,0,0, .5);
+          border-radius: 30px;
+
+          &:hover {
+            box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
+          }
+        }
+      }
+    }
+
+    .link {
+      display: flex;
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      text-decoration: none;
+      text-shadow: 0 0 10px black;
+      place-content: start;
+      place-self: start;
+      color: white;
+      padding: 10px 0 10px 15px;
+      transition: all .5s ease;
+
+      &:hover {
+        color: rgba(255, 120, 90, 1);
+      }
+    }
+
+    .description {
+      display: flex;
+      flex-flow: column;
+      place-self: start;
+      place-content: start;
+      padding: 0 10px 10px 15px;
+
+      font-size: 1.1rem;
+      font-weight: 400;
+      text-shadow: 0 0 10px black;
+      color: white;
+
+      width: auto;
+      height: auto;
+    }
+
+    .hrr{
+        display: flex;
+        flex-flow: column;
+        place-self: center;
+        place-content: center;
+        place-items: center;
+        margin-top: 20px;
+        width: 80%;
+        border-top: 1px solid rgba(0,0,0, 1);
+    }
+
+    .date{
+        display: flex;
+        flex-flow: column;
+
+        place-self: center;
+        place-content: center;
+        place-items: center;
+        margin-bottom: 20px;
+
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-shadow: 0 0 10px black;
+        color: gray;
+    }
+
+    &:hover {
+      box-shadow: 0 0 2rem rgba(255, 100, 40, 1);
+
+      .post-title {
+        color: rgba(255, 120, 90, 1);
+      }
+    }
+  }
 }

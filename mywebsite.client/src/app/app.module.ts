@@ -15,7 +15,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { BodyComponent } from './body/body.component';
 import { TopNavComponent } from './nav/top-nav/top-nav.component';
 import { ProjectsComponent } from './control-panel/projects/projects.component';
-import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CvComponent } from './pages/cv/cv.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -52,7 +51,6 @@ export const MY_FORMATS: MatDateFormats = {
         BodyComponent,
         TopNavComponent,
         ProjectsComponent,
-        AboutComponent,
         ContactComponent,
         CvComponent,
         ControlPanelComponent,

@@ -4,10 +4,11 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
-  position:relative;
+  position: relative;
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
+  scrollbar-width: none;
   margin: 0;
   padding: 0;
 }

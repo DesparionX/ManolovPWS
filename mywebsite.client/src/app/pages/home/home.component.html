@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="container">
+    <div class="posts" *ngIf="posts && posts.length > 0">
+        <div class="post" *ngFor="let post of posts">
+            <label class="post-title">{{post.title}}</label>
+            <div class="combo">
+                <img class="cover" [src]="post.pictures![0]" />
+                <div class="gallery">
+                    <button type="button" class="img-bt" (click)="openImageInNewTab(picture)" *ngFor="let picture of post.pictures">
+                        <img class="img" [src]="picture" />
+                    </button>
+                </div>
+            </div>
+            <a class="link" [href]="post.link">reference</a>
+            <label class="description">{{post.description}}</label>
+            <hr class="hrr" />
+            <label class="date">{{dateFormat(post.datePosted!.toString())}}</label>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../custom-components/delete-dialog/delete-dialog.component';
+import { EntityTypes } from '../../helpers/entityTypes';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class PostsComponent implements OnInit {
 
   }
   posts: PostRm[] = [];
+  entityType = EntityTypes.POST;
 
   async ngOnInit() {
     await this.loadAllPosts();
@@ -36,8 +38,8 @@ export class PostsComponent implements OnInit {
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-          postType: whatToDelete,
-          postId: id
+          entityType: whatToDelete,
+          id: id
       }
     });
   }

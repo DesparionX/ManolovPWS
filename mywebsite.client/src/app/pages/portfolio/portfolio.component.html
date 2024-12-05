@@ -1,1 +1,59 @@
-<p>portfolio works!</p>
+<div class="container">
+    <div class="projects">
+        <div class="selector">
+            <div class="left">
+                <button type="button" class="arrow" [hidden]="currentView === 'In progress'" (click)="toggleView('In progress')">
+                    <i class="fa-solid fa-angle-left"></i>
+                </button>
+            </div>
+            <label class="project-type" [@fade]="fadeState">{{currentView}}</label>
+            <div class="right">
+                <button type="button" class="arrow" [hidden]="currentView === 'Finished'" (click)="toggleView('Finished')">
+                    <i class="fa-solid fa-angle-right"></i>
+                </button>
+            </div>
+            
+        </div>
+        <div class="proj-list" [style.transform]="currentView.toLowerCase() === 'finished' ? 'translateX(-25%)' : 'translateX(25%)'" #list>
+            <div class="in-progress" #inProgress *ngIf="inProgressProjects && inProgressProjects.length > 0">
+                <div class="project" *ngFor="let project of inProgressProjects">
+                    <label class="project-title">{{project.title}}</label>
+                    <div class="combo">
+                        <div class="cover-holder">
+                            <img class="cover" [src]="project.pictures![0]" />
+                        </div>
+                        <div class="gallery">
+                            <button type="button" class="img-bt" (click)="openImageInNewTab(picture)" *ngFor="let picture of project.pictures">
+                                <img class="img" [src]="picture" />
+                            </button>
+                        </div>
+                    </div>
+                    <a class="link" [href]="project.link">reference</a>
+                    <label class="description">{{project.description}}</label>
+                    <hr class="hrr" />
+                    <label class="date">{{dateFormat(project.datePosted!.toString())}}</label>
+                </div>
+            </div>
+            <div class="finished" #finished *ngIf="finishedProjects && finishedProjects.length > 0">
+                <div class="project" *ngFor="let project of finishedProjects">
+                    <label class="project-title">{{project.title}}</label>
+                    <div class="combo">
+                        <div class="cover-holder">
+                            <img class="cover" [src]="project.pictures![0]" />
+                        </div>
+                        <div class="gallery">
+                            <button type="button" class="img-bt" (click)="openImageInNewTab(picture)" *ngFor="let picture of project.pictures">
+                                <img class="img" [src]="picture" />
+                            </button>
+                        </div>
+                    </div>
+                    <a class="link" [href]="project.link">reference</a>
+                    <label class="description">{{project.description}}</label>
+                    <hr class="hrr" />
+                    <label class="date">{{dateFormat(project.datePosted!.toString())}}</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

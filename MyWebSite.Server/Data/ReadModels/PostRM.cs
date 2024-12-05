@@ -13,7 +13,7 @@ namespace MyWebSite.Server.Data.ReadModels
         public string Description { get; set; }
         public List<string>? Pictures { get; set; }
         public string? Link { get; set; }
-
+        public DateTime DatePosted { get; set; }
     }
     
 }

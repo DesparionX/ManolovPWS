@@ -1,1 +1,191 @@
-<p>cv works!</p>
+<div class="container">
+    <div class="cv">
+        <div class="avatar">
+        </div>
+        <div class="combo">
+            <label class="full-name">FULL NAME</label>
+            <div class="personal-data">
+                <label>
+                    <i class="fa-solid fa-cake-candles orange"></i>
+                    BIRTHDATE
+                </label>
+                <label>
+                    <i class="fa-solid fa-venus-mars orange"></i>
+                    GENDER
+                </label>
+                <label>
+                    <img class="country-icon" [src]="countryIcon"/>
+                    NATIONALITY
+                </label>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="left">
+                <!-- ADDRESS -->
+                <div class="left-item">
+                    <label class="header">ADDRESS</label>
+                    <label class="custom-text center">
+                        LOCATION ADDRESS
+                        <img class="location" [src]="countryIcon" />
+                    </label>
+                </div>
+
+                <!-- CONTACTS -->
+                <div class="left-item">
+                    <label class="header">CONTACTS</label>
+                    <div class="contact">
+                        <img class="contact-icon" [src]="contactIcon('facebook')" />
+                        <label class="contact-title">MANOLOV</label>
+                    </div>
+                </div>
+
+                <!-- SKILLS -->
+                <div class="left-item">
+                    <label class="header">SKILLS</label>
+                    <div class="main-skills">
+                        <!--*ngFor="let skill of mainSkills"-->
+                        <div class="main-skill">
+                            <label class="skill-name">SKILL</label>
+                            <!-- Skill level -->
+                            <div class="skill-level-container">
+                                <div class="skill-level" [style.width.%]="2 * 20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-skill">
+                            <label class="skill-name">SKILL RERE</label>
+                            <!-- Skill level -->
+                            <div class="skill-level-container">
+                                <div class="skill-level" [style.width.%]="4 * 20">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="expand" type="button">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                    <div class="other-skills">
+                        <label class="skill-name">OTHER SKILLS</label>
+                    </div>
+                    <button class="collapse" type="button">LESS</button>
+                </div>
+
+                <!-- LANGUAGES -->
+                <div class="left-item">
+                    <label class="header">LANGUAGES</label>
+                    <!-- *ngFor="let language in langs" -->
+                    <div class="language">
+
+                        <!-- *ngIf="language.type === 'main'"-->
+                        <div class="combo">
+                            <label class="lang-name">LANGUAGE</label>
+                            <label class="lang-type">(main)</label>
+                        </div>
+                        <!-- *ngIf="language.type === 'main'"-->
+                        <div class="combo">
+                            <label class="lang-name">LANGUAGE</label>
+                            <div class="lang-level">
+                                <div class="lang-combo">
+                                    <label class="type">READ:</label>
+                                    <label class="level">C2</label>
+                                </div>
+                                <div class="lang-combo">
+                                    <label class="type">WRITE:</label>
+                                    <label class="level">C2</label>
+                                </div>
+                                <div class="lang-combo">
+                                    <label class="type">SPEAK:</label>
+                                    <label class="level">C2</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <!-- PROFFESSION AND DESCRIPTION -->
+                <div class="right-item">
+                    <div class="section">
+                        <button type="button" class="bt-toggle">
+                        </button>
+                        <div class="vr"></div>
+                    </div>
+                    <div class="combo-right">
+                        <label class="header big">DEVELOPER</label>
+                        <label class="desription" #description>DESCRIPTION TEXT</label>
+                    </div>
+                </div>
+
+                <!-- EMPLOYMENT HISTORY -->
+                <div class="right-item">
+                    <div class="section">
+                        <button type="button" class="bt-toggle">
+                        </button>
+                        <div class="vr"></div>
+                    </div>
+                    <div class="combo-right">
+                        <label class="header big">EMPLOYMENT HISTORY</label>
+                        <div class="list" #jobList>
+                            <!--*ngFor="let job in jobsList" -->
+                            <div class="job">
+                                <label class="job-position">TEST</label>
+                                <label class="start-end-date">01 Jan 2020 - 01 Jan 2024</label>
+                                <label class="job-description">This is a verry long job description.</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- EDUCATION -->
+                <div class="right-item">
+                    <div class="section">
+                        <button type="button" class="bt-toggle">
+                        </button>
+                        <div class="vr"></div>
+                    </div>
+                    <div class="combo-right">
+                        <label class="header big">EDUCATION</label>
+                        <div class="list" #educationList>
+                            <!--*ngFor="let education in educationList"-->
+                            <div class="education">
+                                <div class="custom-row">
+                                    <label class="profession-aquired">BUSINESS INFORMATICKS</label>
+                                    <label class="education-type">(BACHELOR)</label>
+                                </div>
+                                <label class="school-name">SU HR SMIRNENSKI</label>
+                                <label class="start-end-date">01 Jan 2020 - 01 Jan 2024</label>
+                                <label class="description">This is a short description of what i've learned.</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CERTIFICATES -->
+                <div class="right-item">
+                    <div class="section">
+                        <button type="button" class="bt-toggle">
+                        </button>
+                        <div class="vr"></div>
+                    </div>
+                    <div class="combo-right">
+                        <label class="header big">CERTIFICATES</label>
+                        <div class="list" #educationList>
+                            <!--*ngFor="let certificate in certificatesList"-->
+                            <div class="certificate">
+                                <a class="certi-title">THIS IS A CERTIFICATION TITLE</a>
+                                <label class="start-end-date">01 Jan 2020 - 01 Jan 2024</label>
+                                <label class="company">UDEMY</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

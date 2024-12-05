@@ -65,6 +65,10 @@ $labelSize: 2rem;
         color: white;
       }
 
+      .custom-area{
+          font-size: 1.1rem;
+      }
+
       .custom-drop-menu {
 
 
@@ -136,6 +140,7 @@ $labelSize: 2rem;
       color: white;
       margin-top: 50px;
       margin-bottom: 10px;
+      transition: all .5s ease;
 
       &:hover {
         box-shadow: 0 0 1rem rgba(255, 100, 40, 1);

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ProjectsComponent } from './control-panel/projects/projects.component';
-import { AboutComponent } from './pages/about/about.component';
 import { CvComponent } from './pages/cv/cv.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
@@ -19,7 +18,6 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'portfolio', component: PortfolioComponent },
-  { path: 'about', component: AboutComponent },
   { path: 'cv', component: CvComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },

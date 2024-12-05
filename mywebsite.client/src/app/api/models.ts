@@ -1,16 +1,22 @@
 /* tslint:disable */
 /* eslint-disable */
 export { AddPostResponse } from './models/add-post-response';
+export { Certificate } from './models/certificate';
 export { CertificateDto } from './models/certificate-dto';
+export { Contact } from './models/contact';
 export { ContactDto } from './models/contact-dto';
+export { Cv } from './models/cv';
 export { Cvdto } from './models/cvdto';
 export { DeleteMessageResponse } from './models/delete-message-response';
 export { DeleteRequest } from './models/delete-request';
 export { DeleteResponse } from './models/delete-response';
+export { Education } from './models/education';
 export { EducationDto } from './models/education-dto';
 export { FindPostResponse } from './models/find-post-response';
 export { GetMessagesResponse } from './models/get-messages-response';
 export { GetPostsResponse } from './models/get-posts-response';
+export { InitializeCvResult } from './models/initialize-cv-result';
+export { Language } from './models/language';
 export { LanguageDto } from './models/language-dto';
 export { LoadCvResponse } from './models/load-cv-response';
 export { LoginResponse } from './models/login-response';
@@ -24,8 +30,10 @@ export { ReadMessageResponse } from './models/read-message-response';
 export { RegisterResponse } from './models/register-response';
 export { RegisterUserRequest } from './models/register-user-request';
 export { SendMessageResponse } from './models/send-message-response';
+export { Skill } from './models/skill';
 export { SkillDto } from './models/skill-dto';
 export { UpdateCvResponse } from './models/update-cv-response';
 export { UpdatePostResponse } from './models/update-post-response';
 export { User } from './models/user';
+export { WorkExperience } from './models/work-experience';
 export { WorkExperienceDto } from './models/work-experience-dto';

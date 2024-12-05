@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CertificateDto, ContactDto, Cvdto, EducationDto, LanguageDto, LoadCvResponse, SkillDto, WorkExperienceDto } from '../../api/models';
 import { ApiService } from '../../services/api.service';
-import { ContactIcons } from '../../services/contactIcons';
+import { ContactIcons } from '../../helpers/contactIcons';
 import moment, { Moment } from 'moment';
 
 

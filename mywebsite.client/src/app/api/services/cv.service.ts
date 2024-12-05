@@ -9,6 +9,11 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { initializeCv } from '../fn/cv/initialize-cv';
+import { InitializeCv$Params } from '../fn/cv/initialize-cv';
+import { initializeCv$Plain } from '../fn/cv/initialize-cv-plain';
+import { InitializeCv$Plain$Params } from '../fn/cv/initialize-cv-plain';
+import { InitializeCvResult } from '../models/initialize-cv-result';
 import { loadCv } from '../fn/cv/load-cv';
 import { LoadCv$Params } from '../fn/cv/load-cv';
 import { loadCv$Plain } from '../fn/cv/load-cv-plain';
@@ -70,6 +75,53 @@ export class CvService extends BaseService {
   loadCv(params?: LoadCv$Params, context?: HttpContext): Observable<LoadCvResponse> {
     return this.loadCv$Response(params, context).pipe(
       map((r: StrictHttpResponse<LoadCvResponse>): LoadCvResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `initializeCv()` */
+  static readonly InitializeCvPath = '/CV/initializeCV';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `initializeCv$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  initializeCv$Plain$Response(params?: InitializeCv$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<InitializeCvResult>> {
+    return initializeCv$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `initializeCv$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  initializeCv$Plain(params?: InitializeCv$Plain$Params, context?: HttpContext): Observable<InitializeCvResult> {
+    return this.initializeCv$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<InitializeCvResult>): InitializeCvResult => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `initializeCv()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  initializeCv$Response(params?: InitializeCv$Params, context?: HttpContext): Observable<StrictHttpResponse<InitializeCvResult>> {
+    return initializeCv(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `initializeCv$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  initializeCv(params?: InitializeCv$Params, context?: HttpContext): Observable<InitializeCvResult> {
+    return this.initializeCv$Response(params, context).pipe(
+      map((r: StrictHttpResponse<InitializeCvResult>): InitializeCvResult => r.body)
     );
   }
 

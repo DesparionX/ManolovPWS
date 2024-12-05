@@ -8,7 +8,7 @@
                         <a class="col action-icon edit" [routerLink]="['addit/'] + project.type! + ['/'] + project.id!">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <a class="col action-icon delete" (click)="openDialog('200ms', '100ms', 'project', project.id!)">
+                        <a class="col action-icon delete" (click)="openDialog('200ms', '100ms', entityType, project.id!)">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </nav>
