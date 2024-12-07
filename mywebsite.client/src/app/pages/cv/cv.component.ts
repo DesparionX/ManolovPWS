@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { CountryIcons } from '../../helpers/countryIcons';
 import { ContactIcons } from '../../helpers/contactIcons';
@@ -8,13 +8,18 @@ import { ContactIcons } from '../../helpers/contactIcons';
   templateUrl: './cv.component.html',
   styleUrl: './cv.component.scss'
 })
-export class CvComponent {
+export class CvComponent implements OnInit{
 
   constructor(private api: ApiService) { }
 
   countryIcon = CountryIcons.BULGARIA;
-  collapsed: boolean = false;
+  collapsed: boolean = true;
+  maxHeight: string = '0';
 
+  ngOnInit() {
+    console.log(this.maxHeight);
+    console.log(this.collapsed);
+  }
 
   // HTML //
   // Determine contact icon.
@@ -42,10 +47,25 @@ export class CvComponent {
   }
 
   // Expand or collapse skills list.
-  switchView(type: string) {
+  switchView(type: string, element: HTMLElement) {
     switch (type) {
       case 'skills':
         this.collapsed = !this.collapsed;
+        if (this.collapsed == false) {
+          const totalHeight = Array.from(element.children).reduce((height, child: any) => {
+            return height + child.offsetHeight;
+          }, 0);
+          this.maxHeight = totalHeight+'px';
+        } else {
+          this.maxHeight = '0';
+        }
+        console.log(this.collapsed);
+        console.log(this.maxHeight);
+        
+        break;
+      default:
+        console.log("Something is missing.");
+        break;
     }
   }
 }

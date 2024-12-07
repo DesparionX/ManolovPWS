@@ -86,10 +86,11 @@ $orange: rgba(255,120,90, 1);
       .left-item {
         display: flex;
         width: 100%;
+        height: auto;
         flex-flow: column;
         place-items: start;
         place-self: start;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
 
         .header {
           display: flex;
@@ -148,6 +149,18 @@ $orange: rgba(255,120,90, 1);
             gap: 10px;
             place-items: center;
             place-self: end;
+
+            .main-skill-name {
+              display: inline-flex;
+              width: 35%;
+              flex-flow: row;
+              place-content: end;
+              font-size: 1rem;
+              font-weight: 600;
+              text-shadow: 0 0 10px black;
+              color: grey;
+            }
+
             .skill-level-container {
               position: relative;
               width: 65%;
@@ -156,52 +169,129 @@ $orange: rgba(255,120,90, 1);
               padding: 5px;
               overflow: hidden;
               background-color: rgba(66,66,66, .5);
-              .skill-level{
-                  display: flex;
-                  flex-flow: row;
-                  place-content: center;
-                  place-items: center;
-                  background-color: rgba(255, 40, 40, 1);
-                  height: 100%;
-                  border-radius: 5px;
+
+              .skill-level {
+                display: flex;
+                flex-flow: row;
+                place-content: center;
+                place-items: center;
+                background-color: rgba(255, 40, 40, 1);
+                height: 100%;
+                border-radius: 5px;
               }
             }
-            &:hover .skill-name{
-                color: $orange;
+
+            &:hover .main-skill-name {
+              color: $orange;
             }
           }
         }
-        .expand{
-            display: flex;
-            place-content: center;
-            place-self: center;
-            place-items: center;
-            margin-top: 10px;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(0,0,0, .1);
-            border: 1px solid rgba(0,0,0, .1);
-            border-radius: 20px;
-            color: white;
-            font-size: .8rem;
-            font-weight: 500;
-            text-shadow: 0 0 10px black;
-            transition: all .5s ease;
-            &:hover{
-                box-shadow: 0 0 10px rgba(255, 100, 40, .5) ;
-                color: $orange;
-            }
+
+        .expand {
+          display: flex;
+          place-content: center;
+          place-self: center;
+          place-items: center;
+          margin-top: 10px;
+          width: 40px;
+          height: 40px;
+          background-color: rgba(0,0,0, .1);
+          border: 1px solid rgba(0,0,0, .1);
+          border-radius: 20px;
+          color: white;
+          font-size: .8rem;
+          font-weight: 500;
+          text-shadow: 0 0 10px black;
+          transition: all .5s ease;
+
+          &:hover {
+            box-shadow: 0 0 10px rgba(255, 100, 40, .5);
+            color: $orange;
+          }
         }
 
-        .skill-name {
-          display: inline-flex;
-          width: 35%;
-          flex-flow: row;
-          place-content: end;
-          font-size: 1rem;
-          font-weight: 600;
-          text-shadow: 0 0 10px black;
-          color: grey;
+        .other-skills {
+          display: flex;
+          flex-flow: column;
+          margin-top: 10px;
+          place-content: center;
+          place-items: center;
+          place-self: center;
+          text-align: center;
+          overflow: hidden;
+          transition: max-height .3s ease;
+
+          .other-skill-name {
+            display: flex;
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 0 10px black;
+            color: grey;
+
+            &:hover {
+              color: $orange;
+            }
+          }
+        }
+
+        .language {
+          display: flex;
+          flex-flow: column;
+          place-self: center;
+          place-content: center;
+          place-items: center;
+          width: 100%;
+          margin-top: 5px;
+          gap: 10px;
+
+          .lang-name {
+            display: flex;
+            place-self: center;
+            place-content: center;
+            place-items: center;
+            color: whitesmoke;
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 0 10px black;
+          }
+
+          .lang-type {
+            display: flex;
+            place-self: center;
+            place-content: center;
+            place-items: center;
+            color: grey;
+            font-size: .8rem;
+            font-weight: 600;
+            text-shadow: 0 0 10px black;
+          }
+
+          .lang-level {
+            display: flex;
+            flex-flow: row;
+            place-self: center;
+            place-items: center;
+            place-content: center;
+            gap: 15px;
+            font-size: .8rem;
+            font-weight: 600;
+            color: grey;
+            text-shadow: 0 0 10px black;
+
+            .lang-combo {
+                display:flex;
+                flex-flow: row;
+                place-items: center;
+                place-content: center;
+                place-self: center;
+                gap: 5px;
+
+              .level {
+                font-size: .9rem;
+                color: $orange;
+              }
+            }
+          }
         }
       }
     }
@@ -230,4 +320,7 @@ $orange: rgba(255,120,90, 1);
 }
 .center {
   place-self: center;
+}
+.collapsed{
+    transform: rotate(-180deg);
 }

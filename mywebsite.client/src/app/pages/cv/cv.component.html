@@ -47,7 +47,7 @@
                     <div class="main-skills">
                         <!--*ngFor="let skill of mainSkills"-->
                         <div class="main-skill">
-                            <label class="skill-name">SKILL</label>
+                            <label class="main-skill-name">SKILL</label>
                             <!-- Skill level -->
                             <div class="skill-level-container">
                                 <div class="skill-level" [style.width.%]="2 * 20">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="main-skill">
-                            <label class="skill-name">SKILL RERE</label>
+                            <label class="main-skill-name">SKILL RERE</label>
                             <!-- Skill level -->
                             <div class="skill-level-container">
                                 <div class="skill-level" [style.width.%]="4 * 20">
@@ -63,13 +63,17 @@
                             </div>
                         </div>
                     </div>
-                    <button class="expand" type="button">
+
+                    <!--*ngFor="let skill of otherSkills"-->
+                    <div class="other-skills" #otherSkills [style.maxHeight]="collapsed ? 0 : maxHeight">
+                        <label class="other-skill-name">OTHER SKILLS</label>
+                        <label class="other-skill-name">OTHER SKILLS</label>
+                        <label class="other-skill-name">OTHER SKILLS</label>
+                    </div>
+                    <button class="expand" [ngClass]="collapsed ? '': 'collapsed'" type="button" (click)="switchView('skills', otherSkills)">
                         <i class="fa-solid fa-arrow-down"></i>
                     </button>
-                    <div class="other-skills">
-                        <label class="skill-name">OTHER SKILLS</label>
-                    </div>
-                    <button class="collapse" type="button">LESS</button>
+                    
                 </div>
 
                 <!-- LANGUAGES -->
@@ -80,12 +84,12 @@
 
                         <!-- *ngIf="language.type === 'main'"-->
                         <div class="combo">
-                            <label class="lang-name">LANGUAGE</label>
+                            <label class="lang-name">Bulgarian</label>
                             <label class="lang-type">(main)</label>
                         </div>
                         <!-- *ngIf="language.type === 'main'"-->
                         <div class="combo">
-                            <label class="lang-name">LANGUAGE</label>
+                            <label class="lang-name">English</label>
                             <div class="lang-level">
                                 <div class="lang-combo">
                                     <label class="type">READ:</label>
