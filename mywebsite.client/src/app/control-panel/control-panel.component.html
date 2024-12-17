@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="row panel">
-        <nav class="col panel-nav">
+    <div class="panel">
+        <nav class="panel-nav">
             <a [routerLink]="['/control-panel/posts']">Posts</a>
             <a [routerLink]="['/control-panel/projects']">Projects</a>
             <a [routerLink]="['/control-panel/cv']">CV</a>
             <a [routerLink]="['/control-panel/inbox']">Inbox</a>
         </nav>
-        <div class="col vl"></div>
-        <div class="col panel-content">
+        <div class="vl"></div>
+        <div class="panel-content">
             <router-outlet></router-outlet>
         </div>
     </div>

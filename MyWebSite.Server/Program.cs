@@ -83,6 +83,11 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+//builder.WebHost.UseKestrel(options =>
+//{
+//    options.ListenAnyIP(7015);
+
+//});
 
 // Add database.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

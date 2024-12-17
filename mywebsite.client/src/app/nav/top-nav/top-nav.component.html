@@ -1,8 +1,9 @@
 
 <div class="container">
     <div class="nav-bar">
-        <button class="logo" (dblclick)="controlPanel()">LOGO</button>
-        
+        <button class="logo" (dblclick)="controlPanel()">
+            <img class="logoto" [src]="logo2Path" />
+        </button>
         <nav class="navbar">
             <a [routerLink]="['/home']">Home</a>
             <a [routerLink]="['/portfolio']">Portfolio</a>

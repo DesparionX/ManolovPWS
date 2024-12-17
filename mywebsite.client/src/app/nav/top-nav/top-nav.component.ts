@@ -15,6 +15,8 @@ export class TopNavComponent {
 
   }
 
+  logoPath = '../../../assets/images/logoto.png';
+  logo2Path = '../../../assets/images/logo2rdy.png'
 
   // HTML //
   // Send to login page.

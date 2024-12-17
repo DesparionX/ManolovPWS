@@ -45,25 +45,32 @@
 }
 
 .logo {
-  font-size: 2rem;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
+  display: flex;
+  position: relative;
   padding-left: 5rem;
-  outline: none;
   border: none;
   background-color: transparent;
+  height: 50px;
+
+  .logoto {
+    display: flex;
+    object-fit: contain;
+    height: 100%;
+    transform: scale(1.5,1.5);
+    z-index: 1000;
+  }
 }
 .navbar a {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: #fff;
   text-decoration: none;
   font-weight: 500;
   margin-left: 2rem;
-  text-shadow: 1px 1px 0.2rem black;
+  text-shadow: 0 0 10px black;
+  transition: all .5s ease;
 }
 .nav-bar a:hover {
-  text-shadow: 0 0 3rem rgba(0, 0, 0, 1);
+  color: rgba(255, 120, 90, 1);
 }
 
 .logout {

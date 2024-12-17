@@ -8,17 +8,26 @@ $orange: rgba(255,120,90, 1);
   place-self: center;
   place-items: center;
   width: 1000px;
-  min-height: 100vh;
+  height: auto;
+  margin-top: 120px;
+  margin-bottom: 50px;
   backdrop-filter: blur(40px);
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: 40px;
+  box-shadow: 0 0 2rem rgba(0,0,0, .5);
   font-family: "Poppins", sans-serif;
   overflow: auto;
 
   .avatar {
     display: flex;
-    margin-top: 150px;
-    width: 130px;
-    height: 150px;
+    margin-top: 50px;
+    width: 150px;
+    height: 180px;
+    border: 10px outset $orange;
+    border-radius: 20px;
+    box-shadow: 0 0 1rem black;
     background-color: white;
+    object-fit: cover;
   }
 
   .combo {
@@ -47,7 +56,7 @@ $orange: rgba(255,120,90, 1);
       height: auto;
       gap: 30px;
       font-size: .8rem;
-      font-weight: 500;
+      font-weight: 600;
       text-shadow: 0 0 10px black;
 
 
@@ -126,13 +135,23 @@ $orange: rgba(255,120,90, 1);
           place-items: center;
           place-self: start;
           gap: 10px;
+          margin-top: 5px;
           margin-left: 25%;
+
+          .contact-icon {
+            height: 25px;
+            place-self: center;
+          }
 
           .contact-title {
             font-size: 1rem;
             font-weight: 600;
             text-shadow: 0 0 10px black;
             color: grey;
+          }
+
+          &:hover .contact-title {
+            color: $orange;
           }
         }
 
@@ -279,12 +298,12 @@ $orange: rgba(255,120,90, 1);
             text-shadow: 0 0 10px black;
 
             .lang-combo {
-                display:flex;
-                flex-flow: row;
-                place-items: center;
-                place-content: center;
-                place-self: center;
-                gap: 5px;
+              display: flex;
+              flex-flow: row;
+              place-items: center;
+              place-content: center;
+              place-self: center;
+              gap: 5px;
 
               .level {
                 font-size: .9rem;
@@ -300,13 +319,208 @@ $orange: rgba(255,120,90, 1);
       display: flex;
       flex-flow: column;
       width: 70%;
-      gap: 10px;
-      background-color: green;
+
 
       .right-item {
         display: flex;
         flex-flow: row;
         gap: 10px;
+        height: auto;
+
+        .section {
+          display: flex;
+          flex-flow: column;
+
+          .bt-toggle {
+            // Stolen from css-shape.com ^^
+            height: 50px;
+            aspect-ratio: 1/cos(30deg);
+            clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
+            background-color: rgba(100,100,100, .5);
+            color: rgba(255, 40, 40, 1);
+            text-shadow: 0 0 10px black;
+            border: none;
+            transition: all .5s ease;
+
+
+            &:hover {
+              background-color: rgba(255, 40, 40, 1);
+              color: grey;
+            }
+          }
+
+          .vr-outer {
+            display: flex;
+            flex-flow: column;
+            place-items: center;
+            place-self: center;
+            background-color: rgba(100,100,100, .5);
+            width: 5px;
+            height: 100%;
+            box-shadow: 0 0 1rem black;
+
+            .vr {
+              display: flex;
+              flex-flow: row;
+              place-self: center;
+              background-color: rgba(255, 40, 40, 1);
+              opacity: 1;
+              width: 30%;
+              height: 100%;
+              border-radius: 40px;
+            }
+          }
+        }
+
+        .combo-right {
+          display: flex;
+          flex-flow: column;
+          place-content: flex-start;
+          place-items: flex-start;
+          place-self: flex-start;
+          height: auto;
+
+          .header {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: whitesmoke;
+            text-shadow: 0 0 10px black;
+            place-self: flex-start;
+            place-content: flex-start;
+          }
+
+          .descr {
+            display: flex;
+            margin-bottom: 40px;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: all .5s ease;
+
+            .description {
+              display: flex;
+              margin-top: 5px;
+              font-size: 1rem;
+              font-weight: 500;
+              color: darkgrey;
+              text-shadow: 0 0 10px black;
+            }
+          }
+
+
+          .list {
+            display: flex;
+            flex-flow: column;
+            height: auto;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: max-height .5s ease;
+
+            .job, .education, .certificate {
+              display: flex;
+              flex-flow: column;
+              margin: 5px 0 10px 0;
+              height: auto;
+
+              .job-position {
+                display: flex;
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: rgba(255, 40, 40, 1);
+                text-shadow: 0 0 10px black;
+                height: auto;
+              }
+
+              .start-end-date {
+                display: flex;
+                font-size: .8rem;
+                font-weight: 400;
+                color: grey;
+                text-shadow: 0 0 10px black;
+                height: auto;
+              }
+
+              .job-description {
+                display: flex;
+                font-size: 1rem;
+                font-weight: 500;
+                color: darkgrey;
+                text-shadow: 0 0 10px black;
+                height: auto;
+              }
+
+              .custom-row {
+                display: flex;
+                flex-flow: row;
+                place-items: center;
+                gap: 10px;
+                height: auto;
+
+                .profession-aquired {
+                  font-size: 1.3rem;
+                  font-weight: 500;
+                  color: rgba(255, 40, 40, 1);
+                  text-shadow: 0 0 10px black;
+                  height: auto;
+                }
+
+                .education-type {
+                  font-size: 1.2rem;
+                  font-weight: 500;
+                  color: grey;
+                  text-shadow: 0 0 10px black;
+                  height: auto;
+                }
+
+                .company {
+                  display: flex;
+                  font-size: 1rem;
+                  font-weight: 500;
+                  color: grey;
+                  text-shadow: 0 0 10px black;
+                  height: auto;
+                }
+              }
+
+              .school-name {
+                display: flex;
+                font-size: 1rem;
+                font-weight: 500;
+                color: darkgrey;
+                text-shadow: 0 0 10px black;
+                height: auto;
+                &:hover{
+                    color: $orange;
+                }
+              }
+
+              .description {
+                display: flex;
+                margin-top: 5px;
+                font-size: 1rem;
+                font-weight: 500;
+                color: darkgrey;
+                text-shadow: 0 0 10px black;
+              }
+
+              .certi-title {
+                display: flex;
+                text-decoration: none;
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: $orange;
+                text-shadow: 0 0 10px black;
+                cursor: pointer;
+                transition: all .5s ease;
+                height: auto;
+
+                &:hover {
+                  color: rgba(255, 40, 40, 1);
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -314,7 +528,7 @@ $orange: rgba(255,120,90, 1);
 .orange{
     color: rgba(255,120,90, 1);
 }
-.location, .contact-icon{
+.location{
     height: 20px;
     place-self: center;
 }
@@ -323,4 +537,16 @@ $orange: rgba(255,120,90, 1);
 }
 .collapsed{
     transform: rotate(-180deg);
+}
+.active {
+  background-color: rgba(255, 40, 40, 1) !important;
+  color: grey !important;
+
+  &:hover {
+    background-color: rgba(100, 100, 100, .5) !important;
+    color: rgba(255, 40, 40, 1) !important;
+  }
+}
+.stick-top {
+  margin-top: -10px;
 }

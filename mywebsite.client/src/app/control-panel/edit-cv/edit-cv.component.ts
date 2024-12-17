@@ -452,7 +452,7 @@ export class EditCVComponent implements OnInit, AfterViewInit {
     const response = await this.apiService.updateCV(this.cv!)
     if (response.succeed) {
       console.log(response);
-      //window.location.reload();
+      window.location.reload();
     } else {
       console.error(response.message);
     }

@@ -7,26 +7,27 @@ $orange: rgba(255, 120, 90, 1);
   display: flex;
   flex-direction: column;
   margin: 0;
-  margin-top: 50px;
   width: 900px;
-  height: auto;
+  height: 700px;
   align-items: center;
   place-content: center;
   background: none;
   font-family: "Poppins", sans-serif;
 
+
   .center {
     display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+    flex-flow: column;
     margin-bottom: 20px;
     text-align: center;
-    max-width: 800px;
-    min-width: 200px;
+    width: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+    //gap: 20px;
 
     .file-upload {
       display: flex;
-      flex-flow: column wrap;
+      flex-flow: column;
       place-items: center;
 
       .avatar-border {
@@ -39,7 +40,6 @@ $orange: rgba(255, 120, 90, 1);
         box-shadow: 0 0 1rem rgba(255, 100, 40, 1);
         overflow: hidden;
         outline: none;
-        z-index: 1;
 
         .fit {
           display: flex;
@@ -52,7 +52,7 @@ $orange: rgba(255, 120, 90, 1);
 
       .upload-btn {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: column;
         place-content: center;
         width: 45px;
         height: 45px;
@@ -63,9 +63,10 @@ $orange: rgba(255, 120, 90, 1);
 
         .up-icon {
           display: flex;
-          flex-flow: column wrap;
-          margin: auto;
-          justify-content: center;
+          flex-flow: column;
+          place-content: center;
+          place-items: center;
+          place-self: center;
           width: 65px;
           height: 65px;
           font-size: 1.5rem;
@@ -82,9 +83,8 @@ $orange: rgba(255, 120, 90, 1);
 
     .custom-form-group {
       display: flex;
-      flex-direction: column;
+      flex-flow: column;
       padding-bottom: 10px;
-      min-width: 150px;
       max-width: 600px;
       margin: auto;
 
@@ -103,9 +103,8 @@ $orange: rgba(255, 120, 90, 1);
 
       .custom-input, .custom-area {
         display: flex;
-        min-width: 350px;
         max-width: 450px;
-        height: 70px;
+        min-height: 70px;
         margin: auto;
         padding: 0 50px 0 50px;
         border-radius: 40px;
@@ -117,6 +116,15 @@ $orange: rgba(255, 120, 90, 1);
         color: white;
       }
 
+      .sm-sx {
+        display: flex;
+        max-width: 200px !important;
+      }
+
+      .sm-x {
+        display: flex;
+        max-width: 250px !important;
+      }
 
 
       .custom-input:focus, .custom-area:focus {
@@ -169,8 +177,8 @@ $orange: rgba(255, 120, 90, 1);
       }
 
       .custom-area {
-        min-width: 450px;
-        max-width: 600px;
+        min-width: 450px !important;
+        max-width: 600px !important;
         min-height: 150px;
         padding-top: 20px;
         padding-bottom: 20px;
@@ -193,7 +201,10 @@ $orange: rgba(255, 120, 90, 1);
       .custom-picker {
         position: relative;
         display: flex;
-        align-items: center;
+        flex-flow: row;
+        place-items: center;
+        place-content: center;
+
 
         .custom-input {
           display: flex;
@@ -211,8 +222,13 @@ $orange: rgba(255, 120, 90, 1);
           color: white;
         }
 
+        .sm-x {
+          width: 200px !important;
+        }
+
 
         .mat-datepicker-toggle {
+          display: flex;
           position: absolute;
           right: 20px; // Adjust positioning to the right inside the input
           z-index: 1;
@@ -240,14 +256,14 @@ $orange: rgba(255, 120, 90, 1);
 
     .collection {
       display: flex;
-      position: relative;
-      flex-flow: column wrap;
-      place-content: space-evenly;
+      flex-flow: column;
       min-width: 500px;
-      width: 600px;
       max-width: 800px;
-      min-height: 150px;
-      margin: auto;
+      width: auto;
+      height: auto;
+      place-self: center;
+      place-content: center;
+      place-items: center;
       margin-top: 50px;
       padding-bottom: 20px;
       border-radius: 40px;
@@ -257,7 +273,6 @@ $orange: rgba(255, 120, 90, 1);
       .collection-label {
         display: flex;
         z-index: 1000;
-        margin-left: 35px;
         margin-top: -25px;
         height: 50px;
         color: white;
@@ -269,10 +284,10 @@ $orange: rgba(255, 120, 90, 1);
 
       .start-end-date {
         display: flex;
-        flex-flow: row wrap;
-        place-content: center space-evenly;
-        min-width: 500px;
-        max-width: 600px;
+        flex-flow: row;
+        place-content: center;
+        padding-left: 15px;
+        width: auto;
       }
 
       &:focus-within .collection-label {
@@ -288,16 +303,23 @@ $orange: rgba(255, 120, 90, 1);
       .languages-list,
       .certificates-list {
         display: flex;
-        flex-flow: column wrap;
-        place-content: center space-between;
+        flex-flow: column;
+        max-height: 300px;
+        width: 100%;
+        padding: 10px;
+        overflow: auto;
+        scrollbar-width: none;
+        place-content: start;
+        place-items: center;
 
         .list-item {
           display: flex;
-          flex-flow: row wrap;
+          flex-flow: row;
           place-content: center space-between;
-          width: 400px;
-          height: 60px;
-          margin: auto;
+          gap: 20px;
+          width: 350px;
+          min-height: 60px;
+          overflow: hidden;
           margin-bottom: 10px;
           padding: 0 20px 0 20px;
 
@@ -309,12 +331,15 @@ $orange: rgba(255, 120, 90, 1);
             border-radius: 20px;
             box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
             outline: none;
-            overflow: hidden;
             object-fit: cover;
           }
 
           .item-title {
-            display: flex;
+            display: inline-block;
+            width: 20ch;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             place-self: center;
             color: white;
             font-size: 1.3rem;
@@ -379,7 +404,16 @@ $orange: rgba(255, 120, 90, 1);
         margin-bottom: -20px;
       }
 
-      
+      .custom-row {
+        display: flex;
+        flex-flow: row;
+        place-content: center;
+        place-self: center;
+        place-items: center;
+        gap: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
     }
 
     .collection:focus-within {
@@ -388,10 +422,11 @@ $orange: rgba(255, 120, 90, 1);
 
     .custom-switch {
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: row;
       align-self: center;
       justify-content: space-evenly;
       align-content: center;
+      margin-top: 20px;
       max-width: 500px;
       min-width: 400px;
       min-height: 50px;
@@ -563,8 +598,7 @@ $orange: rgba(255, 120, 90, 1);
 }
 
 .sm-x {
-  min-width: 250px !important;
-  max-width: 250px !important;
+  min-width: 100px !important;
   margin: 10px !important;
   margin-top: 0 !important;
 }
@@ -593,7 +627,7 @@ $orange: rgba(255, 120, 90, 1);
 
 .contact-form {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
 }
 .contact-options {
   display: flex;
@@ -611,7 +645,7 @@ $orange: rgba(255, 120, 90, 1);
 
 .custom-row {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
   place-content: center space-around;
   padding-left: 10px;
   padding-right: 10px;
@@ -619,7 +653,7 @@ $orange: rgba(255, 120, 90, 1);
 
 .item-comb {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column;
   place-self: center;
   margin: auto;
 }
@@ -650,10 +684,10 @@ $orange: rgba(255, 120, 90, 1);
 }
 
 .submit-bt {
-  margin-top: 50px;
+  margin-bottom: 30px !important;
   min-width: 200px !important;
   max-width: 200px !important;
-  height: 80px !important;
+  min-height: 80px !important;
 
   &:hover {
     text-shadow: 0 0 5px black;
@@ -663,9 +697,13 @@ $orange: rgba(255, 120, 90, 1);
 }
 
 .add-bt {
+    display: flex;
   min-width: 150px !important;
   max-width: 200px !important;
   height: 80px !important;
+  place-self: center;
+  margin-left: 10px;
+  margin-right: 20px;
 
   &:hover {
     text-shadow: 0 0 5px black;

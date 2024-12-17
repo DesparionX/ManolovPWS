@@ -1,24 +1,21 @@
-<div class="col container">
-    <div class="row projects">
-        <div *ngIf="projects.length > 0">
-            <div *ngFor="let project of projects">
-                <div class="row project">
-                    <h4 class="col title">{{project.title}}</h4>
-                    <nav class="col actions">
-                        <a class="col action-icon edit" [routerLink]="['addit/'] + project.type! + ['/'] + project.id!">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <a class="col action-icon delete" (click)="openDialog('200ms', '100ms', entityType, project.id!)">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </nav>
-                </div>
-                <hr class="custom-hr" *ngIf="projects.length > 1" />
+<div class="container">
+    <div class="projects" *ngIf="projects && projects.length > 0">
+        <div class="list" *ngFor="let project of projects">
+            <div class="project">
+                <h4 class="title">{{project.title}}</h4>
+                <nav class="actions">
+                    <a class="action-icon edit" [routerLink]="['addit/'] + project.type! + ['/'] + project.id!">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a class="action-icon delete" (click)="openDialog('200ms', '100ms', entityType, project.id!)">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </nav>
             </div>
-
+            <hr class="custom-hr" *ngIf="projects.length > 1" />
         </div>
         <a class="btn-add" [routerLink]="['addit/Project']">
-            <i class="fa-solid fa-circle-plus"></i>
+            <i class="fa-solid fa-plus"></i>
         </a>
     </div>
 </div>
