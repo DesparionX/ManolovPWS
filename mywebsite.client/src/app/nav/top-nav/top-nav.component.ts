@@ -21,7 +21,7 @@ export class TopNavComponent {
   // HTML //
   // Send to login page.
   controlPanel() {
-    this.router.navigate(['/control-panel'])
+    this.router.navigate(['/control-panel/inbox'])
   }
 
   // API //

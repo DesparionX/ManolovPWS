@@ -161,7 +161,7 @@ export class AddEditComponent implements OnInit, OnDestroy {
     let response: UpdatePostResponse | AddPostResponse = await this.apiService.additPost(dto, this.isEditing);
     if (response.succeed) {
       console.log(response.message)
-      this.router.navigate(['/control-panel/']);
+      this.router.navigate(['/control-panel/inbox']);
     } else {
       console.error('Something went wrong: ', response.message);
     }

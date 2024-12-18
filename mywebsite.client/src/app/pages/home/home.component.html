@@ -4,13 +4,13 @@
             <label class="post-title">{{post.title}}</label>
             <div class="combo">
                 <img class="cover" [src]="post.pictures![0]" />
-                <div class="gallery">
+                <div class="gallery" *ngIf="post.pictures!.length > 1">
                     <button type="button" class="img-bt" (click)="openImageInNewTab(picture)" *ngFor="let picture of post.pictures">
                         <img class="img" [src]="picture" />
                     </button>
                 </div>
             </div>
-            <a class="link" [href]="post.link">reference</a>
+            <a class="link" [href]="post.link" *ngIf="post.link" >reference</a>
             <label class="description">{{post.description}}</label>
             <hr class="hrr" />
             <label class="date">{{dateFormat(post.datePosted!.toString())}}</label>

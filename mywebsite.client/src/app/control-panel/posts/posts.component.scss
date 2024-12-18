@@ -2,121 +2,128 @@
 
 $title-width: 80%;
 $options-width: 20%;
-
-.posts {
+.container {
   display: flex;
   flex-flow: column;
   width: 900px;
   height: 620px;
-  place-content: flex-start;
-  place-items: center;
-  font-family: "Poppins", sans-serif;
+  
 
-  .list {
+  .posts {
     display: flex;
     flex-flow: column;
     width: 100%;
-    height: auto;
+    height: 100%;
     place-content: flex-start;
-    gap: 5px;
-    overflow: auto;
-    scrollbar-width: none;
+    place-items: center;
+    font-family: "Poppins", sans-serif;
 
-    .post {
+    .list {
       display: flex;
-      flex-flow: row;
-      place-self: center;
-      place-content: center;
-      max-width: 700px;
-      height: 80px;
-      border-radius: 30px;
-      transition: all .5s ease;
+      flex-flow: column;
+      width: 100%;
+      height: auto;
+      place-content: flex-start;
+      gap: 5px;
+      overflow: auto;
+      scrollbar-width: none;
 
-
-      .title {
-        display: inline-block;
-        flex-flow: row;
-        max-width: $title-width;
-        width: 40ch;
-        height: auto;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-left: calc($options-width - 30px);
-        place-content: center;
-        place-self: center;
-        text-align: center;
-        font-size: 1.5rem;
-        color: whitesmoke;
-        font-weight: 500;
-        text-shadow: 0 0 10px black;
-      }
-
-      .actions {
+      .post {
         display: flex;
         flex-flow: row;
-        place-items: center;
-        place-content: end;
         place-self: center;
-        height: 100px;
-        width: $options-width;
-        padding-right: 30px;
-        gap: 20px;
+        place-content: center;
+        max-width: 700px;
+        height: 80px;
+        border-radius: 30px;
+        transition: all .5s ease;
 
-        .action-icon {
-          display: flex;
-          opacity: 0;
+
+        .title {
+          display: inline-block;
+          flex-flow: row;
+          max-width: $title-width;
+          width: 40ch;
+          height: auto;
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-left: calc($options-width - 30px);
+          place-content: center;
+          place-self: center;
+          text-align: center;
           font-size: 1.5rem;
-          color: grey;
-          text-decoration: none;
+          color: whitesmoke;
           font-weight: 500;
           text-shadow: 0 0 10px black;
-          transition: all .5s ease;
         }
 
-        .edit:hover {
-          color: yellow;
-        }
+        .actions {
+          display: flex;
+          flex-flow: row;
+          place-items: center;
+          place-content: end;
+          place-self: center;
+          height: 100px;
+          width: $options-width;
+          padding-right: 30px;
+          gap: 20px;
 
-        .delete:hover {
-          color: red;
+          .action-icon {
+            display: flex;
+            opacity: 0;
+            font-size: 1.5rem;
+            color: grey;
+            text-decoration: none;
+            font-weight: 500;
+            text-shadow: 0 0 10px black;
+            transition: all .5s ease;
+          }
+
+          .edit:hover {
+            color: yellow;
+          }
+
+          .delete:hover {
+            color: red;
+          }
         }
+      }
+
+      .custom-hr {
+        display: flex;
+        flex-flow: row;
+        place-content: center;
+        place-items: center;
+        place-self: center;
+        border-top: 2px solid rgba(0, 0, 0, 1);
+        width: 300px;
+        margin: 0;
       }
     }
 
-    .custom-hr {
-      display: flex;
-      flex-flow: row;
-      place-content: center;
-      place-items: center;
-      place-self: center;
-      border-top: 2px solid rgba(0, 0, 0, 1);
-      width: 300px;
-      margin: 0;
-    }
-  }
+    .post:hover {
+      background-color: rgba(0, 0, 0, .1);
+      cursor: pointer;
 
-  .post:hover {
-    background-color: rgba(0, 0, 0, .1);
-    cursor: pointer;
-
-    .actions .action-icon {
-      opacity: 1 !important;
+      .actions .action-icon {
+        opacity: 1 !important;
+      }
     }
   }
 
   .btn-add {
     display: flex;
-    position: fixed;
     flex-flow: column;
     place-content: center;
     place-items: center;
     place-self: center;
     text-decoration: none;
-    bottom: 30px;
-    height: 50px;
-    width: 50px;
+    margin-top: auto;
+    transform:translateY(20px);
+    min-height: 50px;
+    min-width: 50px;
     font-size: 1.1rem;
     color: whitesmoke;
     background-color: rgba(0,0,0, .1);
@@ -131,4 +138,6 @@ $options-width: 20%;
     box-shadow: 0 0 1rem green;
   }
 }
+
+
 

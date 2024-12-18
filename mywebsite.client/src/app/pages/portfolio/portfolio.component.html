@@ -22,13 +22,13 @@
                         <div class="cover-holder">
                             <img class="cover" [src]="project.pictures![0]" />
                         </div>
-                        <div class="gallery">
+                        <div class="gallery" *ngIf="project.pictures!.length > 1">
                             <button type="button" class="img-bt" (click)="openImageInNewTab(picture)" *ngFor="let picture of project.pictures">
                                 <img class="img" [src]="picture" />
                             </button>
                         </div>
                     </div>
-                    <a class="link" [href]="project.link">reference</a>
+                    <a class="link" [href]="project.link" target="_blank" *ngIf="project.link">Check it out</a>
                     <label class="description">{{project.description}}</label>
                     <hr class="hrr" />
                     <label class="date">{{dateFormat(project.datePosted!.toString())}}</label>
@@ -41,13 +41,13 @@
                         <div class="cover-holder">
                             <img class="cover" [src]="project.pictures![0]" />
                         </div>
-                        <div class="gallery">
+                        <div class="gallery" *ngIf="project.pictures!.length > 1">
                             <button type="button" class="img-bt" (click)="openImageInNewTab(picture)" *ngFor="let picture of project.pictures">
                                 <img class="img" [src]="picture" />
                             </button>
                         </div>
                     </div>
-                    <a class="link" [href]="project.link">reference</a>
+                    <a class="link" [href]="project.link" target="_blank" *ngIf="project.link">Check it out</a>
                     <label class="description">{{project.description}}</label>
                     <hr class="hrr" />
                     <label class="date">{{dateFormat(project.datePosted!.toString())}}</label>
