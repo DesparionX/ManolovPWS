@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyWebSite.Server.Data.DTOs;
 using MyWebSite.Server.Handlers;
@@ -7,6 +9,7 @@ using MyWebSite.Server.Http.Responses;
 
 namespace MyWebSite.Server.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("[controller]")]
     [ApiController]
     public class PostsController : ControllerBase
@@ -18,6 +21,7 @@ namespace MyWebSite.Server.Controllers
             _postsHandler = postsHandler;
         }
 
+        [AllowAnonymous]
         [HttpGet("getPosts"), DisableRequestSizeLimit]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -51,7 +55,6 @@ namespace MyWebSite.Server.Controllers
 
             return BadRequest(response);
         }
-
 
 
         [HttpPut("updatePost")]

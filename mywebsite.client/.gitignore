@@ -44,3 +44,4 @@ Thumbs.db
 # SSL
 cert.pem
 key.pem
+openssl.cnf

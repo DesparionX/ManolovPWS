@@ -20,7 +20,7 @@ namespace MyWebSite.Server.Handlers
             _fileHandler = fileHandler;
             _mapper = mapper;
         }
-        public async Task<InitializeCVResult> InitializeCV()
+        public async Task<InitializeCVResult> SeedCVAsync()
         {
             var cv = new CV
             {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyWebSite.Server.Handlers;
@@ -8,6 +9,7 @@ using System.Security.Claims;
 
 namespace MyWebSite.Server.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -28,14 +30,15 @@ namespace MyWebSite.Server.Controllers
         [ProducesResponseType<RegisterResponse>(500)]
         public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
         {
-            if (request == null)
-                return BadRequest("Request is null.");
+            //if (request == null)
+            //    return BadRequest("Request is null.");
 
-            var response = await _userHandler.RegisterUserAsync(request);
-            if(response.Succedd)
-                return Created("", response);
+            //var response = await _userHandler.RegisterUserAsync(request);
+            //if(response.Succedd)
+            //    return Created("", response);
 
-            return BadRequest(response);
+            //return BadRequest(response);
+            return BadRequest("Registrations are disabled !!!");
         }
 
         [HttpPost("logIn")]
