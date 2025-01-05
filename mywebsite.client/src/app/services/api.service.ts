@@ -8,7 +8,7 @@ import { Observable, lastValueFrom } from 'rxjs';
 })
 export class ApiService {
 
-  api = 'http://94.155.237.203:7015'
+  api = 'http://88.203.250.247:7015'
 
   constructor(private http: HttpClient) { }
 

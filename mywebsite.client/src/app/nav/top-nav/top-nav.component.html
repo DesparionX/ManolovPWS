@@ -13,6 +13,23 @@
                 <i class="fa-solid fa-sign-out-alt"></i>
             </button>
         </nav>
+        <nav class="navbar-mini">
+            <a [routerLink]="['/home']">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a [routerLink]="['/portfolio']">
+                <i class="fa-solid fa-briefcase"></i>
+            </a>
+            <a [routerLink]="['/cv']">
+                <i class="fa-solid fa-user-tie"></i>
+            </a>
+            <a [routerLink]="['/contact']">
+                <i class="fa-solid fa-address-card"></i>
+            </a>
+            <button *ngIf="hasToken();" type="button" class="logout-mini" (click)="logOut()">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </button>
+        </nav>
     </div>
 </div>
 
