@@ -9,7 +9,7 @@
                     {{dateFormat(cv.birthDate!)}}
                 </label>
                 <label>
-                    <i class="fa-solid fa-venus-mars orange"></i>
+                    <i [ngClass]="cv.isMale ? 'fa-solid fa-mars orange' : 'fa-solid fa-venus orange'"></i>
                     {{cv.isMale ? 'MALE' : 'FEMALE'}}
                 </label>
                 <label>
