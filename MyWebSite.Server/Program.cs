@@ -97,7 +97,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
     {
         builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-        
+        builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
     });
     options.EnableSensitiveDataLogging();
     //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
