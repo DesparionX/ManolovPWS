@@ -15,7 +15,7 @@ WORKDIR "/src/MyWebSite.Server"
 RUN dotnet build "./MyWebSite.Server.csproj" -c Release -o /app/build
 
 # Publish the project
-RUN dotnet publish "MyWebSite.Server.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./MyWebSite.Server.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Use the official ASP.NET runtime image for running the app
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
