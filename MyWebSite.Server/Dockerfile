@@ -1,21 +1,24 @@
-# This stage is used to build the service project
-FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim AS build
-ARG BUILD_CONFIGURATION=Release
+# Build and publish the project
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
+
+# Install Node.js for front-end assets if needed
+RUN apt-get update && apt-get install -y nodejs npm
+
+# Copy and restore the project
 COPY ["MyWebSite.Server/MyWebSite.Server.csproj", "MyWebSite.Server/"]
 RUN dotnet restore "./MyWebSite.Server/MyWebSite.Server.csproj"
+
+# Copy everything and build
 COPY . .
 WORKDIR "/src/MyWebSite.Server"
-RUN dotnet build "./MyWebSite.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./MyWebSite.Server.csproj" -c Release -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-#RUN dotnet publish "./MyWebSite.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-RUN dotnet publish "MyWebSite.Server/MyWebSite.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Publish the project
+RUN dotnet publish "MyWebSite.Server.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim AS final
+# Final stage with runtime only
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "MyWebSite.Server.dll"]
