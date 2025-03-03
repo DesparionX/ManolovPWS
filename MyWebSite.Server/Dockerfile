@@ -23,23 +23,23 @@
 #COPY --from=build /app/publish .
 #ENTRYPOINT ["dotnet", "MyWebSite.Server.dll"]
 
-# Use the .NET SDK image with Node.js support
-FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
+# Use .NET SDK image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
 
-# Install Node.js and npm
-RUN apt-get update && apt-get install -y nodejs npm
-
-# Copy and build the project
+# Copy only the server project files
 COPY ["MyWebSite.Server/MyWebSite.Server.csproj", "MyWebSite.Server/"]
-RUN dotnet restore "./MyWebSite.Server/MyWebSite.Server.csproj"
-COPY . .
-WORKDIR "/src/MyWebSite.Server"
-RUN dotnet publish "./MyWebSite.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet restore "MyWebSite.Server/MyWebSite.Server.csproj"
 
-# Final runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim AS final
+# Copy the rest of the server project
+COPY MyWebSite.Server/ MyWebSite.Server/
+WORKDIR /app/MyWebSite.Server
+
+# Publish the server project
+RUN dotnet publish "MyWebSite.Server.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "MyWebSite.Server.dll"]
