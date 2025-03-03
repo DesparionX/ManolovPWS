@@ -149,6 +149,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapHealthChecks("health");
 app.UseHealthChecks("/health");
 
 app.UseAuthentication();
