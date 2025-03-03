@@ -28,8 +28,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy only the server project files
-COPY *.csproj ./
-RUN dotnet restore
+COPY ["MyWebSite.Server/MyWebSite.Server.csproj", "MyWebSite.Server/"]
+RUN dotnet restore "MyWebSite.Server/MyWebSite.Server.csproj"
 
 # Copy the rest of the server project
 COPY MyWebSite.Server/ MyWebSite.Server/
