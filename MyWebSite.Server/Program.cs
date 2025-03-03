@@ -128,6 +128,7 @@ builder.Services.AddScoped<FileHandler>();
 builder.Services.AddScoped<MessagesHandler>();
 builder.Services.AddScoped<UserHandler>();
 builder.Services.AddScoped<AuthHandler>();
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
