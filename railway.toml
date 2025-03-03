@@ -1,0 +1,8 @@
+﻿[build]
+builder = "dockerfile"
+dockerfilePath = "./MyWebSite.Server/Dockerfile"
+
+[deploy]
+startCommand = "./MyWebSite.Server"
+restartPolicyType = "always"
+healthcheckPath = "/health"
