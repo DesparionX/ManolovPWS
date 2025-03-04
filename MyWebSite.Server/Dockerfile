@@ -42,4 +42,11 @@ RUN dotnet publish "MyWebSite.Server.csproj" -c Release -o /app/publish /p:UseAp
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/publish .
+
+# Expose port 5000
+EXPOSE 7015
+
+# Tell .NET to listen on all network interfaces
+ENV ASPNETCORE_URLS=http://+:7015
+
 ENTRYPOINT ["dotnet", "MyWebSite.Server.dll"]
