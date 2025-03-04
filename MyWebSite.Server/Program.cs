@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyWebSite.Server.Data;
 using MyWebSite.Server.Data.Entities;
 using MyWebSite.Server.Handlers;
+using MyWebSite.Server.Health;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text;
@@ -128,7 +130,8 @@ builder.Services.AddScoped<FileHandler>();
 builder.Services.AddScoped<MessagesHandler>();
 builder.Services.AddScoped<UserHandler>();
 builder.Services.AddScoped<AuthHandler>();
-builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>("custom-check", HealthStatus.Unhealthy);
 
 var app = builder.Build();
 
@@ -150,7 +153,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapHealthChecks("health");
-app.UseHealthChecks("/health");
 
 app.UseAuthentication();
 app.UseAuthorization();

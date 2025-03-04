@@ -20,13 +20,6 @@ namespace MyWebSite.Server.Controllers
         {
             _postsHandler = postsHandler;
         }
-        [AllowAnonymous]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("/health")]
-        public IActionResult HealthCheck()
-        {
-            return Ok(new { status = "Healthy" });
-        }
 
         [AllowAnonymous]
         [HttpGet("getPosts"), DisableRequestSizeLimit]
