@@ -2,13 +2,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AddPostResponse, Cvdto, DeleteMessageResponse, DeleteRequest, DeleteResponse, FindPostResponse, GetMessagesResponse, GetPostsResponse, LoadCvResponse, MessageDto, PostDto, ReadMessageResponse, SendMessageResponse, UpdateCvResponse, UpdatePostResponse } from '../api/models';
 import { Observable, lastValueFrom } from 'rxjs';
+import { environment } from '../../environmets/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  api = 'http://88.203.250.247:7015'
+  api = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
