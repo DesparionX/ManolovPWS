@@ -131,7 +131,7 @@ builder.Services.AddScoped<MessagesHandler>();
 builder.Services.AddScoped<UserHandler>();
 builder.Services.AddScoped<AuthHandler>();
 builder.Services.AddHealthChecks()
-    .AddCheck<DatabaseHealthCheck>("custom-check", HealthStatus.Unhealthy);
+    .AddCheck<DatabaseHealthCheck>("custom-check", HealthStatus.Healthy);
 
 var app = builder.Build();
 
@@ -152,7 +152,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.MapHealthChecks("health");
+app.MapHealthChecks("/health");
 
 app.UseAuthentication();
 app.UseAuthorization();
