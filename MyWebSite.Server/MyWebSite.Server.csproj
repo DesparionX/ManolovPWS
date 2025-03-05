@@ -51,8 +51,4 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Images\" />
-  </ItemGroup>
 </Project>
