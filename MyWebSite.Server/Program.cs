@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 var apiUrl = $"https://{Environment.GetEnvironmentVariable("AZURE_WEB_API") ?? "localhost"}";
+var connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTION") ?? config.GetConnectionString("DefaultConnection");
 
 config.AddUserSecrets<Program>();
 
@@ -98,7 +99,7 @@ builder.Services.AddSwaggerGen(options =>
 // Add database.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
+    options.UseSqlServer(connectionString, builder =>
     {
         builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
         builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
@@ -152,6 +153,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
