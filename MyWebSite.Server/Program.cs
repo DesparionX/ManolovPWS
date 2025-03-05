@@ -14,6 +14,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
+var port = Environment.GetEnvironmentVariable("PORT") ?? "7015";
 
 config.AddUserSecrets<Program>();
 
@@ -55,7 +56,7 @@ builder.Services.AddSwaggerGen(options =>
     options.AddServer(new OpenApiServer
     {
         Description = "Development Server",
-        Url = "https://localhost:7015"
+        Url = $"https://0.0.0.0:{port}"
     });
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Manolov API", Version = "v1" });
     options.CustomOperationIds(e =>
@@ -134,6 +135,9 @@ builder.Services.AddHealthChecks()
     .AddCheck<DatabaseHealthCheck>("custom-check", HealthStatus.Healthy);
 
 var app = builder.Build();
+
+app.Urls.Add($"http://0.0.0.0:{port}");
+app.Urls.Add($"https://0.0.0.0:{port}");
 
 app.UseCors(builder => builder
 .WithOrigins("*")
