@@ -10,7 +10,7 @@ import { environment } from '../../environmets/environment.prod';
 export class ApiService {
 
   /*api = environment.apiUrl;*/
-  api = "https://somerandomapi.com";
+  api = "https://manolov.up.railway.app";
 
   constructor(private http: HttpClient) { }
 
