@@ -9,7 +9,8 @@ import { environment } from '../../environmets/environment.prod';
 })
 export class ApiService {
 
-  api = environment.apiUrl;
+  /*api = environment.apiUrl;*/
+  api = "https://somerandomapi.com";
 
   constructor(private http: HttpClient) { }
 
