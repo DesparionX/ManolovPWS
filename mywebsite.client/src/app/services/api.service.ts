@@ -9,7 +9,7 @@ import { environment } from '../../environmets/environment.prod';
 })
 export class ApiService {
 
-  api = environment.apiUrl + ":8080";
+  api = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
