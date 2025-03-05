@@ -14,7 +14,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
-var apiUrl = Environment.GetEnvironmentVariable("AZURE_WEB_API") ?? "https://manolov.up.railway.app:7015";
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+var apiUrl = $"https://{Environment.GetEnvironmentVariable("AZURE_WEB_API") ?? "localhost"}";
 
 config.AddUserSecrets<Program>();
 
@@ -162,5 +163,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
-
+app.Urls.Add($"http://0.0.0.0:{port}");
 app.Run();

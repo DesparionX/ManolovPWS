@@ -20,7 +20,7 @@
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7015;http://localhost:5244;${AZURE_WEB_API};https://manolov.up.railway.app:7015"
+      "applicationUrl": "https://localhost:7015;http://localhost:5244"
     },
     "IIS Express": {
       "commandName": "IISExpress",
