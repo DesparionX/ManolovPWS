@@ -140,9 +140,9 @@ builder.Services.AddHealthChecks()
 
 var app = builder.Build();
 
-
+app.UseHttpsRedirection();
 app.UseCors(builder => builder
-.WithOrigins("*")
+.WithOrigins("https://manolov.netlify.app")
 .AllowAnyMethod()
 .AllowAnyHeader()
 );
@@ -158,7 +158,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseHttpsRedirection();
+
 app.MapHealthChecks("/health");
 
 app.UseAuthentication();
