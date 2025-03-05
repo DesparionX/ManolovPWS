@@ -14,7 +14,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
-var apiUrl = Environment.GetEnvironmentVariable("AZURE_WEB_API");
+var apiUrl = Environment.GetEnvironmentVariable("AZURE_WEB_API") ?? "https://manolov.up.railway.app:7015";
 
 config.AddUserSecrets<Program>();
 
@@ -56,7 +56,7 @@ builder.Services.AddSwaggerGen(options =>
     options.AddServer(new OpenApiServer
     {
         Description = "Development Server",
-        Url = "https://0.0.0.0/"
+        Url = apiUrl
     });
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Manolov API", Version = "v1" });
     options.CustomOperationIds(e =>
