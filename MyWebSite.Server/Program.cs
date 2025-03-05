@@ -57,7 +57,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Development Server",
         Url = "https://localhost:7015"
     });
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Advanced Researches API", Version = "v1" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Manolov API", Version = "v1" });
     options.CustomOperationIds(e =>
     {
         return e.TryGetMethodInfo(out MethodInfo methodInfo) ? methodInfo.Name : null;
