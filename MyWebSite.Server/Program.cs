@@ -17,6 +17,8 @@ var config = builder.Configuration;
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 var apiUrl = $"https://{Environment.GetEnvironmentVariable("AZURE_WEB_API") ?? "localhost"}";
 var connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTION") ?? config.GetConnectionString("DefaultConnection");
+var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+
 
 config.AddUserSecrets<Program>();
 
@@ -37,7 +39,7 @@ builder.Services.AddAuthentication(options =>
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtKey"]!)),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey!)),
             ValidIssuer = config["JwtSettings:Issuer"],
             ValidAudience = config["JwtSettings:Audience"],
             ValidateIssuer = true,

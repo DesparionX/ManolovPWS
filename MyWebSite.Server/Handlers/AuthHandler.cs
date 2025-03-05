@@ -9,6 +9,7 @@ namespace MyWebSite.Server.Handlers
     public class AuthHandler
     {
         private readonly IConfiguration _configuration;
+        private readonly string _jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
 
         public AuthHandler(IConfiguration configuration)
         {
@@ -23,7 +24,7 @@ namespace MyWebSite.Server.Handlers
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName!)
             };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]!));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var jwt = new JwtSecurityToken(
