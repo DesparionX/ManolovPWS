@@ -56,7 +56,7 @@ builder.Services.AddSwaggerGen(options =>
     options.AddServer(new OpenApiServer
     {
         Description = "Development Server",
-        Url = apiUrl
+        Url = "https://0.0.0.0:8080/"
     });
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Manolov API", Version = "v1" });
     options.CustomOperationIds(e =>
