@@ -8,6 +8,7 @@ using MyWebSite.Server.Data;
 using MyWebSite.Server.Data.Entities;
 using MyWebSite.Server.Handlers;
 using MyWebSite.Server.Health;
+using MyWebSite.Server.Helpers;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text;
@@ -39,9 +40,9 @@ builder.Services.AddAuthentication(options =>
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey!)),
-            ValidIssuer = config["JwtSettings:Issuer"],
-            ValidAudience = config["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtConfig.JwtKey)),
+            ValidIssuer = JwtConfig.JwtIssuer,
+            ValidAudience = JwtConfig.JwtAudience,
             ValidateIssuer = true,
             ValidateAudience = true,
             ClockSkew = TimeSpan.Zero,
