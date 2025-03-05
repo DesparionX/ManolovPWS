@@ -14,7 +14,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
-var port = Environment.GetEnvironmentVariable("PORT") ?? "7015";
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 
 config.AddUserSecrets<Program>();
 
