@@ -14,7 +14,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+var apiUrl = Environment.GetEnvironmentVariable("AZURE_WEB_API");
 
 config.AddUserSecrets<Program>();
 
@@ -56,7 +56,7 @@ builder.Services.AddSwaggerGen(options =>
     options.AddServer(new OpenApiServer
     {
         Description = "Development Server",
-        Url = $"https://0.0.0.0:{port}"
+        Url = apiUrl
     });
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Manolov API", Version = "v1" });
     options.CustomOperationIds(e =>
@@ -136,8 +136,6 @@ builder.Services.AddHealthChecks()
 
 var app = builder.Build();
 
-app.Urls.Add($"http://0.0.0.0:{port}");
-app.Urls.Add($"https://0.0.0.0:{port}");
 
 app.UseCors(builder => builder
 .WithOrigins("*")
@@ -165,4 +163,4 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
-app.Run();
+app.Run(apiUrl);
