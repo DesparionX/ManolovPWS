@@ -56,6 +56,9 @@
     <None Update="Resources\Images\00ddfaee-5d17-4356-a9d1-7c9b12a21b79.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Images\01358f43-4dec-4359-88d5-e54de46b3333.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Images\03df0665-f23d-4dc6-8a53-83ef6a3c29a4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -309,6 +312,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Images\79d8f3b2-5578-4c40-bb6c-8a33f60c5ab9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\7a1a9444-4d74-426a-b2a0-17201fa549d9.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Images\7ca9c516-ca93-4bca-8e2a-3f58a562f777.png">
