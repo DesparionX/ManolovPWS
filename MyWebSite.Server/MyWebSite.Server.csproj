@@ -52,6 +52,12 @@
     </ProjectReference>
   </ItemGroup>
 
+	<ItemGroup>
+		<None Update="Resources\Images\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
   <ItemGroup>
     <None Update="Resources\Images\00ddfaee-5d17-4356-a9d1-7c9b12a21b79.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
