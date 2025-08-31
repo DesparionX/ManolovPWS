@@ -53,14 +53,8 @@
 
 	<ItemGroup>
 		<Content Include="Resources\Images\*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 		</Content>
-	</ItemGroup>
-	<ItemGroup>
-		<Resource Include="Resources\Images\*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Resource>
 	</ItemGroup>
 </Project>

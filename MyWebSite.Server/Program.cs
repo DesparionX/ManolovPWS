@@ -148,12 +148,9 @@ app.UseCors(builder => builder
 .AllowAnyHeader()
 );
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "Resources", "Images")),
-    RequestPath = "/Resources/Images"
-});
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
@@ -168,6 +165,13 @@ app.MapHealthChecks("/health");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Resources", "Images")),
+    RequestPath = "/Resources/Images"
+});
 
 app.MapControllers();
 
