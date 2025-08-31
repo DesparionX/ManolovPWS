@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyWebSite.Server.Data;
@@ -108,7 +109,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
     });
     options.EnableSensitiveDataLogging();
-    //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -150,6 +150,12 @@ app.UseCors(builder => builder
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Resources", "Images")),
+    RequestPath = "/Resources/Images"
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
@@ -169,4 +175,4 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 app.Urls.Add($"http://0.0.0.0:{port}");
-app.Run();
+await app.RunAsync();
