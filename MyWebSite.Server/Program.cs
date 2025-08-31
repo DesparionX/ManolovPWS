@@ -148,8 +148,6 @@ app.UseCors(builder => builder
 .AllowAnyHeader()
 );
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
