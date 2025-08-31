@@ -147,7 +147,7 @@ app.UseCors(builder => builder
 .AllowAnyMethod()
 .AllowAnyHeader()
 );
-app.UseDirectoryBrowser();
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
