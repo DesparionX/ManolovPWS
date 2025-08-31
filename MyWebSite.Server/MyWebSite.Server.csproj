@@ -52,7 +52,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Resources\Images\**">
+		<Content Include="Resources\Images\*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
