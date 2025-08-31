@@ -2,6 +2,13 @@
 {
     public class FileHandler
     {
+        private readonly IWebHostEnvironment _env;
+
+        public FileHandler(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
         public async Task<List<string>> ConvertFromBase64(List<string>? picturesInDb, List<string> rawPictures)
         {
             if (picturesInDb == null)
@@ -66,35 +73,43 @@
 
         public async Task<List<string>> ConvertToBase64(List<string> pictures)
         {
-            if (pictures.Count == 0)
+            if (pictures is null || pictures.Count == 0)
                 return new List<string>();
 
             var convertedPictures = new List<string>();
-            if (pictures != null && pictures.Count > 0)
+
+            foreach (var picture in pictures)
             {
-                foreach (var picture in pictures)
+                var fullPath = Path.Combine(_env.ContentRootPath, picture);
+
+                if (File.Exists(fullPath))
                 {
-                    var bytes = await File.ReadAllBytesAsync(picture);
+                    var bytes = await File.ReadAllBytesAsync(fullPath);
                     var base64picture = Convert.ToBase64String(bytes);
                     var prefix = "data:image/png;base64,";
                     var convertedPicture = prefix + base64picture;
                     convertedPictures.Add(convertedPicture);
                 }
             }
+
             return convertedPictures;
         }
         public async Task<string> ConverToBase64(string picture)
         {
-            if (!string.IsNullOrWhiteSpace(picture))
-            {
-                var bytes = await File.ReadAllBytesAsync(picture);
-                var base64picture = Convert.ToBase64String(bytes);
-                var prefix = "data:image/png;base64,";
-                var convertedPicture = prefix + base64picture;
+            if (string.IsNullOrWhiteSpace(picture))
+                return "Something went wrong while converting the picture.";
 
-                return convertedPicture;
-            }
-            return "Something went wrong while converting the picture.";
+            var fullPath = Path.Combine(Environment.CurrentDirectory, picture);
+
+            if (!File.Exists(fullPath))
+                return "File not found: " + fullPath;
+
+            var bytes = await File.ReadAllBytesAsync(fullPath);
+            var base64picture = Convert.ToBase64String(bytes);
+            var prefix = "data:image/png;base64,";
+            var convertedPicture = prefix + base64picture;
+
+            return convertedPicture;
         }
     }
 }
