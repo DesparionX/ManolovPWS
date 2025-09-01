@@ -11,7 +11,7 @@ WORKDIR /src
 COPY ["MyWebSite.Server.csproj", ""]
 RUN dotnet restore "MyWebSite.Server.csproj"
 COPY ["", ""]
-WORKDIR "/src/MyWebSite.Server"
+WORKDIR "/src"
 RUN dotnet build "MyWebSite.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
