@@ -28,9 +28,9 @@ namespace MyWebSite.Server.Controllers
         [ProducesResponseType<LoadCVResponse>(404)]
         [ProducesResponseType<LoadCVResponse>(401)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> LoadCV()
+        public async Task<IActionResult> LoadCV(CancellationToken cancellationToken)
         {
-            var result = await _cvHandler.LoadCVAsync();
+            var result = await _cvHandler.LoadCVAsync(cancellationToken);
             if (result.Succeed)
                 return Ok(result);
 
@@ -56,9 +56,9 @@ namespace MyWebSite.Server.Controllers
         [ProducesResponseType<UpdateCVResponse>(404)]
         [ProducesResponseType<UpdateCVResponse>(401)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> UpdateCV([FromBody] CVDTO cvDTO)
+        public async Task<IActionResult> UpdateCV([FromBody] CVDTO cvDTO, CancellationToken cancellationToken)
         {
-            var result = await _cvHandler.UpdateCVAsync(cvDTO);
+            var result = await _cvHandler.UpdateCVAsync(cvDTO, cancellationToken);
             if(result.Succeed)
                 return Ok(result);
 

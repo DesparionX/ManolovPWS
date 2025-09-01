@@ -14,7 +14,7 @@ namespace MyWebSite.Server.Handlers
             CreateVolumeDirectory();
         }
 
-        public async Task<List<string>> ConvertFromBase64(List<string>? picturesInDb, List<string> rawPictures, CancellationToken cancellationToken = default)
+        public async Task<List<string>> ConvertFromBase64(List<string> picturesInDb, List<string> rawPictures, CancellationToken cancellationToken = default)
         {
             if (picturesInDb is null || picturesInDb.Count == 0)
                 return [];
@@ -34,10 +34,10 @@ namespace MyWebSite.Server.Handlers
                 throw;
             }
         }
-        public async Task<string?> ConvertFromBase64(string? rawPicture, CancellationToken cancellationToken = default)
+        public async Task<string> ConvertFromBase64(string rawPicture, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrWhiteSpace(rawPicture))
-                return null;
+                return String.Empty;
 
             try
             {
@@ -62,7 +62,7 @@ namespace MyWebSite.Server.Handlers
             }
         }
 
-        public async Task<List<string>> ConvertToBase64(List<string>? pictures, CancellationToken cancellationToken = default)
+        public async Task<List<string>> ConvertToBase64(List<string> pictures, CancellationToken cancellationToken = default)
         {
             if (pictures is null || pictures.Count == 0)
                 return [];
@@ -84,10 +84,10 @@ namespace MyWebSite.Server.Handlers
                 throw;
             }
         }
-        public async Task<string?> ConvertToBase64(string? picture, CancellationToken cancellationToken = default)
+        public async Task<string> ConvertToBase64(string picture, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrWhiteSpace(picture))
-                return null;
+                return String.Empty;
 
             try
             {
