@@ -73,7 +73,7 @@ namespace MyWebSite.Server.Handlers
                     return new LoadCVResponse { Succeed = false, Message = "No CV found !" };
 
                 var cvDTO = _mapper.Map<CVDTO>(cv);
-                cvDTO.Picture = await _fileHandler.ConverToBase64(cvDTO.Picture);
+                cvDTO.Picture = await _fileHandler.ConvertToBase64(cvDTO.Picture);
 
                 return new LoadCVResponse { Succeed = true, Message = "CV found !", CV = cvDTO };
             }
@@ -83,7 +83,7 @@ namespace MyWebSite.Server.Handlers
             }
         }
 
-        public async Task<UpdateCVResponse> UpdateCVAsync(CVDTO cvDTO)
+        public async Task<UpdateCVResponse> UpdateCVAsync(CVDTO cvDTO, CancellationToken cancellationToken = default)
         {
             if (cvDTO == null)
                 return new UpdateCVResponse { Succeed = false, Message = "CV is null !" };
@@ -102,7 +102,7 @@ namespace MyWebSite.Server.Handlers
                 if (cvFromDB == null)
                     return new UpdateCVResponse { Succeed = false, Message = "Can't find CV with given ID." };
 
-                cvDTO.Picture = await _fileHandler.ConvertFromBase64(cvDTO.Picture);
+                cvDTO.Picture = await _fileHandler.ConvertFromBase64(cvDTO.Picture, cancellationToken);
                 _mapper.Map(cvDTO, cvFromDB);
 
 
