@@ -14,7 +14,7 @@ namespace MyWebSite.Server.Handlers
             CreateVolumeDirectory();
         }
 
-        public async Task<List<string>> ConvertFromBase64(List<string> picturesInDb, List<string> rawPictures, CancellationToken cancellationToken = default)
+        public async Task<List<string>> ConvertFromBase64(List<string>? picturesInDb, List<string> rawPictures)
         {
             if (picturesInDb is null || picturesInDb.Count == 0)
                 return [];
@@ -23,7 +23,7 @@ namespace MyWebSite.Server.Handlers
             {
                 foreach (var picture in rawPictures)
                 {
-                    var fileName = await ConvertFromBase64(picture, cancellationToken);
+                    var fileName = await ConvertFromBase64(picture);
                     picturesInDb.Add(fileName!);
                 }
                 return picturesInDb;
@@ -34,7 +34,7 @@ namespace MyWebSite.Server.Handlers
                 throw;
             }
         }
-        public async Task<string> ConvertFromBase64(string rawPicture, CancellationToken cancellationToken = default)
+        public async Task<string> ConvertFromBase64(string rawPicture)
         {
             if (string.IsNullOrWhiteSpace(rawPicture))
                 return String.Empty;
@@ -51,7 +51,7 @@ namespace MyWebSite.Server.Handlers
                 var rawPic = rawPicture.Substring(rawPicture.IndexOf(",") + 1);
                 var imageBytes = Convert.FromBase64String(rawPic);
 
-                await File.WriteAllBytesAsync(fullPath, imageBytes, cancellationToken);
+                await File.WriteAllBytesAsync(fullPath, imageBytes);
 
                 return fileName;
             }
@@ -62,7 +62,7 @@ namespace MyWebSite.Server.Handlers
             }
         }
 
-        public async Task<List<string>> ConvertToBase64(List<string> pictures, CancellationToken cancellationToken = default)
+        public async Task<List<string>> ConvertToBase64(List<string> pictures)
         {
             if (pictures is null || pictures.Count == 0)
                 return [];
@@ -72,7 +72,7 @@ namespace MyWebSite.Server.Handlers
             {
                 foreach (var picture in pictures)
                 {
-                    var fileName = await ConvertToBase64(picture, cancellationToken);
+                    var fileName = await ConvertToBase64(picture);
                     convertedPictures.Add(fileName!);
                 }
 
@@ -84,7 +84,7 @@ namespace MyWebSite.Server.Handlers
                 throw;
             }
         }
-        public async Task<string> ConvertToBase64(string picture, CancellationToken cancellationToken = default)
+        public async Task<string> ConvertToBase64(string picture)
         {
             if (string.IsNullOrWhiteSpace(picture))
                 return String.Empty;
@@ -98,9 +98,9 @@ namespace MyWebSite.Server.Handlers
                     volumePath : Path.Combine(_env.ContentRootPath, picture);
 
                 if (!File.Exists(fullPath))
-                    return null;
+                    return string.Empty;
 
-                var bytes = await File.ReadAllBytesAsync(fullPath, cancellationToken);
+                var bytes = await File.ReadAllBytesAsync(fullPath);
                 var base64picture = Convert.ToBase64String(bytes);
                 var prefix = "data:image/png;base64,";
                 var convertedPicture = prefix + base64picture;

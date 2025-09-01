@@ -82,7 +82,7 @@ namespace MyWebSite.Server.Handlers
                 return new GetPostsResponse { Succeeded = false, Message= err.Message };
             }
         }
-        public async Task<UpdatePostResponse> UpdatePostAsync(PostDTO post, CancellationToken cancellationToken)
+        public async Task<UpdatePostResponse> UpdatePostAsync(PostDTO post)
         {
             if (post == null)
                 return new UpdatePostResponse { Succeed = false, Message = "Post is null." };
@@ -94,7 +94,7 @@ namespace MyWebSite.Server.Handlers
                     return new UpdatePostResponse { Succeed = false, Message = "No post found with such ID." };
 
                 postInDb = _mapper.Map(post, postInDb);
-                postInDb.Pictures = await _fileHandler.ConvertFromBase64(postInDb.Pictures, post.Pictures!, cancellationToken);
+                postInDb.Pictures = await _fileHandler.ConvertFromBase64(postInDb.Pictures, post.Pictures!);
 
                 _context.Update(postInDb);
 
@@ -102,7 +102,7 @@ namespace MyWebSite.Server.Handlers
                 if (result > 0)
                 {
                     var updatedPost = _mapper.Map<PostRM>(postInDb);
-                    updatedPost.Pictures = await _fileHandler.ConvertToBase64(updatedPost.Pictures!, cancellationToken);
+                    updatedPost.Pictures = await _fileHandler.ConvertToBase64(updatedPost.Pictures!);
                     return new UpdatePostResponse { Succeed = true, Message = "Post updated", Post = updatedPost };
                 }
 
@@ -114,16 +114,16 @@ namespace MyWebSite.Server.Handlers
             }
         }
 
-        public async Task<AddPostResponse> AddPostAsync(PostDTO post, CancellationToken cancellationToken)
+        public async Task<AddPostResponse> AddPostAsync(PostDTO post)
         {
             if (post == null)
                 return new AddPostResponse { Succeed = false, Message = "Post is null." };
 
-            post.Id = new Guid().ToString();
+            post.Id = Guid.NewGuid().ToString();
             try
             {
                 var newPost = _mapper.Map<Post>(post);
-                newPost.Pictures = await _fileHandler.ConvertFromBase64(null, post.Pictures!, cancellationToken);
+                newPost.Pictures = await _fileHandler.ConvertFromBase64(null, post.Pictures!);
                 newPost.DatePosted = DateTime.Now;
 
                 _context.Add(newPost);
@@ -131,7 +131,7 @@ namespace MyWebSite.Server.Handlers
                 if (result > 0)
                 {
                     var postRM = _mapper.Map<PostRM>(newPost);
-                    postRM.Pictures = await _fileHandler.ConvertToBase64(postRM.Pictures!, cancellationToken);
+                    postRM.Pictures = await _fileHandler.ConvertToBase64(postRM.Pictures!);
                     return new AddPostResponse
                     {
                         Succeed = true,

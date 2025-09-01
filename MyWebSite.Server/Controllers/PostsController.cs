@@ -61,9 +61,9 @@ namespace MyWebSite.Server.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType<UpdatePostResponse>(StatusCodes.Status200OK)]
-        public async Task<IActionResult> UpdatePost([FromBody] PostDTO post, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdatePost([FromBody] PostDTO post)
         {
-            var response = await _postsHandler.UpdatePostAsync(post, cancellationToken);
+            var response = await _postsHandler.UpdatePostAsync(post);
             if (response.Succeed)
                 return Ok(response);
             
@@ -75,9 +75,9 @@ namespace MyWebSite.Server.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType<AddPostResponse>(StatusCodes.Status200OK)]
-        public async Task<IActionResult> AddPost([FromBody] PostDTO request, CancellationToken cancellationToken)
+        public async Task<IActionResult> AddPost([FromBody] PostDTO request)
         {
-            var result = await _postsHandler.AddPostAsync(request, cancellationToken);
+            var result = await _postsHandler.AddPostAsync(request);
             if (result.Succeed)
             {
                 return Ok(result);
