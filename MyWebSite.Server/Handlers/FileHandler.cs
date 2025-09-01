@@ -17,7 +17,7 @@ namespace MyWebSite.Server.Handlers
         public async Task<List<string>> ConvertFromBase64(List<string>? picturesInDb, List<string> rawPictures)
         {
             if (picturesInDb is null || picturesInDb.Count == 0)
-                return [];
+                picturesInDb = [];
 
             try
             {
