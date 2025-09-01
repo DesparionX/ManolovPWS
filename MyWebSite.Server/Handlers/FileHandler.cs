@@ -47,10 +47,8 @@ namespace MyWebSite.Server.Handlers
 
                 var fileName = Guid.NewGuid() + ".png";
                 var fullPath = Path.Combine(savePath, fileName);
-
                 var rawPic = rawPicture.Substring(rawPicture.IndexOf(",") + 1);
                 var imageBytes = Convert.FromBase64String(rawPic);
-
                 await File.WriteAllBytesAsync(fullPath, imageBytes);
 
                 return fileName;
