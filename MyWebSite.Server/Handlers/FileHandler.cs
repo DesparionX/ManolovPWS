@@ -91,12 +91,14 @@ namespace MyWebSite.Server.Handlers
 
             try
             {
-                var fullPath = VolumeExist() ?
-                Path.Combine(_volumePath!, picture)
-                : Path.Combine(_env.ContentRootPath, picture);
+                var volumePath = VolumeExist() 
+                    ? Path.Combine(_volumePath!, picture) : string.Empty;
+
+                var fullPath = File.Exists(volumePath) ?
+                    volumePath : Path.Combine(_env.ContentRootPath, picture);
 
                 if (!File.Exists(fullPath))
-                    return "File not found: " + fullPath;
+                    return null;
 
                 var bytes = await File.ReadAllBytesAsync(fullPath, cancellationToken);
                 var base64picture = Convert.ToBase64String(bytes);
