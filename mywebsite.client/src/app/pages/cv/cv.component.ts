@@ -15,6 +15,7 @@ export class CvComponent implements OnInit, AfterViewInit{
 
   constructor(private api: ApiService) { }
 
+  loading = true;
   cv!: Cvdto;
   mainSkillsList: SkillDto[] = [];
   otherSkillsList: SkillDto[] = [];
@@ -40,7 +41,6 @@ export class CvComponent implements OnInit, AfterViewInit{
 
   async ngOnInit() {
     await this.loadCV();
-    
   }
 
   ngAfterViewInit() {
@@ -140,6 +140,7 @@ export class CvComponent implements OnInit, AfterViewInit{
     if (result.succeed) {
       this.cv = result.cv!;
       this.fetchSkills();
+      this.loading = false;
     } else {
       console.error(result.message);
     }
