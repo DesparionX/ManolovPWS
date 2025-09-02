@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AddPostResponse, Cvdto, DeleteMessageResponse, DeleteRequest, DeleteResponse, FindPostResponse, GetMessagesResponse, GetPostsResponse, LoadCvResponse, MessageDto, PostDto, ReadMessageResponse, SendMessageResponse, UpdateCvResponse, UpdatePostResponse } from '../api/models';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable, delay, lastValueFrom, retry } from 'rxjs';
 import { environment } from '../../environmets/environment.prod';
 
 @Injectable({
@@ -21,10 +21,13 @@ export class ApiService {
     const params = new HttpParams().set('postType', type);
 
     try {
-      const response = await lastValueFrom(this.http.get<GetPostsResponse>(this.api + '/Posts/getPosts', { params }));
+      const response = await lastValueFrom(this.http.get<GetPostsResponse>(this.api + '/Posts/getPosts', { params })
+        .pipe(retry({ count: 2, delay: 2000 })));
+
       return response;
     } catch (error) {
       console.error('Error fetching posts: ', error);
+
       throw error;
     }
   }
