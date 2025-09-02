@@ -1,190 +1,207 @@
 <div class="container">
-    <div class="cv">
-        <img class="avatar" [src]="cv.picture!"/>
-        <div class="combo">
-            <label class="full-name">{{cv.fullName}}</label>
-            <div class="personal-data">
-                <label>
-                    <i class="fa-solid fa-cake-candles orange"></i>
-                    {{dateFormat(cv.birthDate!)}}
-                </label>
-                <label>
-                    <i [ngClass]="cv.isMale ? 'fa-solid fa-mars orange' : 'fa-solid fa-venus orange'"></i>
-                    {{cv.isMale ? 'MALE' : 'FEMALE'}}
-                </label>
-                <label>
-                    <img class="country-icon" [src]="countryIcon" />
-                    {{cv.nationality!.toUpperCase()}}
-                </label>
-            </div>
-        </div>
-
-        <div class="content">
-
-            <div class="left">
-                <!-- ADDRESS -->
-                <div class="left-item">
-                    <label class="header">ADDRESS</label>
-                    <label class="custom-text center">
-                        {{cv.address}}
-                        <img class="location" [src]="countryIcon" />
-                    </label>
-                </div>
-
-                <!-- CONTACTS -->
-                <div class="left-item">
-                    <label class="header">CONTACTS</label>
-                    <div class="contact" *ngFor="let contact of cv.contacts">
-                        <img class="contact-icon" [src]="contactIcon(contact.domain!)" />
-                        <label class="contact-title">{{contact.username}}</label>
-                    </div>
-                </div>
-
-                <!-- SKILLS -->
-                <div class="left-item">
-                    <label class="header">SKILLS</label>
-                    <div class="main-skills">
-                        <div class="main-skill" *ngFor="let skill of mainSkillsList">
-                            <label class="main-skill-name">{{skill.skillName}}</label>
-                            <div class="skill-level-container">
-                                <div class="skill-level" [style.width.%]="skill.level! * 20">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="other-skills" #otherSkills [style.maxHeight]="skillsActive ? skillsMaxHeight : '0'">
-                        <label class="other-skill-name" *ngFor="let skill of otherSkillsList">{{skill.skillName}}</label>
-                    </div>
-                    <button class="expand" [ngClass]="skillsActive ? 'collapsed': ''" type="button" (click)="switchView('skills', otherSkills)">
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </button>
-
-                </div>
-
-                <!-- LANGUAGES -->
-                <div class="left-item">
-                    <label class="header">LANGUAGES</label>
-                    <div class="language" *ngFor="let language of cv.languages">
-                        <div class="combo" *ngIf="language.type!.toLowerCase() === 'main'">
-                            <label class="lang-name">{{language.name}}</label>
-                            <label class="lang-type">({{language.type}})</label>
-                        </div>
-                        <div class="combo" *ngIf="language.type!.toLowerCase() === 'other'">
-                            <label class="lang-name">{{language.name}}</label>
-                            <div class="lang-level">
-                                <div class="lang-combo">
-                                    <label class="type">READ:</label>
-                                    <label class="level">{{language.readLevel}}</label>
-                                </div>
-                                <div class="lang-combo">
-                                    <label class="type">WRITE:</label>
-                                    <label class="level">{{language.writeLevel}}</label>
-                                </div>
-                                <div class="lang-combo">
-                                    <label class="type">SPEAK:</label>
-                                    <label class="level">{{language.talkLevel}}</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="right">
-                <!-- PROFFESSION AND DESCRIPTION -->
-                <div class="right-item">
-                    <div class="section">
-                        <button type="button" class="bt-toggle" [ngClass]="descActive ? 'active' : ''" (click)="switchView('description', description)">
-                            <i class="fa-solid fa-user"></i>
-                        </button>
-                        <div class="vr-outer">
-                            <div class="vr">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="combo-right">
-                        <label class="header">{{cv.profession!.toUpperCase()}}</label>
-                        <div class="descr" #description [style.maxHeight]="descActive ? descMaxHeight : '0'">
-                            <label class="description">{{cv.description}}</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EMPLOYMENT HISTORY -->
-                <div class="right-item">
-                    <div class="section">
-                        <button type="button" class="bt-toggle" [ngClass]="empActive ? 'active' : ''" (click)="switchView('employment', jobList)" >
-                            <i class="fa-solid fa-briefcase"></i>
-                        </button>
-                        <div class="vr-outer">
-                            <div class="vr">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="combo-right">
-                        <label class="header big">EMPLOYMENT HISTORY</label>
-                        <div class="list" #jobList [style.maxHeight]="empActive ? empMaxHeight : '0'">
-                            <!-- -->
-                            <div class="job" *ngFor="let job of cv.workExperience">
-                                <label class="job-position">{{job.position}}</label>
-                                <label class="start-end-date">{{dateFormat(job.startDate!)}} - {{dateFormat(job.endDate!)}}</label>
-                                <label class="job-description">{{job.description}}</label>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- EDUCATION -->
-                <div class="right-item">
-                    <div class="section">
-                        <button type="button" class="bt-toggle" [ngClass]="eduActive ? 'active' : ''" (click)="switchView('education', educationList)">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </button>
-                        <div class="vr-outer">
-                            <div class="vr">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="combo-right">
-                        <label class="header big">EDUCATION</label>
-                        <div class="list" #educationList [style.maxHeight]="eduActive ? eduMaxHeight : '0'">
-                            <div class="education" *ngFor="let education of cv.education">
-                                <div class="custom-row">
-                                    <label class="profession-aquired">{{education.professionAquired}}</label>
-                                    <label class="education-type">({{education.educationType}})</label>
-                                </div>
-                                <label class="school-name">{{education.schoolName}}</label>
-                                <label class="start-end-date">{{dateFormat(education.startDate!)}} - {{dateFormat(education.endDate!)}}</label>
-                                <label class="description">{{education.description}}</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CERTIFICATES -->
-                <div class="right-item">
-                    <div class="section">
-                        <button type="button" class="bt-toggle" [ngClass]="certiActive ? 'active' : ''" (click)="switchView('certificates', certificationList)">
-                            <i class="fa-solid fa-award"></i>
-                        </button>
-                    </div>
-                    <div class="combo-right">
-                        <label class="header big">CERTIFICATES</label>
-                        <div class="list" #certificationList [style.maxHeight] = "certiActive ? certiMaxHeight : '0'">
-                            <!---->
-                            <div class="certificate" *ngFor="let certificate of cv.certificates">
-                                <a class="certi-title" [href]="certificate.link" target="_blank">{{certificate.title}}</a>
-                                <div class="custom-row">
-                                    <label class="company">{{certificate.company}}</label>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+  <div class="cv">
+    <img class="avatar" [src]="cv.picture!"/>
+    <div class="combo">
+      <label class="full-name">{{cv.fullName}}</label>
+      <div class="personal-data">
+        <label>
+          <i class="fa-solid fa-cake-candles orange"></i>
+          {{dateFormat(cv.birthDate!)}}
+        </label>
+        <label>
+          <i [ngClass]="cv.isMale ? 'fa-solid fa-mars orange' : 'fa-solid fa-venus orange'"></i>
+          {{cv.isMale ? 'MALE' : 'FEMALE'}}
+        </label>
+        <label>
+          <img class="country-icon" [src]="countryIcon" />
+          {{cv.nationality!.toUpperCase()}}
+        </label>
+      </div>
     </div>
+
+    <div class="content">
+
+      <div class="left">
+        <!-- ADDRESS -->
+        <div class="left-item">
+          <label class="header">ADDRESS</label>
+          <label class="custom-text center">
+            {{cv.address}}
+            <img class="location" [src]="countryIcon" />
+          </label>
+        </div>
+
+        <!-- CONTACTS -->
+        <div class="left-item">
+          <label class="header">CONTACTS</label>
+          @for (contact of cv.contacts; track contact) {
+            <div class="contact">
+              <img class="contact-icon" [src]="contactIcon(contact.domain!)" />
+              <label class="contact-title">{{contact.username}}</label>
+            </div>
+          }
+        </div>
+
+        <!-- SKILLS -->
+        <div class="left-item">
+          <label class="header">SKILLS</label>
+          <div class="main-skills">
+            @for (skill of mainSkillsList; track skill) {
+              <div class="main-skill">
+                <label class="main-skill-name">{{skill.skillName}}</label>
+                <div class="skill-level-container">
+                  <div class="skill-level" [style.width.%]="skill.level! * 20">
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+          <div class="other-skills" #otherSkills [style.maxHeight]="skillsActive ? skillsMaxHeight : '0'">
+            @for (skill of otherSkillsList; track skill) {
+              <label class="other-skill-name">{{skill.skillName}}</label>
+            }
+          </div>
+          <button class="expand" [ngClass]="skillsActive ? 'collapsed': ''" type="button" (click)="switchView('skills', otherSkills)">
+            <i class="fa-solid fa-arrow-down"></i>
+          </button>
+
+        </div>
+
+        <!-- LANGUAGES -->
+        <div class="left-item">
+          <label class="header">LANGUAGES</label>
+          @for (language of cv.languages; track language) {
+            <div class="language">
+              @if (language.type!.toLowerCase() === 'main') {
+                <div class="combo">
+                  <label class="lang-name">{{language.name}}</label>
+                  <label class="lang-type">({{language.type}})</label>
+                </div>
+              }
+              @if (language.type!.toLowerCase() === 'other') {
+                <div class="combo">
+                  <label class="lang-name">{{language.name}}</label>
+                  <div class="lang-level">
+                    <div class="lang-combo">
+                      <label class="type">READ:</label>
+                      <label class="level">{{language.readLevel}}</label>
+                    </div>
+                    <div class="lang-combo">
+                      <label class="type">WRITE:</label>
+                      <label class="level">{{language.writeLevel}}</label>
+                    </div>
+                    <div class="lang-combo">
+                      <label class="type">SPEAK:</label>
+                      <label class="level">{{language.talkLevel}}</label>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="right">
+        <!-- PROFFESSION AND DESCRIPTION -->
+        <div class="right-item">
+          <div class="section">
+            <button type="button" class="bt-toggle" [ngClass]="descActive ? 'active' : ''" (click)="switchView('description', description)">
+              <i class="fa-solid fa-user"></i>
+            </button>
+            <div class="vr-outer">
+              <div class="vr">
+              </div>
+            </div>
+          </div>
+          <div class="combo-right">
+            <label class="header">{{cv.profession!.toUpperCase()}}</label>
+            <div class="descr" #description [style.maxHeight]="descActive ? descMaxHeight : '0'">
+              <label class="description">{{cv.description}}</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- EMPLOYMENT HISTORY -->
+        <div class="right-item">
+          <div class="section">
+            <button type="button" class="bt-toggle" [ngClass]="empActive ? 'active' : ''" (click)="switchView('employment', jobList)" >
+              <i class="fa-solid fa-briefcase"></i>
+            </button>
+            <div class="vr-outer">
+              <div class="vr">
+              </div>
+            </div>
+          </div>
+          <div class="combo-right">
+            <label class="header big">EMPLOYMENT HISTORY</label>
+            <div class="list" #jobList [style.maxHeight]="empActive ? empMaxHeight : '0'">
+              <!-- -->
+              @for (job of cv.workExperience; track job) {
+                <div class="job">
+                  <label class="job-position">{{job.position}}</label>
+                  <label class="start-end-date">{{dateFormat(job.startDate!)}} - {{dateFormat(job.endDate!)}}</label>
+                  <label class="job-description">{{job.description}}</label>
+                </div>
+              }
+            </div>
+
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="right-item">
+          <div class="section">
+            <button type="button" class="bt-toggle" [ngClass]="eduActive ? 'active' : ''" (click)="switchView('education', educationList)">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </button>
+            <div class="vr-outer">
+              <div class="vr">
+              </div>
+            </div>
+          </div>
+          <div class="combo-right">
+            <label class="header big">EDUCATION</label>
+            <div class="list" #educationList [style.maxHeight]="eduActive ? eduMaxHeight : '0'">
+              @for (education of cv.education; track education) {
+                <div class="education">
+                  <div class="custom-row">
+                    <label class="profession-aquired">{{education.professionAquired}}</label>
+                    <label class="education-type">({{education.educationType}})</label>
+                  </div>
+                  <label class="school-name">{{education.schoolName}}</label>
+                  <label class="start-end-date">{{dateFormat(education.startDate!)}} - {{dateFormat(education.endDate!)}}</label>
+                  <label class="description">{{education.description}}</label>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- CERTIFICATES -->
+        <div class="right-item">
+          <div class="section">
+            <button type="button" class="bt-toggle" [ngClass]="certiActive ? 'active' : ''" (click)="switchView('certificates', certificationList)">
+              <i class="fa-solid fa-award"></i>
+            </button>
+          </div>
+          <div class="combo-right">
+            <label class="header big">CERTIFICATES</label>
+            <div class="list" #certificationList [style.maxHeight] = "certiActive ? certiMaxHeight : '0'">
+              <!---->
+              @for (certificate of cv.certificates; track certificate) {
+                <div class="certificate">
+                  <a class="certi-title" [href]="certificate.link" target="_blank">{{certificate.title}}</a>
+                  <div class="custom-row">
+                    <label class="company">{{certificate.company}}</label>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

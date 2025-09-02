@@ -1,19 +1,29 @@
 <div class="container">
-    <div class="posts" *ngIf="posts && posts.length > 0">
-        <div class="post" *ngFor="let post of posts">
-            <label class="post-title">{{post.title}}</label>
-            <div class="combo">
-                <img class="cover" [src]="post.pictures![0]" />
-                <div class="gallery" *ngIf="post.pictures!.length > 1">
-                    <button type="button" class="img-bt" (click)="openImageInNewTab(picture)" *ngFor="let picture of post.pictures">
-                        <img class="img" [src]="picture" />
-                    </button>
-                </div>
-            </div>
-            <a class="link" [href]="post.link" *ngIf="post.link" >reference</a>
-            <label class="description">{{post.description}}</label>
-            <hr class="hrr" />
-            <label class="date">{{dateFormat(post.datePosted!.toString())}}</label>
+  @if (posts && posts.length > 0) {
+    <div class="posts">
+      @for (post of posts; track post) {
+        <div class="post">
+          <label class="post-title">{{post.title}}</label>
+          <div class="combo">
+            <img class="cover" [src]="post.pictures![0]" />
+            @if (post.pictures!.length > 1) {
+              <div class="gallery">
+                @for (picture of post.pictures; track picture) {
+                  <button type="button" class="img-bt" (click)="openImageInNewTab(picture)">
+                    <img class="img" [src]="picture" />
+                  </button>
+                }
+              </div>
+            }
+          </div>
+          @if (post.link) {
+            <a class="link" [href]="post.link" >reference</a>
+          }
+          <label class="description">{{post.description}}</label>
+          <hr class="hrr" />
+          <label class="date">{{dateFormat(post.datePosted!.toString())}}</label>
         </div>
+      }
     </div>
+  }
 </div>

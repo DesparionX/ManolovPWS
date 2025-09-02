@@ -1,342 +1,382 @@
 <div class="container">
-    <div class="cv-form">
-        <form [formGroup]="form" class="center" (submit)="editCV()">
+  <div class="cv-form">
+    <form [formGroup]="form" class="center" (submit)="editCV()">
 
-            <!-- AVATAR -->
-            <input type="file" class="file-input" (change)="onImageSelect(fileUpload.files!)" #fileUpload requiredFileType="image/png" />
-            <div class="file-upload">
-                <div class="avatar-border">
-                    <img class="fit" [src]="tempAvatar" />
-                </div>
-                <button mat-mini-fab color="primary" type="button" class="upload-btn" (click)="fileUpload.click()">
-                    <mat-icon class="up-icon">attach_file</mat-icon>
+      <!-- AVATAR -->
+      <input type="file" class="file-input" (change)="onImageSelect(fileUpload.files!)" #fileUpload requiredFileType="image/png" />
+      <div class="file-upload">
+        <div class="avatar-border">
+          <img class="fit" [src]="tempAvatar" />
+        </div>
+        <button mat-mini-fab color="primary" type="button" class="upload-btn" (click)="fileUpload.click()">
+          <mat-icon class="up-icon">attach_file</mat-icon>
+        </button>
+      </div>
+
+      <!-- FULL NAME -->
+      <div class="custom-form-group">
+        <label class="custom-label" for="fullName">Full name</label>
+        <input class="custom-input" type="text" autocomplete="off" formControlName="fullName" id="fullName" />
+      </div>
+
+      <!-- GENDER -->
+      <div class="custom-switch">
+        <label class="switch-label" #female>Female</label>
+        <mat-slide-toggle (change)="genderSelected()" formControlName="isMale"></mat-slide-toggle>
+        <label class="switch-label" #male>Male</label>
+      </div>
+
+      <!-- BIRTH DATE -->
+      <div class="custom-form-group">
+        <label class="custom-label" for="birthDate">Birth Date</label>
+        <div class="custom-picker">
+          <input class="custom-input" autocomplete="off" id="birthDate" formControlName="birthDate" [matDatepicker]="birthDate" />
+          <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+        </div>
+        <mat-datepicker #birthDate></mat-datepicker>
+      </div>
+
+      <!-- NATIONALITY -->
+      <div class="custom-form-group">
+        <label class="custom-label" for="nationality">Nationality</label>
+        <input class="custom-input" type="text" autocomplete="off" formControlName="nationality" id="nationality" />
+      </div>
+
+      <!-- ADDRESS -->
+      <div class="custom-form-group">
+        <label class="custom-label area-label" for="address">Address</label>
+        <textarea class="custom-area" autocomplete="off" formControlName="address" id="address"></textarea>
+      </div>
+
+      <!-- CONTACTS -->
+      <div class="collection">
+        <label class="collection-label">Contacts</label>
+        @if (contactsList.length > 0) {
+          <div class="contact-list">
+            @for (contact of contactsList; track contact) {
+              <div class="list-item">
+                <img class="contact-img" src="{{contactIcon(contact.domain!)}}" />
+                <label class="item-title">{{contact.username}}</label>
+                <button type="button" class="delete-item" (click)="removeContact(contact)">
+                  <i class="fa-solid fa-trash-can"></i>
                 </button>
-            </div>
+              </div>
+            }
+          </div>
+        }
+        @if (contactsList.length > 0) {
+          <hr class="hrr" />
+        }
+        <div class="custom-row">
+          <div class="custom-form-group" id="contact">
+            <label class="custom-label label-anchor text-sm">Icon</label>
+            <mat-select class="custom-input custom-drop-menu-sm" formControlName="contactIcon" id="contactIcon">
+              <mat-select-trigger>
+                @if (form.get('contactIcon')?.value) {
+                  <img class="contact-options" src="{{contactIcon(form.get('contactIcon')?.value!)}}"/>
+                }
+              </mat-select-trigger>
+              @for (contact of contactsOptions; track contact) {
+                <div>
+                  <mat-option [value]="contact">
+                    <img class="contact-options" src="{{contactIcon(contact)}}" />
+                  </mat-option>
+                </div>
+              }
+            </mat-select>
+          </div>
+          <div class="custom-form-group">
+            <label class="custom-label contact-label" for="title">Contact</label>
+            <input class="custom-input sm" type="text" autocomplete="off" formControlName="title" id="title" />
+          </div>
+          <button type="button" class="add-contact" (click)="addContact()">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
 
-            <!-- FULL NAME -->
-            <div class="custom-form-group">
-                <label class="custom-label" for="fullName">Full name</label>
-                <input class="custom-input" type="text" autocomplete="off" formControlName="fullName" id="fullName" />
-            </div>
+      <!-- DESCRIPTION -->
+      <div class="custom-form-group">
+        <label class="custom-label" for="description">Description</label>
+        <textarea class="custom-area area-lg" formControlName="description" id="description"></textarea>
+      </div>
 
-            <!-- GENDER -->
-            <div class="custom-switch">
-                <label class="switch-label" #female>Female</label>
-                <mat-slide-toggle (change)="genderSelected()" formControlName="isMale"></mat-slide-toggle>
-                <label class="switch-label" #male>Male</label>
-            </div>
+      <!-- PROFESSION -->
+      <div class="custom-form-group">
+        <label class="custom-label" for="profession">Profession</label>
+        <input class="custom-input" type="text" autocomplete="off" formControlName="profession" id="profession" />
+      </div>
 
-            <!-- BIRTH DATE -->
-            <div class="custom-form-group">
-                <label class="custom-label" for="birthDate">Birth Date</label>
-                <div class="custom-picker">
-                    <input class="custom-input" autocomplete="off" id="birthDate" formControlName="birthDate" [matDatepicker]="birthDate" />
-                    <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+      <!-- WORK EXPERIENCE -->
+      <div class="collection">
+        <label class="collection-label">Work Experience</label>
+        @if ((jobsList != null) && (jobsList.length > 0)) {
+          <div class="job-list">
+            @for (job of jobsList; track job) {
+              <div class="list-item">
+                <div class="item-comb">
+                  <label class="item-title">{{job.position}}</label>
+                  <label class="item-undertitle">{{dateFormat(job.startDate!)}} - {{dateFormat(job.endDate!)}}</label>
                 </div>
-                <mat-datepicker #birthDate></mat-datepicker>
-            </div>
-
-            <!-- NATIONALITY -->
-            <div class="custom-form-group">
-                <label class="custom-label" for="nationality">Nationality</label>
-                <input class="custom-input" type="text" autocomplete="off" formControlName="nationality" id="nationality" />
-            </div>
-
-            <!-- ADDRESS -->
-            <div class="custom-form-group">
-                <label class="custom-label area-label" for="address">Address</label>
-                <textarea class="custom-area" autocomplete="off" formControlName="address" id="address"></textarea>
-            </div>
-
-            <!-- CONTACTS -->
-            <div class="collection">
-                <label class="collection-label">Contacts</label>
-                <div class="contact-list" *ngIf="contactsList.length > 0">
-                    <div class="list-item" *ngFor="let contact of contactsList">
-                        <img class="contact-img" src="{{contactIcon(contact.domain!)}}" />
-                        <label class="item-title">{{contact.username}}</label>
-                        <button type="button" class="delete-item" (click)="removeContact(contact)">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>
-                <hr class="hrr" *ngIf="contactsList.length > 0" />
-                <div class="custom-row">
-                    <div class="custom-form-group" id="contact">
-                        <label class="custom-label label-anchor text-sm">Icon</label>
-                        <mat-select class="custom-input custom-drop-menu-sm" formControlName="contactIcon" id="contactIcon">
-                            <mat-select-trigger>
-                                <img *ngIf="form.get('contactIcon')?.value" class="contact-options" src="{{contactIcon(form.get('contactIcon')?.value!)}}"/>
-                            </mat-select-trigger>
-                            <div *ngFor="let contact of contactsOptions">
-                                <mat-option [value]="contact">
-                                    <img class="contact-options" src="{{contactIcon(contact)}}" />
-                                </mat-option>
-                            </div>
-                        </mat-select>
-                    </div>
-                    <div class="custom-form-group">
-                        <label class="custom-label contact-label" for="title">Contact</label>
-                        <input class="custom-input sm" type="text" autocomplete="off" formControlName="title" id="title" />
-                    </div>
-                    <button type="button" class="add-contact" (click)="addContact()">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- DESCRIPTION -->
-            <div class="custom-form-group">
-                <label class="custom-label" for="description">Description</label>
-                <textarea class="custom-area area-lg" formControlName="description" id="description"></textarea>
-            </div>
-
-            <!-- PROFESSION -->
-            <div class="custom-form-group">
-                <label class="custom-label" for="profession">Profession</label>
-                <input class="custom-input" type="text" autocomplete="off" formControlName="profession" id="profession" />
-            </div>
-
-            <!-- WORK EXPERIENCE -->
-            <div class="collection">
-                <label class="collection-label">Work Experience</label>
-                <div class="job-list" *ngIf="(jobsList != null) && (jobsList.length > 0)">
-                    <div class="list-item" *ngFor="let job of jobsList">
-                        <div class="item-comb">
-                            <label class="item-title">{{job.position}}</label>
-                            <label class="item-undertitle">{{dateFormat(job.startDate!)}} - {{dateFormat(job.endDate!)}}</label>
-                        </div>
-                        <button type="button" class="delete-item" (click)="removeJob(job)">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>
-                <hr class="hrr" *ngIf="(jobsList != null) && (jobsList.length > 0)" />
-                <div class="custom-form-group">
-                    <label class="custom-label" for="workPosition">Position</label>
-                    <input class="custom-input" type="text" autocomplete="off" formControlName="workPosition" id="workPosition" />
-                </div>
-                <div class="custom-form-group">
-                    <label class="custom-label collection-area-label" for="workDescription">Description</label>
-                    <textarea class="custom-area" autocomplete="off" formControlName="workDescription" id="workDescription"></textarea>
-                </div>
-                <div class="start-end-date">
-                    <div class="custom-form-group">
-                        <label class="custom-label" for="startDate">Start</label>
-                        <div class="custom-picker">
-                            <input class="custom-input sm-x" autocomplete="off" id="startDate" formControlName="startDate" [matDatepicker]="startDate" />
-                            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
-                        </div>
-                        <mat-datepicker #startDate></mat-datepicker>
-                    </div>
-                    <div class="custom-form-group">
-                        <label class="custom-label" for="endDate">End</label>
-                        <div class="custom-picker">
-                            <input class="custom-input sm-x" autocomplete="off" id="endDate" formControlName="endDate" [matDatepicker]="endDate" />
-                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
-                        </div>
-                        <mat-datepicker #endDate></mat-datepicker>
-                    </div>
-                    <button type="button" class="add-bt" (click)="addJob()">
-                        Add
-                    </button>
-                </div>
-            </div>
-
-            <!-- EDUCATION -->
-            <div class="collection">
-                <label class="collection-label">Education</label>
-                <div class="education-list" *ngIf="((educationList !== null) && (educationList.length > 0))">
-                    <div class="list-item" *ngFor="let education of educationList">
-                        <div class="item-comb">
-                            <label class="item-title">{{education.professionAquired}}</label>
-                            <label class="item-undertitle">{{education.educationType}}</label>
-                        </div>
-                        <button type="button" class="delete-item" (click)="removeEducation(education)">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>
-                <hr class="hrr" *ngIf="((educationList !== null) && (educationList.length > 0))" />
-                <div class="custom-form-group">
-                    <label class="custom-label label-sm" for="schoolName">School</label>
-                    <input class="custom-input" type="text" autocomplete="off" formControlName="schoolName" id="schoolName" />
-                </div>
-                <div class="custom-form-group">
-                    <label class="custom-label label-lg" for="educationType">Education Type</label>
-                    <input class="custom-input" type="text" autocomplete="off" formControlName="educationType" id="educationType" />
-                </div>
-                <div class="custom-form-group">
-                    <label class="custom-label" for="professionAquired">Profession</label>
-                    <input class="custom-input" type="text" autocomplete="off" formControlName="professionAquired" id="professionAquired" />
-                </div>
-                <div class="custom-form-group">
-                    <label class="custom-label collection-area-label" for="educationDescription">Description</label>
-                    <textarea class="custom-area" autocomplete="off" formControlName="educationDescription" id="educationDescription"></textarea>
-                </div>
-                <div class="start-end-date">
-                    <div class="custom-form-group">
-                        <label class="custom-label" for="eduStartDate">Start</label>
-                        <div class="custom-picker">
-                            <input class="custom-input sm-x" autocomplete="off" id="eduStartDate" formControlName="eduStartDate" [matDatepicker]="eduStartDate" />
-                            <mat-datepicker-toggle matSuffix [for]="eduStartDate"></mat-datepicker-toggle>
-                        </div>
-                        <mat-datepicker #eduStartDate></mat-datepicker>
-                    </div>
-                    <div class="custom-form-group">
-                        <label class="custom-label" for="eduEndDate">End</label>
-                        <div class="custom-picker">
-                            <input class="custom-input sm-x" autocomplete="off" id="eduEndDate" formControlName="eduEndDate" [matDatepicker]="eduEndDate" />
-                            <mat-datepicker-toggle matSuffix [for]="eduEndDate"></mat-datepicker-toggle>
-                        </div>
-                        <mat-datepicker #eduEndDate></mat-datepicker>
-                    </div>
-                    <button type="button" class="add-bt" (click)="addEducation()">
-                        Add
-                    </button>
-                </div>
-            </div>
-
-            <!-- SKILLS -->
-            <div class="collection">
-                <label class="collection-label">Skills</label>
-                <div class="skills-list" *ngIf="(skillsList !== null && skillsList.length > 0)">
-                    <div class="list-item" *ngFor="let skill of skillsList">
-                        <div class="item-comb">
-                            <label class="item-title">{{skill.skillName}}</label>
-                            <label class="item-undertitle">{{skill.type}}</label>
-                        </div>
-                        <button type="button" class="delete-item" (click)="removeSkill(skill)">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>
-                <hr class="hrr" *ngIf="(skillsList !== null && skillsList.length > 0)" />
-                <div class="custom-form-group">
-                    <label class="custom-label label-xl" for="skillType">Skill Type</label>
-                    <input type="text" class="custom-input sm-sx" id="skillType" formControlName="skillType" autocomplete="off" />
-                </div>
-                <div class="custom-row">
-                    <div class="custom-form-group">
-                        <label class="custom-label label-sm" for="skill">Skill</label>
-                        <input type="text" class="custom-input sm-x" id="skill" formControlName="skill" autocomplete="off" />
-                    </div>
-                    <div class="custom-form-group">
-                        <label class="custom-label label-md">Level</label>
-                        <mat-select class="custom-input custom-drop-menu" formControlName="level" id="level" #level>
-                            <mat-option value="1">Newbie</mat-option>
-                            <mat-option value="2">Beginner</mat-option>
-                            <mat-option value="3">Advanced</mat-option>
-                            <mat-option value="4">Intermediate</mat-option>
-                            <mat-option value="5">Pro</mat-option>
-                        </mat-select>
-                    </div>
-
-                </div>
-                <button type="button" class="add-bt" (click)="addSkill()">
-                    Add
+                <button type="button" class="delete-item" (click)="removeJob(job)">
+                  <i class="fa-solid fa-trash-can"></i>
                 </button>
+              </div>
+            }
+          </div>
+        }
+        @if ((jobsList != null) && (jobsList.length > 0)) {
+          <hr class="hrr" />
+        }
+        <div class="custom-form-group">
+          <label class="custom-label" for="workPosition">Position</label>
+          <input class="custom-input" type="text" autocomplete="off" formControlName="workPosition" id="workPosition" />
+        </div>
+        <div class="custom-form-group">
+          <label class="custom-label collection-area-label" for="workDescription">Description</label>
+          <textarea class="custom-area" autocomplete="off" formControlName="workDescription" id="workDescription"></textarea>
+        </div>
+        <div class="start-end-date">
+          <div class="custom-form-group">
+            <label class="custom-label" for="startDate">Start</label>
+            <div class="custom-picker">
+              <input class="custom-input sm-x" autocomplete="off" id="startDate" formControlName="startDate" [matDatepicker]="startDate" />
+              <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
             </div>
+            <mat-datepicker #startDate></mat-datepicker>
+          </div>
+          <div class="custom-form-group">
+            <label class="custom-label" for="endDate">End</label>
+            <div class="custom-picker">
+              <input class="custom-input sm-x" autocomplete="off" id="endDate" formControlName="endDate" [matDatepicker]="endDate" />
+              <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+            </div>
+            <mat-datepicker #endDate></mat-datepicker>
+          </div>
+          <button type="button" class="add-bt" (click)="addJob()">
+            Add
+          </button>
+        </div>
+      </div>
 
-            <!-- LANGUAGE -->
-            <div class="collection">
-                <label class="collection-label">Languages</label>
-                <div class="languages-list" *ngIf="languagesList !== null && languagesList.length > 0">
-                    <div class="list-item" *ngFor="let language of languagesList">
-                        <div class="item-comb">
-                            <label class="item-title">{{language.name}}</label>
-                            <label class="item-undertitle">{{language.type}}</label>
-                        </div>
-                        <button type="button" class="delete-item" (click)="removeLanguage(language)">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
+      <!-- EDUCATION -->
+      <div class="collection">
+        <label class="collection-label">Education</label>
+        @if (((educationList !== null) && (educationList.length > 0))) {
+          <div class="education-list">
+            @for (education of educationList; track education) {
+              <div class="list-item">
+                <div class="item-comb">
+                  <label class="item-title">{{education.professionAquired}}</label>
+                  <label class="item-undertitle">{{education.educationType}}</label>
                 </div>
-                <hr class="hrr" *ngIf="languagesList !== null && languagesList.length > 0" />
-                <div class="custom-row">
-                    <div class="custom-form-group">
-                        <label class="custom-label label-md" for="langType">Type</label>
-                        <input type="text" class="custom-input sm-sx" id="langType" formControlName="langType" autocomplete="off"/>
-                    </div>
-                    <div class="custom-form-group">
-                        <label class="custom-label label-md" for="lang">Name</label>
-                        <input type="text" class="custom-input sm-x" id="lang" formControlName="lang" autocomplete="off" />
-                    </div>
-                </div>
-                <div class="custom-row">
-                    <div class="custom-form-group">
-                        <label class="custom-label text-sm label-anchor">Read</label>
-                        <mat-select class="custom-input custom-drop-menu-sm" formControlName="read" id="read" #read>
-                            <mat-option value="A1">A1</mat-option>
-                            <mat-option value="A2">A2</mat-option>
-                            <mat-option value="B1">B1</mat-option>
-                            <mat-option value="B2">B2</mat-option>
-                            <mat-option value="C1">C1</mat-option>
-                            <mat-option value="C2">C2</mat-option>
-                        </mat-select>
-                    </div>
-                    <div class="custom-form-group">
-                        <label class="custom-label text-sm label-anchor">Write</label>
-                        <mat-select class="custom-input custom-drop-menu-sm" formControlName="write" id="write" #write>
-                            <mat-option value="A1">A1</mat-option>
-                            <mat-option value="A2">A2</mat-option>
-                            <mat-option value="B1">B1</mat-option>
-                            <mat-option value="B2">B2</mat-option>
-                            <mat-option value="C1">C1</mat-option>
-                            <mat-option value="C2">C2</mat-option>
-                        </mat-select>
-                    </div>
-                    <div class="custom-form-group">
-                        <label class="custom-label text-sm label-anchor">Speak</label>
-                        <mat-select class="custom-input custom-drop-menu-sm" formControlName="speak" id="speak" #speak>
-                            <mat-option value="A1">A1</mat-option>
-                            <mat-option value="A2">A2</mat-option>
-                            <mat-option value="B1">B1</mat-option>
-                            <mat-option value="B2">B2</mat-option>
-                            <mat-option value="C1">C1</mat-option>
-                            <mat-option value="C2">C2</mat-option>
-                        </mat-select>
-                    </div>
-                </div>
-                <button type="button" class="add-bt" (click)="addLanguage()">
-                    Add
+                <button type="button" class="delete-item" (click)="removeEducation(education)">
+                  <i class="fa-solid fa-trash-can"></i>
                 </button>
+              </div>
+            }
+          </div>
+        }
+        @if (((educationList !== null) && (educationList.length > 0))) {
+          <hr class="hrr" />
+        }
+        <div class="custom-form-group">
+          <label class="custom-label label-sm" for="schoolName">School</label>
+          <input class="custom-input" type="text" autocomplete="off" formControlName="schoolName" id="schoolName" />
+        </div>
+        <div class="custom-form-group">
+          <label class="custom-label label-lg" for="educationType">Education Type</label>
+          <input class="custom-input" type="text" autocomplete="off" formControlName="educationType" id="educationType" />
+        </div>
+        <div class="custom-form-group">
+          <label class="custom-label" for="professionAquired">Profession</label>
+          <input class="custom-input" type="text" autocomplete="off" formControlName="professionAquired" id="professionAquired" />
+        </div>
+        <div class="custom-form-group">
+          <label class="custom-label collection-area-label" for="educationDescription">Description</label>
+          <textarea class="custom-area" autocomplete="off" formControlName="educationDescription" id="educationDescription"></textarea>
+        </div>
+        <div class="start-end-date">
+          <div class="custom-form-group">
+            <label class="custom-label" for="eduStartDate">Start</label>
+            <div class="custom-picker">
+              <input class="custom-input sm-x" autocomplete="off" id="eduStartDate" formControlName="eduStartDate" [matDatepicker]="eduStartDate" />
+              <mat-datepicker-toggle matSuffix [for]="eduStartDate"></mat-datepicker-toggle>
             </div>
+            <mat-datepicker #eduStartDate></mat-datepicker>
+          </div>
+          <div class="custom-form-group">
+            <label class="custom-label" for="eduEndDate">End</label>
+            <div class="custom-picker">
+              <input class="custom-input sm-x" autocomplete="off" id="eduEndDate" formControlName="eduEndDate" [matDatepicker]="eduEndDate" />
+              <mat-datepicker-toggle matSuffix [for]="eduEndDate"></mat-datepicker-toggle>
+            </div>
+            <mat-datepicker #eduEndDate></mat-datepicker>
+          </div>
+          <button type="button" class="add-bt" (click)="addEducation()">
+            Add
+          </button>
+        </div>
+      </div>
 
-            <!-- CERTIFICATES -->
-            <div class="collection">
-                <label class="collection-label">Certificates</label>
-                <div class="certificates-list" *ngIf="certificatesList !== null && certificatesList.length > 0">
-                    <div class="list-item" *ngFor="let certificate of certificatesList">
-                        <div class="item-comb">
-                            <label class="item-title">{{certificate.title}}</label>
-                            <label class="item-undertitle">{{certificate.company}}</label>
-                        </div>
-                        <button type="button" class="delete-item" (click)="removeCertificate(certificate)">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
+      <!-- SKILLS -->
+      <div class="collection">
+        <label class="collection-label">Skills</label>
+        @if ((skillsList !== null && skillsList.length > 0)) {
+          <div class="skills-list">
+            @for (skill of skillsList; track skill) {
+              <div class="list-item">
+                <div class="item-comb">
+                  <label class="item-title">{{skill.skillName}}</label>
+                  <label class="item-undertitle">{{skill.type}}</label>
                 </div>
-                <hr class="hrr" *ngIf="certificatesList !== null && certificatesList.length > 0" />
-                <div class="custom-form-group">
-                    <label class="custom-label label-sx" for="certiTitle">Title</label>
-                    <input type="text" class="custom-input" formControlName="certiTitle" id="certiTitle" />
-                </div>
-                <div class="custom-form-group">
-                    <label class="custom-label label-md" for="company">Company</label>
-                    <input type="text" class="custom-input" formControlName="company" id="company" />
-                </div>
-                <div class="custom-form-group">
-                    <label class="custom-label label-sx" for="certiLink">Link</label>
-                    <input type="text" class="custom-input" formControlName="certiLink" id="certiLink" />
-                </div>
-                <button type="button" class="add-bt" (click)="addCertificate()">
-                    Add
+                <button type="button" class="delete-item" (click)="removeSkill(skill)">
+                  <i class="fa-solid fa-trash-can"></i>
                 </button>
-            </div>
-            <button class="submit-bt" type="submit">
-                Update
-            </button>
-        </form>
-    </div>
+              </div>
+            }
+          </div>
+        }
+        @if ((skillsList !== null && skillsList.length > 0)) {
+          <hr class="hrr" />
+        }
+        <div class="custom-form-group">
+          <label class="custom-label label-xl" for="skillType">Skill Type</label>
+          <input type="text" class="custom-input sm-sx" id="skillType" formControlName="skillType" autocomplete="off" />
+        </div>
+        <div class="custom-row">
+          <div class="custom-form-group">
+            <label class="custom-label label-sm" for="skill">Skill</label>
+            <input type="text" class="custom-input sm-x" id="skill" formControlName="skill" autocomplete="off" />
+          </div>
+          <div class="custom-form-group">
+            <label class="custom-label label-md">Level</label>
+            <mat-select class="custom-input custom-drop-menu" formControlName="level" id="level" #level>
+              <mat-option value="1">Newbie</mat-option>
+              <mat-option value="2">Beginner</mat-option>
+              <mat-option value="3">Advanced</mat-option>
+              <mat-option value="4">Intermediate</mat-option>
+              <mat-option value="5">Pro</mat-option>
+            </mat-select>
+          </div>
+
+        </div>
+        <button type="button" class="add-bt" (click)="addSkill()">
+          Add
+        </button>
+      </div>
+
+      <!-- LANGUAGE -->
+      <div class="collection">
+        <label class="collection-label">Languages</label>
+        @if (languagesList !== null && languagesList.length > 0) {
+          <div class="languages-list">
+            @for (language of languagesList; track language) {
+              <div class="list-item">
+                <div class="item-comb">
+                  <label class="item-title">{{language.name}}</label>
+                  <label class="item-undertitle">{{language.type}}</label>
+                </div>
+                <button type="button" class="delete-item" (click)="removeLanguage(language)">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            }
+          </div>
+        }
+        @if (languagesList !== null && languagesList.length > 0) {
+          <hr class="hrr" />
+        }
+        <div class="custom-row">
+          <div class="custom-form-group">
+            <label class="custom-label label-md" for="langType">Type</label>
+            <input type="text" class="custom-input sm-sx" id="langType" formControlName="langType" autocomplete="off"/>
+          </div>
+          <div class="custom-form-group">
+            <label class="custom-label label-md" for="lang">Name</label>
+            <input type="text" class="custom-input sm-x" id="lang" formControlName="lang" autocomplete="off" />
+          </div>
+        </div>
+        <div class="custom-row">
+          <div class="custom-form-group">
+            <label class="custom-label text-sm label-anchor">Read</label>
+            <mat-select class="custom-input custom-drop-menu-sm" formControlName="read" id="read" #read>
+              <mat-option value="A1">A1</mat-option>
+              <mat-option value="A2">A2</mat-option>
+              <mat-option value="B1">B1</mat-option>
+              <mat-option value="B2">B2</mat-option>
+              <mat-option value="C1">C1</mat-option>
+              <mat-option value="C2">C2</mat-option>
+            </mat-select>
+          </div>
+          <div class="custom-form-group">
+            <label class="custom-label text-sm label-anchor">Write</label>
+            <mat-select class="custom-input custom-drop-menu-sm" formControlName="write" id="write" #write>
+              <mat-option value="A1">A1</mat-option>
+              <mat-option value="A2">A2</mat-option>
+              <mat-option value="B1">B1</mat-option>
+              <mat-option value="B2">B2</mat-option>
+              <mat-option value="C1">C1</mat-option>
+              <mat-option value="C2">C2</mat-option>
+            </mat-select>
+          </div>
+          <div class="custom-form-group">
+            <label class="custom-label text-sm label-anchor">Speak</label>
+            <mat-select class="custom-input custom-drop-menu-sm" formControlName="speak" id="speak" #speak>
+              <mat-option value="A1">A1</mat-option>
+              <mat-option value="A2">A2</mat-option>
+              <mat-option value="B1">B1</mat-option>
+              <mat-option value="B2">B2</mat-option>
+              <mat-option value="C1">C1</mat-option>
+              <mat-option value="C2">C2</mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <button type="button" class="add-bt" (click)="addLanguage()">
+          Add
+        </button>
+      </div>
+
+      <!-- CERTIFICATES -->
+      <div class="collection">
+        <label class="collection-label">Certificates</label>
+        @if (certificatesList !== null && certificatesList.length > 0) {
+          <div class="certificates-list">
+            @for (certificate of certificatesList; track certificate) {
+              <div class="list-item">
+                <div class="item-comb">
+                  <label class="item-title">{{certificate.title}}</label>
+                  <label class="item-undertitle">{{certificate.company}}</label>
+                </div>
+                <button type="button" class="delete-item" (click)="removeCertificate(certificate)">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            }
+          </div>
+        }
+        @if (certificatesList !== null && certificatesList.length > 0) {
+          <hr class="hrr" />
+        }
+        <div class="custom-form-group">
+          <label class="custom-label label-sx" for="certiTitle">Title</label>
+          <input type="text" class="custom-input" formControlName="certiTitle" id="certiTitle" />
+        </div>
+        <div class="custom-form-group">
+          <label class="custom-label label-md" for="company">Company</label>
+          <input type="text" class="custom-input" formControlName="company" id="company" />
+        </div>
+        <div class="custom-form-group">
+          <label class="custom-label label-sx" for="certiLink">Link</label>
+          <input type="text" class="custom-input" formControlName="certiLink" id="certiLink" />
+        </div>
+        <button type="button" class="add-bt" (click)="addCertificate()">
+          Add
+        </button>
+      </div>
+      <button class="submit-bt" type="submit">
+        Update
+      </button>
+    </form>
+  </div>
 </div>
