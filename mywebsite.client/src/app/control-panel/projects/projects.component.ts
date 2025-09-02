@@ -14,9 +14,10 @@ import { DeleteDialogComponent } from '../../custom-components/delete-dialog/del
 import { EntityTypes } from '../../helpers/entityTypes';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+    selector: 'app-projects',
+    templateUrl: './projects.component.html',
+    styleUrl: './projects.component.scss',
+    standalone: false
 })
 export class ProjectsComponent implements OnInit {
   constructor(private apiServices: ApiService, private readonly dialog: MatDialog) {

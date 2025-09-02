@@ -6,9 +6,10 @@ import { Cvdto, SkillDto } from '../../api/models';
 import moment from 'moment';
 
 @Component({
-  selector: 'app-cv',
-  templateUrl: './cv.component.html',
-  styleUrl: './cv.component.scss'
+    selector: 'app-cv',
+    templateUrl: './cv.component.html',
+    styleUrl: './cv.component.scss',
+    standalone: false
 })
 export class CvComponent implements OnInit, AfterViewInit{
 

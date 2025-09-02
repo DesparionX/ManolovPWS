@@ -11,9 +11,10 @@ import moment, { Moment } from 'moment';
 
 
 @Component({
-  selector: 'app-edit-cv',
-  templateUrl: './edit-cv.component.html',
-  styleUrl: './edit-cv.component.scss',
+    selector: 'app-edit-cv',
+    templateUrl: './edit-cv.component.html',
+    styleUrl: './edit-cv.component.scss',
+    standalone: false
 })
 export class EditCVComponent implements OnInit, AfterViewInit {
 

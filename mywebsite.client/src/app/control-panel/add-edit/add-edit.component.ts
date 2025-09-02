@@ -10,10 +10,11 @@ import { AddPostResponse, FindPostResponse, PostDto, PostRm, UpdatePostResponse 
 import { ProjectTypes } from '../../helpers/projectTypes';
 
 @Component({
-  selector: 'app-add-edit',
-  templateUrl: './add-edit.component.html',
-  styleUrl: './add-edit.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-add-edit',
+    templateUrl: './add-edit.component.html',
+    styleUrl: './add-edit.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AddEditComponent implements OnInit, OnDestroy {
 

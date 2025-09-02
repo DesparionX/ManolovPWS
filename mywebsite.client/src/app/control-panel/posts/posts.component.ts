@@ -15,9 +15,10 @@ import { EntityTypes } from '../../helpers/entityTypes';
 
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrl: './posts.component.scss'
+    selector: 'app-posts',
+    templateUrl: './posts.component.html',
+    styleUrl: './posts.component.scss',
+    standalone: false
 })
 export class PostsComponent implements OnInit {
   constructor(private apiServices: ApiService, private readonly dialog: MatDialog) {

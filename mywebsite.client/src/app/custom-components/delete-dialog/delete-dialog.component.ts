@@ -8,12 +8,11 @@ import { EntityTypes } from '../../helpers/entityTypes';
 import { DeleteDialogData } from './DeleteDialogData';
 
 @Component({
-  selector: 'app-delete-dialog',
-  templateUrl: './delete-dialog.component.html',
-  styleUrl: './delete-dialog.component.scss',
-  standalone: true,
-  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogClose],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-delete-dialog',
+    templateUrl: './delete-dialog.component.html',
+    styleUrl: './delete-dialog.component.scss',
+    imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogClose],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeleteDialogComponent implements OnInit{
 

@@ -7,17 +7,18 @@ import moment from 'moment';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'app-portfolio',
-  templateUrl: './portfolio.component.html',
-  styleUrl: './portfolio.component.scss',
-  animations: [
-    trigger('fade', [
-      state('visible', style({ opacity: 1 })),
-      state('hidden', style({ opacity: 0 })),
-      transition('visible => hidden', [animate('0.3s ease')]),
-      transition('hidden => visible', [animate('0.3s ease')]),
-    ]),
-  ],
+    selector: 'app-portfolio',
+    templateUrl: './portfolio.component.html',
+    styleUrl: './portfolio.component.scss',
+    animations: [
+        trigger('fade', [
+            state('visible', style({ opacity: 1 })),
+            state('hidden', style({ opacity: 0 })),
+            transition('visible => hidden', [animate('0.3s ease')]),
+            transition('hidden => visible', [animate('0.3s ease')]),
+        ]),
+    ],
+    standalone: false
 })
 export class PortfolioComponent implements OnInit{
 

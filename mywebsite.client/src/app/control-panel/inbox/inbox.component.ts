@@ -5,9 +5,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../custom-components/delete-dialog/delete-dialog.component';
 
 @Component({
-  selector: 'app-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrl: './inbox.component.scss'
+    selector: 'app-inbox',
+    templateUrl: './inbox.component.html',
+    styleUrl: './inbox.component.scss',
+    standalone: false
 })
 export class InboxComponent implements OnInit {
 

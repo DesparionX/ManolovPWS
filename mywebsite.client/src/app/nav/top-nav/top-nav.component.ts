@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-top-nav',
-  templateUrl: './top-nav.component.html',
-  styleUrl: './top-nav.component.scss',
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-top-nav',
+    templateUrl: './top-nav.component.html',
+    styleUrl: './top-nav.component.scss',
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class TopNavComponent {
   constructor(private auth: AuthService, private router: Router) {

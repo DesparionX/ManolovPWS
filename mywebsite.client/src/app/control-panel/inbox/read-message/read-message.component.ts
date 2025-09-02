@@ -5,9 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
 
 @Component({
-  selector: 'app-read-message',
-  templateUrl: './read-message.component.html',
-  styleUrl: './read-message.component.scss'
+    selector: 'app-read-message',
+    templateUrl: './read-message.component.html',
+    styleUrl: './read-message.component.scss',
+    standalone: false
 })
 export class ReadMessageComponent implements OnInit, OnDestroy {
 

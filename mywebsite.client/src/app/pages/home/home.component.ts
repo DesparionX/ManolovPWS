@@ -6,9 +6,10 @@ import moment from 'moment';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    standalone: false
 })
 export class HomeComponent implements OnInit{
   constructor(private api: ApiService, private sanitizer: DomSanitizer) { }
