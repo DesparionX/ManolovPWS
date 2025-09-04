@@ -138,10 +138,10 @@ export class CvComponent implements OnInit, AfterViewInit{
   async loadCV() {
     const result = await this.api.getCv();
     if (result.succeed) {
-      this.cv = result.cv!;
-      this.cv.workExperience?.sort((a, b) =>
-        new Date(a.startDate!).getTime() - new Date(b.startDate!).getTime());
+      result.cv!.workExperience?.sort((a, b) =>
+        new Date(b.startDate!).getTime() - new Date(a.startDate!).getTime());
 
+      this.cv = result.cv!;
       this.fetchSkills();
       this.loading = false;
     } else {
