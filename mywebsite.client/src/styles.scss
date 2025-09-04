@@ -1,27 +1,15 @@
 // src/styles.scss
 @use '@angular/material' as mat;
+@use './styles/_theme-colors' as theme-colors; // adjust path to where schematic placed file
 
-// Include core utilities (only once)
 @include mat.core();
 
-// Seed colors (use hex values or CSS vars)
-// Keep color map limited to allowed keys: theme-type, primary, tertiary, ...
-$primary-seed: #3f51b5; // Indigo-like
-$tertiary-seed: #4caf50; // Green-like
+$mywebsite-client-theme: mat.define-theme(( color: ( theme-type: light, primary: theme-colors.$primary-palette, tertiary: theme-colors.$tertiary-palette, ), density: (scale: 0),
+// typography can be a map or empty if you don't need custom
+typography: (), ));
 
-// Define the theme (Material 3 API - v19+)
-// Note: do NOT use old functions like mat.define-typography-config or m2-define-* here.
-$mywebsite-client-theme: mat.define-theme(( color: ( theme-type: light, primary: $primary-seed, tertiary: $tertiary-seed, ),
-// Typography is a plain sass map in v19. Provide the keys you need.
-typography: ( plain-family: 'Roboto, "Helvetica Neue", Arial, sans-serif', brand-family: 'Roboto Slab, "Helvetica Neue", Arial, serif', bold-weight: 700, medium-weight: 500, regular-weight: 400, ),
-// density is a map with scale
-density: ( scale: 0 ), ));
-
-// Emit component styles and CSS custom properties at :root
 :root {
   @include mat.all-component-themes($mywebsite-client-theme);
-  // Apply the typography hierarchy (applies base text styles)
-  @include mat.typography-hierarchy($mywebsite-client-theme);
 }
 
 
