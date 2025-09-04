@@ -1,16 +1,23 @@
 @use '@angular/material' as mat;
 
-// Define a theme using hex colors
-$mywebsite-client-theme: mat.define-theme(( color: ( theme-type: light, primary: #3f51b5, // Indigo-like
-secondary: #e91e63, // Pink-like
-tertiary: #4caf50, // Green
-error: #f44336, // Red
-), ));
+// include core mixin once
+@include mat.core();
 
-// Apply the theme globally
+// define seed colors (hex). Only include valid color properties below.
+$primary-seed: #3f51b5; // Indigo-like
+$tertiary-seed: #4caf50; // Green-like
+
+// Build the theme using the Material 3 API (v19+).
+// NOTE: top-level color map supports only theme-type, primary, tertiary, use-system-variables, system-variables-prefix
+$mywebsite-client-theme: mat.define-theme(( color: ( theme-type: light, primary: $primary-seed, tertiary: $tertiary-seed, ),
+// optional: typography and density
+typography: mat.define-typography-config(), density: 0, ));
+
+// Emit theme CSS variables and component styles at :root
 :root {
   @include mat.all-component-themes($mywebsite-client-theme);
 }
+
 
 .body {
 }
