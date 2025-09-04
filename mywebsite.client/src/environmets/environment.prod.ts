@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: '{{API_URL}}' || 'https://manolov.up.railway.app'
+  apiUrl: 'https://manolov.up.railway.app'
 };

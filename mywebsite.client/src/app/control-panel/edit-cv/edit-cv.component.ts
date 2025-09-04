@@ -217,8 +217,6 @@ export class EditCVComponent implements OnInit, AfterViewInit {
     const startDate = this.form.get('startDate')?.value;
     const endDate = this.form.get('endDate')?.value;
 
-    //const startDate = moment(startDateRaw).format('DD.MM.YYYY');
-    //const endDate = moment(endDateRaw).format('DD.MM.YYYY');
     if ((position!.length > 0) && (description!.length > 0) && (startDate !== null) && (endDate !== null)) {
       this.jobsList.push({
         position: position!,
@@ -249,11 +247,9 @@ export class EditCVComponent implements OnInit, AfterViewInit {
     const educationType = this.form.get('educationType')?.value;
     const professionAquired = this.form.get('professionAquired')?.value;
     const educationDescription = this.form.get('educationDescription')?.value;
-    const eduStartDate = this.dateFormat(this.form.get('eduStartDate')?.value.toString()!); /*this.form.get('eduStartDate')?.value.toString();*/
-    const eduEndDate = this.dateFormat(this.form.get('eduEndDate')?.value.toString()!);     /*this.form.get('eduEndDate')?.value.toString();*/
+    const eduStartDate = this.dateFormat(this.form.get('eduStartDate')?.value.toString()!);
+    const eduEndDate = this.dateFormat(this.form.get('eduEndDate')?.value.toString()!);
 
-    //const eduStartDate = moment(eduStartDateRaw).format('DD.MM.YYYY');
-    //const eduEndDate = moment(eduEndDateRaw)?.format('DD.MM.YYYY');
     if (schoolName!.length > 0
       && educationType!.length > 0
       && professionAquired!.length > 0
@@ -294,7 +290,7 @@ export class EditCVComponent implements OnInit, AfterViewInit {
     const skill = this.form.get('skill')?.value;
     const skillLevel = Number(this.form.get('level')?.value);
 
-    if (skillType!.length > 0 && skill!.length > 0 && skillLevel! !== (null || undefined)) {
+    if (skillType!.length > 0 && skill!.length > 0 && skillLevel! !== (null)) {
       this.skillsList.push({
         type: skillType!,
         skillName: skill!,
@@ -372,7 +368,7 @@ export class EditCVComponent implements OnInit, AfterViewInit {
   // Api functions
   // Load the CV from db and fetch it to local variable.
   async fetchCV() {
-    let response: LoadCvResponse = await this.apiService.getCv();
+    const response: LoadCvResponse = await this.apiService.getCv();
     if (response.succeed) {
       console.log(response.message);
       this.cv = response.cv;
@@ -447,8 +443,6 @@ export class EditCVComponent implements OnInit, AfterViewInit {
     this.cv!.skills = this.skillsList;
     this.cv!.languages = this.languagesList;
     this.cv!.certificates = this.certificatesList;
-
-    console.log(this.cv!.toString() + 'before calling the update.')
 
     const response = await this.apiService.updateCV(this.cv!)
     if (response.succeed) {
