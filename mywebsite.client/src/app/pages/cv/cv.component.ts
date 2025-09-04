@@ -140,7 +140,7 @@ export class CvComponent implements OnInit, AfterViewInit{
     if (result.succeed) {
       this.cv = result.cv!;
       this.cv.workExperience?.sort((a, b) =>
-        new Date(b.startDate!).getTime() - new Date(a.startDate!).getTime());
+        new Date(a.startDate!).getTime() - new Date(b.startDate!).getTime());
 
       this.fetchSkills();
       this.loading = false;
