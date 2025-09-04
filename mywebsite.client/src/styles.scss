@@ -1,12 +1,14 @@
 @use '@angular/material' as mat;
 
-// Define your custom theme using Material 3
-$mywebsite-client-theme: mat.define-theme(( color: ( theme-type: light, primary: mat.$blue-palette, secondary: mat.$pink-palette, tertiary: mat.$green-palette, error: mat.$red-palette, ), ));
+// Define a theme using Material 3
+$mywebsite-client-theme: mat.define-theme(( color: ( theme-type: light, primary: mat.$cyan, // built-in seed
+secondary: mat.$pink, tertiary: mat.$green, error: mat.$red, ), ));
 
-// Apply the theme
+// Apply the theme globally
 :root {
   @include mat.all-component-themes($mywebsite-client-theme);
 }
+
 
 
 .body {
