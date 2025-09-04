@@ -137,7 +137,7 @@
             <label class="header big">EMPLOYMENT HISTORY</label>
             <div class="list" #jobList [style.maxHeight]="empActive ? empMaxHeight : '0'">
               <!-- -->
-              @for (job of cv.workExperience; track job) {
+              @for (job of sortedWorkExperience; track job) {
                 <div class="job">
                   <label class="job-position">{{job.position}}</label>
                   <label class="start-end-date">{{dateFormat(job.startDate!)}} - {{dateFormat(job.endDate!)}}</label>
