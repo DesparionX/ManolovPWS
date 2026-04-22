@@ -76,7 +76,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Please enter token",
         Name = "Authorization",
         Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
+        Scheme = "bearer",
         BearerFormat = "JWT"
     });
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -90,7 +90,7 @@ builder.Services.AddSwaggerGen(options =>
                     Id = "Bearer"
                 }
             },
-            new string[] { }
+            Array.Empty<string>()
         }
     });
 });
@@ -128,7 +128,10 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     .AddDefaultTokenProviders();
 
 // Custom services
-builder.Services.AddAutoMapper(typeof(MapHandler));
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddMaps(typeof(MapHandler).Assembly);
+});
 builder.Services.AddScoped<ApplicationDbContext>();
 builder.Services.AddScoped<PostsHandler>();
 builder.Services.AddScoped<CVHandler>();
@@ -138,15 +141,21 @@ builder.Services.AddScoped<UserHandler>();
 builder.Services.AddScoped<AuthHandler>();
 builder.Services.AddHealthChecks()
     .AddCheck<DatabaseHealthCheck>("custom-check", HealthStatus.Healthy);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy.WithOrigins("https://manolov.netlify.app")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-app.UseCors(builder => builder
-.WithOrigins("https://manolov.netlify.app")
-.AllowAnyMethod()
-.AllowAnyHeader()
-);
+app.UseCors("Frontend");
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
