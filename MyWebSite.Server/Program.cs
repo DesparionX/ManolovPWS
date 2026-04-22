@@ -141,15 +141,21 @@ builder.Services.AddScoped<UserHandler>();
 builder.Services.AddScoped<AuthHandler>();
 builder.Services.AddHealthChecks()
     .AddCheck<DatabaseHealthCheck>("custom-check", HealthStatus.Healthy);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy.WithOrigins("https://manolov.netlify.app")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-app.UseCors(builder => builder
-.WithOrigins("https://manolov.netlify.app")
-.AllowAnyMethod()
-.AllowAnyHeader()
-);
+app.UseCors("Frontend");
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
