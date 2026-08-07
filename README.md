@@ -5,7 +5,6 @@
 - **ASP.Net Core server with REST API** - deployed at Railway.
 - **SQL Server DB** - deployed at Azure.
 
-You can visit it at https://manolov.netlify.app/
 ### Functionality:
 - Home page where I can post news and updates.
 - Portfolio page with finished and in progress projects.
